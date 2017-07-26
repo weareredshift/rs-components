@@ -76,7 +76,7 @@ export class Carousel extends React.Component {
   switchToNextSlide (index, pause = false) {
     const { carouselID, dispatch, slideCollection } = this.props;
     currySwitchToNextSlide(carouselID, dispatch, slideCollection)(index, pause);
-  };
+  }
 
   componentWillUnmount () {
     const { delay } = this.props;
@@ -105,7 +105,7 @@ export class Carousel extends React.Component {
       </div>
     );
   }
-};
+}
 
 const { string, array, number, func, node } = React.PropTypes;
 Carousel.propTypes = {

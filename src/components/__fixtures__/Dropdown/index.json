@@ -1,0 +1,15 @@
+{
+  "open": true,
+  "element": [],
+  "selectedIndices": [
+    1
+  ],
+  "dropID": "whatever",
+  "items": [
+    "Item 1",
+    "Item 2",
+    "Item 3"
+  ],
+  "title": "Whatever Dropdown",
+  "replaceTitle": true
+}

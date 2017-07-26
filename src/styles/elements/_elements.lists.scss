@@ -1,0 +1,38 @@
+// list items aligned adjacent to eachother
+.list--inline li {
+  display: inline-block;
+}
+
+// list items stacked on top of eachother, each fill width
+.list--block li {
+  display: block;
+}
+
+// list items with | symbol inbetween each item, aligned adjacent to each other
+.list--hash {
+  li {
+    display: inline-block;
+    margin-right: 1em;
+    padding-right: 1em;
+    position: relative;
+
+    &:after {
+      content: '|';
+      position: absolute;
+      right: 0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+      padding-right: 0;
+
+      &:after { display: none; }
+    }
+  }
+}
+
+// ordered list style
+ol {
+  list-style-type: decimal;
+  margin-left: 1.6rem;
+}

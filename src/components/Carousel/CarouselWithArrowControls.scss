@@ -1,0 +1,69 @@
+@import 'sass-includes';
+
+.carousel__arrowcontrols .carousel__controls {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.carousel__arrows {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 4.5rem;
+  font-size: 1rem;
+  transform: translateY(-50%);
+  z-index: 2;
+  // media queries
+  @include breakpoint($mobile-lg) {
+    display: none;
+  }
+}
+
+.carousel__arrows__prev,
+.carousel__arrows__next {
+  background: $noon-yellow;
+  color: $white;
+  border-radius: 50%;
+  width: 4.5rem;
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  cursor: pointer;
+
+  &:hover {
+    background: $medium-grey;
+  }
+}
+
+.carousel__arrows__prev {
+  left: -2.5rem;
+}
+
+.carousel__arrows__next {
+  right: -2.5rem;
+}
+
+.carousel__slideimg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+  // media queries
+  @include breakpoint($mobile-lg) {
+    transform: none;
+    top: 0;
+    position: relative;
+  }
+}
+
+.carousel__slidewrap {
+  // media queries
+  @include breakpoint($mobile-lg) {
+    position: relative;
+  }
+}

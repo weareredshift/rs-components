@@ -1,0 +1,87 @@
+.disable-scroll {
+  overflow: hidden;
+}
+
+// align content left for box model layouts
+.layout--left {
+  float: left !important; // sass-lint:disable-line no-important
+}
+
+// align content left for box model layouts
+.layout--right {
+  float: right !important; // sass-lint:disable-line no-important
+}
+
+.layout--top {
+  vertical-align: top;
+}
+
+// force position relative, used to constrain absolute children
+.layout--relative {
+  position: relative;
+}
+
+// force element to fill the viewport height
+.layout--fullheight {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+// flexbox layout with immediate children centered
+.layout--flex {
+  display: flex;
+  align-items: center;
+}
+
+.layout--flex-row {
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+}
+
+.layout--flex-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+.layout--flex-center {
+  display: flex;
+  overflow-y: auto;
+
+  > div {
+    margin: auto;
+  }
+}
+
+.layout--page-title {
+  padding-top: 9rem;
+  padding-bottom: 9rem;
+  // media queries
+  @include breakpoint($tablet-sm) {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+  @include breakpoint($mobile-lg) {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  h1 {
+    padding-bottom: 3rem;
+    // media queries
+    @include breakpoint($tablet-sm) {
+      padding-bottom: 1rem;
+
+    }
+  }
+}
+
+// clearfix class, % defined in extends
+.cf {
+  @extend %clearfix;
+}
+
+.anchor {
+  position: relative;
+  height: 0;
+}

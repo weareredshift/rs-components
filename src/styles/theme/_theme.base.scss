@@ -1,0 +1,53 @@
+// default global body styles
+body {
+  color: $medium-grey;
+}
+
+.typ--heading {
+  color: $dark-grey;
+}
+
+// default global link styles
+a {
+  color: $noon-yellow;
+}
+
+// adds dark grey background color to element
+.theme--background-superdarkgrey { background-color: $super-dark-grey; }
+.theme--background-dark { background-color: $charcoal; }
+.theme--background-white { background-color: $white; }
+.theme--background-superlightgrey { background-color: $super-light-grey; }
+
+// adds theme classes to element, defined in includes/extends/_extends.themes.scss
+.theme--dark { @extend %theme--dark;
+
+  .carousel__tabs {
+    color: $white;
+  }
+}
+
+.theme--medium { @extend %theme--medium; }
+.theme--lightmedium { @extend %theme--lightmedium; }
+
+// adds color to text elements
+.typ--red { color: $red; }
+.typ--grey { color: $medium-grey; }
+.typ--white { color: $white; }
+
+// adds shade of grey to text elements
+.typ--super-light-grey { color: $super-light-grey; }
+.typ--light-grey { color: $light-grey; }
+.typ--medium-grey { color: $medium-grey; }
+.typ--dark-grey { color: $dark-grey; }
+.typ--charcoal { color: $charcoal; }
+.typ--noon-black { color: $noon-black; }
+.typ--noon-yellow { color: $noon-yellow; }
+
+// Adds ease to CTA elements
+[att^=cta],
+.btn {
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+}

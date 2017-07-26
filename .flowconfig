@@ -1,0 +1,6 @@
+[options]
+module.file_ext=.js
+module.file_ext=.json
+module.file_ext=.css
+module.file_ext=.scss
+module.name_mapper='^\(components\|styles\|store\|containers\|routes\)\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1/\2'

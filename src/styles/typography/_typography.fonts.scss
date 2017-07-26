@@ -1,0 +1,64 @@
+// font-face declarations will go here
+
+@font-face {
+  font-family: 'miller_text';
+  src: url('../assets/fonts/miller-text.woff2') format('woff2'),
+       url('../assets/fonts/miller-text.woff') format('woff'),
+       url('../assets/fonts/miller-text.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'miller_textregular';
+  src: url('../assets/fonts/miller-text.woff2') format('woff2'),
+       url('../assets/fonts/miller-text.woff') format('woff'),
+       url('../assets/fonts/miller-text.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'brandon_textbold';
+  src: url('../assets/fonts/brandontext-bold.woff2') format('woff2'),
+       url('../assets/fonts/brandontext-bold.woff') format('woff'),
+       url('../assets/fonts/brandontext-bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'brandon_text_regular';
+  src: url('../assets/fonts/brandontext-regular.woff2') format('woff2'),
+       url('../assets/fonts/brandontext-regular.woff') format('woff'),
+       url('../assets/fonts/brandontext-regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'brandon_text_regular_italic';
+  src: url('../assets/fonts/brandontext-regularitalic.woff2') format('woff2'),
+       url('../assets/fonts/brandontext-regularitalic.woff') format('woff'),
+       url('../assets/fonts/brandontext-regularitalic.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'brandon_text_light';
+  src: url('../assets/fonts/brandontext-light.woff2') format('woff2'),
+       url('../assets/fonts/brandontext-light.woff') format('woff'),
+       url('../assets/fonts/brandontext-light.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'brandon_text_light_italic';
+  src: url('../assets/fonts/brandontext-lightitalic.woff2') format('woff2'),
+       url('../assets/fonts/brandontext-lightitalic.woff') format('woff'),
+       url('../assets/fonts/brandontext-lightitalic.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}

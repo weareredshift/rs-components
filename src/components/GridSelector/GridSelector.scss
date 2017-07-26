@@ -1,0 +1,76 @@
+@import 'sass-includes';
+
+.gridselector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  // media queries
+  @include breakpoint($mobile-lg) {
+    width: calc(100% + 4rem);
+    margin-left: -2rem;
+  }
+}
+
+.gridselector__item {
+  text-align: center;
+  padding: 4rem 2rem;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  color: $dark-grey;
+  // media queries
+  @include breakpoint($desktop-md) { width: 33.33333%; }
+  @include breakpoint($desktop-sm) { width: 25%; }
+  @include breakpoint($tablet-sm) { width: 33.33333%; }
+  @include breakpoint($mobile-md) { width: 50%; }
+  @include breakpoint($mobile-sm) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  &.is-active {
+    .gridselector__icon__highlight { background: $noon-yellow; }
+    .gridselector__item__label { color: $noon-yellow; }
+  }
+}
+
+.gridselector__icon {
+  width: 15rem;
+  height: 10rem;
+  position: relative;
+  // media queries
+  @include breakpoint($mobile-sm) {
+    width: 10rem;
+  }
+}
+
+.gridselector__icon img {
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  max-width: none;
+  width: 17rem;
+  // media queries
+  @include breakpoint($mobile-sm) {
+    width: 14rem;
+  }
+}
+
+.gridselector__icon__highlight {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 10.6rem;
+  height: 10.6rem;
+  display: block;
+  background: $super-light-grey;
+  border-radius: 50%;
+  z-index: 1;
+}

@@ -1,0 +1,268 @@
+// imports icon font file, generated with icomoon: https://icomoon.io/app/#,
+// project file can be found in dropbox
+@font-face {
+  font-family: 'noon';
+  src: url('../assets/fonts/noon.eot?adzcec#iefix') format('embedded-opentype'),
+       url('../assets/fonts/noon.ttf?adzcec') format('truetype'),
+       url('../assets/fonts/noon.woff?adzcec') format('woff'),
+       url('../assets/fonts/noon.svg?adzcec#noon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// defines basic icon classes
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'noon' !important; // sass-lint:disable-line no-important
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cooking:before {
+  content: '\e90f';
+}
+
+.icon-dining:before {
+  content: '\e912';
+}
+
+.icon-arrow-left:before {
+  content: '\e900';
+}
+
+.icon-arrow-right:before {
+  content: '\e901';
+}
+
+.icon-arrow-down:before {
+  content: '\e902';
+}
+
+.icon-arrow-up:before {
+  content: '\e903';
+}
+
+.icon-bulb-cfl:before {
+  content: '\e904';
+}
+
+.icon-bulb-halogen:before {
+  content: '\e905';
+}
+
+.icon-bulb-incandescent:before {
+  content: '\e906';
+}
+
+.icon-bulb-led:before {
+  content: '\e907';
+}
+
+.icon-bulb-philips-hue:before {
+  content: '\e908';
+}
+
+.icon-calendar:before {
+  content: '\e909';
+}
+
+.icon-cart:before {
+  content: '\e90a';
+}
+
+.icon-chat:before {
+  content: '\e90b';
+}
+
+.icon-check:before {
+  content: '\e90c';
+}
+
+.icon-close:before {
+  content: '\e90d';
+}
+
+.icon-compass:before {
+  content: '\e90e';
+}
+
+.icon-download:before {
+  content: '\e919';
+}
+
+.icon-entertain:before {
+  content: '\e91a';
+}
+
+.icon-facebook:before {
+  content: '\e91b';
+}
+
+.icon-hamburger:before {
+  content: '\e91c';
+}
+
+.icon-longarrow-down:before {
+  content: '\e91d';
+}
+
+.icon-longarrow-left:before {
+  content: '\e91e';
+}
+
+.icon-longarrow-right:before {
+  content: '\e91f';
+}
+
+.icon-longarrow-up:before {
+  content: '\e920';
+}
+
+.icon-map-marker:before {
+  content: '\e921';
+}
+
+.icon-minus:before {
+  content: '\e922';
+}
+
+.icon-movie:before {
+  content: '\e923';
+}
+
+.icon-plus:before {
+  content: '\e924';
+}
+
+.icon-quotes:before {
+  content: '\e925';
+}
+
+.icon-study:before {
+  content: '\e926';
+}
+
+.icon-switch-audio-lg:before {
+  content: '\e927';
+}
+
+.icon-switch-audio-sm:before {
+  content: '\e928';
+}
+
+.icon-switch-dial-dimmer-lg:before {
+  content: '\e929';
+}
+
+.icon-switch-dial-dimmer-sm:before {
+  content: '\e92a';
+}
+
+.icon-switch-digital-dimmer-lg:before {
+  content: '\e92b';
+}
+
+.icon-switch-digital-dimmer-sm:before {
+  content: '\e92c';
+}
+
+.icon-switch-dual-switch-lg:before {
+  content: '\e92d';
+}
+
+.icon-switch-dual-switch-sm:before {
+  content: '\e92e';
+}
+
+.icon-switch-fan-control-lg:before {
+  content: '\e92f';
+}
+
+.icon-switch-fan-control-sm:before {
+  content: '\e930';
+}
+
+.icon-switch-motion-sensor-lg:before {
+  content: '\e931';
+}
+
+.icon-switch-motion-sensor-sm:before {
+  content: '\e932';
+}
+
+.icon-switch-outlet-lg:before {
+  content: '\e933';
+}
+
+.icon-switch-outlet-sm:before {
+  content: '\e934';
+}
+
+.icon-switch-rocker-dimmer-lg:before {
+  content: '\e935';
+}
+
+.icon-switch-rocker-dimmer-sm:before {
+  content: '\e936';
+}
+
+.icon-switch-rocker-lg:before {
+  content: '\e937';
+}
+
+.icon-switch-rocker-sm:before {
+  content: '\e938';
+}
+
+.icon-switch-slide-dimmer-lg:before {
+  content: '\e939';
+}
+
+.icon-switch-slide-dimmer-rocker-lg:before {
+  content: '\e93a';
+}
+
+.icon-switch-slide-dimmer-rocker-sm:before {
+  content: '\e93b';
+}
+
+.icon-switch-slide-dimmer-sm:before {
+  content: '\e93c';
+}
+
+.icon-switch-timer-lg:before {
+  content: '\e93d';
+}
+
+.icon-switch-timer-sm:before {
+  content: '\e93e';
+}
+
+.icon-switch-toggle-dimmer-lg:before {
+  content: '\e93f';
+}
+
+.icon-switch-toggle-dimmer-sm:before {
+  content: '\e940';
+}
+
+.icon-switch-toggle-lg:before {
+  content: '\e941';
+}
+
+.icon-switch-toggle-sm:before {
+  content: '\e942';
+}
+
+.icon-twitter:before {
+  content: '\e943';
+}

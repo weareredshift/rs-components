@@ -1,0 +1,11 @@
+// gradient mixin
+@mixin gradient($angle, $from, $to) {
+  // fallback/image non-cover color
+  background-color: $from;
+
+  @if $angle == 'horizontal' {
+    background: linear-gradient(to right, $from 0%, $to 100%);
+  } @else if $angle == 'vertical' {
+    background: linear-gradient(to bottom, $from 0%, $to 100%);
+  }
+}

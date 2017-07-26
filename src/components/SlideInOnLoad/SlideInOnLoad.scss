@@ -1,0 +1,10 @@
+.slide-in-on-load {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: transform 0.7s ease;
+}
+
+.slide-in-on-load.loaded {
+  opacity: 1;
+  transform: none;
+}

@@ -1,0 +1,17 @@
+.noon-loader {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.noon-loader.transparent {
+  opacity: 0;
+}
+
+.noon-loader__imagecontainer {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

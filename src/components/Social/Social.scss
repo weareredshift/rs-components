@@ -1,0 +1,13 @@
+@import 'sass-includes';
+
+// placeholder styles
+.social li span {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.6rem;
+  display: block;
+  background-color: $dark-grey;
+  cursor: pointer;
+
+  &:hover { background-color: $noon-yellow; }
+}

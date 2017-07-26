@@ -1,0 +1,356 @@
+files:
+  include: 'src/**/*.scss'
+options:
+  formatter: stylish
+  merge-default-rules: false
+rules:
+
+  # Rule bem-depth will enforce how many elements a BEM
+  # selector can contain.
+  bem-depth:
+    - 0
+    - max-depth: 1
+
+  # Rule border-zero will enforce whether one should use 0
+  # or none when specifying a zero border value
+  border-zero:
+    - 2
+    - convention: 0
+
+  # Rule brace-style will enforce the use of the chosen
+  # brace style.
+  brace-style:
+    - 2
+    - allow-single-line: true
+
+  # Rule class-name-format will enforce a convention for
+  # class names.
+  class-name-format:
+    - 2
+    - convention: hyphenatedbem
+
+  # Rule clean-import-paths will enforce whether or not
+  # @import paths should have leading underscores and/or
+  # filename extensions.
+  clean-import-paths:
+    - 2
+    - filename-extension: false
+      leading-underscore: false
+
+  # Rule empty-line-between-blocks will enforce whether or
+  # not nested blocks should include a space between the
+  # last non-comment declaration or not.
+  empty-line-between-blocks:
+    - 2
+    - include: true
+    - allow-single-line-rulesets: true
+
+  # Rule extends-before-declarations will enforce that
+  # extends should be written before declarations in a
+  # ruleset.
+  extends-before-declarations: 2
+
+  # Rule extends-before-mixins will enforce that extends
+  # should be written before mixins in a ruleset.
+  extends-before-mixins: 2
+
+  # Rule final-newline will enforce whether or not files
+  # should end with a newline.
+  final-newline:
+    - 2
+    - include: true
+
+  # Rule force-attribute-nesting will enforce the nesting
+  # of attributes
+  force-attribute-nesting: 0
+
+  # Rule force-element-nesting will enforce the nesting
+  # of elements
+  force-element-nesting: 0
+
+  # Rule force-pseudo-nesting will enforce the nesting
+  # of pseudo elements/classes.
+  force-pseudo-nesting: 0
+
+  # Rule function-name-format will enforce a convention
+  # for function names.
+  function-name-format:
+    - 2
+    - allow-leading-underscore: true
+      convention: hyphenatedlowercase
+
+  # Rule hex-length will enforce the length of hexadecimal
+  # values
+  hex-length:
+    - 0
+    - style: short
+
+  # Rule hex-notation will enforce the case of
+  # hexadecimal values
+  hex-notation:
+    - 1
+    - style: uppercase
+
+  # Rule id-name-format will enforce a convention
+  # for ids.
+  id-name-format:
+    - 0
+    - convention: hyphenatedlowercase
+
+  # Rule indentation will enforce an indentation size
+  # (in spaces) and ensure that tabs and spaces are
+  # not mixed.
+  indentation:
+    - 1
+    - size: 2
+
+  # Rule leading-zero will enforce whether or not decimal
+  # numbers should include a leading zero.
+  leading-zero:
+    - 2
+    - include: true
+
+  # Rule mixin-name-format will enforce a convention for
+  # mixin names.
+  mixin-name-format:
+    - 2
+    - allow-leading-underscore: true
+      convention: hyphenatedlowercase
+
+  # Rule mixins-before-declarations will enforce that mixins
+  # should be written before declarations in a ruleset.
+  mixins-before-declarations: 2
+
+  # Rule nesting-depth will enforce how deeply a selector can
+  # be nested.
+  nesting-depth:
+    - 1
+    - max-depth: 3
+
+  # Rule no-color-keywords will enforce the use of hexadecimal
+  # color values rather than literals.
+  no-color-keyword: 0
+
+  # Rule no-color-literals will disallow the use of color
+  # literals and basic color functions in any declarations
+  # other than variables or maps/lists.
+  no-color-literals: 0
+
+  # Rule no-css-comments will enforce the use of Sass single-line
+  # comments and disallow CSS comments. Bang comments (/*! */,
+  # will be printed even in minified mode) are still allowed.
+  no-css-comments: 0
+
+  # Rule no-debug will enforce that @debug statements are not
+  # allowed to be used.
+  no-debug: 2
+
+  # Rule no-duplicate-properties will enforce that duplicate
+  # properties are not allowed within the same block.
+  no-duplicate-properties: 2
+
+  # Rule no-empty-rulesets will enforce that rulesets are
+  # not empty.
+  no-empty-rulesets: 2
+
+  # Rule no-extends will enforce that extends are not allowed
+  # to be used.
+  no-extends: 0
+
+  # Rule no-ids will enforce that ID selectors are not allowed
+  # to be used.
+  no-ids: 1
+
+  # Rule no-important will enforce that important declarations
+  # are not allowed to be used.
+  no-important: 1
+
+  # Rule no-invalid-hex will enforce that only valid of hexadecimal
+  # values are written.
+  no-invalid-hex: 2
+
+  # Rule no-mergeable-selectors will enforce that selectors aren't
+  # repeated and that their properties are merged. You may also pass
+  # a whitelist of selectors you wish to exclude from merging.
+  no-mergeable-selectors: 2
+
+  # Rule no-mergeable-selectors will enforce that selectors aren't
+  # repeated and that their properties are merged. You may also pass
+  # a whitelist of selectors you wish to exclude from merging.
+  no-misspelled-properties:
+    - 2
+    - extra-properties: ['overflow-scrolling', 'lost-column']
+
+  # Rule no-qualifying-elements will enforce that selectors are not
+  # allowed to have qualifying elements.
+  no-qualifying-elements:
+    - 1
+    - allow-element-with-attribute: true
+      allow-element-with-class: false
+      allow-element-with-id: false
+
+  # Rule no-trailing-zero will enforce that trailing zeros are
+  # not allowed.
+  no-trailing-zero: 2
+
+  # Rule no-transition-all will enforce whether the keyword all
+  # can be used with the transition or transition-property property.
+  no-transition-all: 2
+
+  # Rule no-url-protocols will enforce that protocols and domains
+  # are not used within urls.
+  no-url-protocols: 1
+
+  # Rule no-vendor-prefixes will enforce that vendor prefixes
+  # are not allowed to be used.
+  no-vendor-prefixes:
+    - 0
+    - additional-identifiers: []
+      excluded-identifiers: []
+
+  # Rule placeholder-in-extend will enforce whether extends should
+  # only include placeholder selectors.
+  placeholder-in-extend: 2
+
+  # Rule placeholder-name-format will enforce a convention for
+  # placeholder names.
+  placeholder-name-format:
+    - 2
+    - convention: hyphenatedlowercase
+
+  # Rule property-sort-order will enforce the order in which
+  # declarations are written.
+  property-sort-order:
+    - 0
+    - ignore-custom-properties: false
+
+  # Rule property-units will disallow the use of units not
+  # specified in global or per-property. Units specified per-property
+  # will override the global units for that property.
+  property-units:
+    - 1
+    - global:
+        - ch
+        - em
+        - ex
+        - rem
+        - cm
+        - in
+        - mm
+        - pc
+        - pt
+        - px
+        - q
+        - vh
+        - vw
+        - vmin
+        - vmax
+        - deg
+        - grad
+        - rad
+        - turn
+        - ms
+        - s
+        - Hz
+        - kHz
+        - dpi
+        - dpcm
+        - dppx
+        - '%'
+      per-property: {
+        width: ['vh', 'vw', 'vmin', 'vmax', 'rem', 'em', '%'],
+        height: ['vh', 'vw', 'vmin', 'vmax', 'rem', 'em', '%'],
+        padding: ['vh', 'vw', 'vmin', 'vmax', 'rem', 'em', '%'],
+        margin: ['vh', 'vw', 'vmin', 'vmax', 'rem', 'em', '%'],
+        top: ['vh', 'vw', 'vmin', 'vmax', 'rem', 'em', '%'],
+        right: ['vh', 'vw', 'vmin', 'vmax', 'rem', 'em', '%'],
+        bottom: ['vh', 'vw', 'vmin', 'vmax', 'rem', 'em', '%'],
+        left: ['vh', 'vw', 'vmin', 'vmax', 'rem', 'em', '%']
+      }
+
+  # Rule quotes will enforce whether single quotes ('') or double
+  # quotes ("") should be used for all strings.
+  quotes:
+    - 2
+    - style: single
+
+  # Rule shorthand-values will enforce that values in their shorthand
+  # form are as concise as specified.
+  shorthand-values:
+    - 2
+    - allowed-shorthands:
+        - 1
+        - 2
+        - 3
+
+  # Rule single-line-per-selector will enforce whether selectors
+  # should be placed on a new line.
+  single-line-per-selector: 2
+
+  # Rule space-after-bang will enforce whether or not a space
+  # should be included after a bang (!).
+  space-after-bang:
+    - 2
+    - include: false
+
+  # Rule space-after-colon will enforce whether or not a space
+  # should be included after a colon (:).
+  space-after-colon:
+    - 2
+    - include: true
+
+  # Rule space-after-comma will enforce whether or not a space
+  # should be included after a comma (,).
+  space-after-comma:
+    - 2
+    - include: true
+
+  # Rule space-before-bang will enforce whether or not a space
+  # should be included before a bang (!).
+  space-before-bang:
+    - 2
+    - include: true
+
+  # Rule space-before-brace will enforce whether or not a space
+  # should be included before a brace ({).
+  space-before-brace:
+    - 2
+    - include: true
+
+  # Rule space-before-colon will enforce whether or not a space
+  # should be included before a colon (:).
+  space-before-colon: 0
+
+  # Rule space-between-parens will enforce whether or not a space
+  # should be included before the first item and after the last
+  # item inside parenthesis (()).
+  space-between-parens:
+    - 2
+    - include: false
+
+  # Rule trailing-semicolon will enforce whether the last
+  # declaration in a block should include a semicolon (;) or not
+  # (.sass syntax excluded).
+  trailing-semicolon: 2
+
+  # Rule url-quotes will enforce that URLs are wrapped in quotes.
+  url-quotes: 2
+
+  # Rule variable-for-property will enforce the use of variables
+  # for the values of specified properties. There are no properties
+  # by default, except for reserved words listed below which are
+  # always whitelisted:
+  variable-for-property:
+    - 0
+    - properties: []
+
+  # Rule variable-name-format will enforce a convention for
+  # variable names.
+  variable-name-format:
+    - 2
+    - allow-leading-underscore: true
+      convention: hyphenatedlowercase
+
+  # Rule zero-unit will enforce whether or not values of 0
+  # used for length should be unitless.
+  zero-unit: 2

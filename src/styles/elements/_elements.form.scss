@@ -1,0 +1,81 @@
+.form__input {
+  appearance: none;
+  padding: 1rem 2rem;
+  border: 0.1rem solid $light-grey;
+  border-radius: 0.3rem;
+  width: 100%;
+  background: transparent;
+}
+
+input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important; // sass-lint:disable-line no-important
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+input[type=text].form__input,
+.newsletter__form input[type=text] {
+  -webkit-appearance: none;
+}
+
+.form__input-search {
+  background-color: #FFFFFF;
+
+  &.form__input {
+    @include font(t1);
+  }
+}
+
+input.has-error, .form__input.has-error, textarea.has-error {
+  border-color: $red;
+}
+
+textarea.form__input {
+  height: 25rem;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.formcol__half {
+  width: calc(50% - 2rem);
+  // media queries
+  @include breakpoint($mobile-md) {
+    width: 100%;
+  }
+}
+
+.form__container {
+  width: 100%;
+  height: 70vh;
+  min-height: 55rem;
+}
+
+.form__action {
+  cursor: pointer;
+  &:hover { color: $dark-grey; }
+}
+
+.form__wrap {
+  width: 100%;
+  max-width: 50rem;
+}
+
+.form__error {
+  // @include font-size(default);
+  color: $red;
+  position: relative;
+  margin-top: 1rem;
+}
+
+.form__fields {
+  position: relative;
+}
+
+.form__contact .dropdown__menu ul {
+  margin-top: 0.5rem;
+}

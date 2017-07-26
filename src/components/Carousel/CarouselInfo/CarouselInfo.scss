@@ -1,0 +1,96 @@
+@import 'sass-includes';
+
+.carousel__withinfo {
+  .carousel__arrows { top: calc(50% - 7.5rem); }
+
+  .carousel__viewport {
+    padding-bottom: calc(100vh - 5rem);
+    // media queries
+    @media only screen and (min-height: 830px) {
+      padding-bottom: 70%;
+    }
+    @include breakpoint($mobile-lg) {
+      padding-bottom: calc(50% + 33.2rem);
+      margin-bottom: 5rem;
+    }
+    @include breakpoint($mobile-md) {
+      padding-bottom: calc(50% + 29.2rem);
+    }
+    @include breakpoint($mobile-md) {
+      padding-bottom: calc(50% + 32.7rem);
+    }
+  }
+
+  .carousel__slide {
+    height: calc(100% - 7.5rem);
+    // media queries
+    @include breakpoint($mobile-lg) {
+      height: 100%;
+    }
+  }
+
+  .carousel__slide img {
+    // media queries
+    @include breakpoint($mobile-lg) {
+      position: relative;
+    }
+  }
+}
+
+.carousel__infowrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  // media queries
+  @include breakpoint($mobile-lg) {
+    position: relative;
+    top: -0.7rem;
+  }
+}
+
+.carousel__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: $white;
+  height: 15rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  margin-top: -5rem;
+  z-index: 2;
+  position: relative;
+  // media queries
+  @include breakpoint($tablet-md) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  @include breakpoint($mobile-lg) {
+    margin-top: 0;
+    height: auto;
+    flex-direction: column;
+    padding: 6rem;
+    min-height: 26rem;
+  }
+  @include breakpoint($mobile-md) {
+    padding: 4rem 3rem;
+  }
+
+  > div {
+    // media queries
+    @include breakpoint($mobile-lg) {
+      width: 100%;
+    }
+  }
+
+  img {
+    max-height: 7.5rem;
+    max-width: none;
+    // // media queries
+    // @include breakpoint($tablet-md) {
+    //   max-height: 5.5rem;
+    // }
+    @include breakpoint($mobile-lg) {
+      max-height: 5rem;
+    }
+  }
+}

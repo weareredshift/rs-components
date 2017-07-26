@@ -1,0 +1,56 @@
+// dark theme with dark background and light colored text
+%theme--dark {
+  color: $medium-grey;
+
+  .btn--ghost {
+    border-color: $white;
+    color: $white;
+  }
+
+  .quote .typ--heading { color: $medium-grey; }
+
+  .quote__line [class^='icon-'] { color: $white; }
+
+  .quote__author,
+  .quote__title {
+    // media queries
+    @include breakpoint($mobile-lg) {
+      background: $charcoal;
+    }
+   }
+
+  .typ--heading {
+    color: $white;
+	}
+}
+
+// medium theme with medium colored background and light colored text
+%theme--medium {
+  color: $white;
+
+  button {
+    color: $white;
+  }
+
+  .btn--ghost {
+    color: $white;
+    border-color: $medium-grey;
+  }
+
+  .btn--ghost--img {
+    color: $white;
+    border-color: $white;
+    background: transparent;
+
+  }
+
+  .typ--heading {
+    color: $white;
+  }
+}
+
+%theme--lightmedium {
+  color: $medium-grey;
+
+  .typ--heading { color: $dark-grey; }
+}

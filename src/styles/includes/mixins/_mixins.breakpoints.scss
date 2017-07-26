@@ -1,0 +1,6 @@
+// media query mixins
+@mixin breakpoint($value, $type: max-width) {
+  @media only screen and ($type: $value) {
+    @content
+  }
+}

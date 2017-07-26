@@ -1,0 +1,223 @@
+// grid config
+@lost gutter 1.3rem;
+
+// basic row element,
+// constrains by max width,
+// adds margin to left and right
+.row {
+  @extend %container;
+  @extend %page-margins;
+  @extend %clearfix;
+  position: relative;
+  clear: both;
+  float: none;
+  // media queries
+  @include breakpoint($mobile-lg) {
+    width: 100%;
+  }
+}
+
+// defines row that is not constrained by max grid width
+.fullrow {
+  @extend %page-margins;
+  @extend %clearfix;
+  position: relative;
+  clear: both;
+  // media queries
+  @include breakpoint($mobile-lg) {
+    width: 100%;
+  }
+}
+
+// empty grid element,
+// combine with col-# to use as horizontal grid spacer
+.gridspacer {
+  height: 0.1rem;
+}
+
+// loop through $desktop-columns and define grid classes
+@for $i from 1 through $desktop-columns {
+  .col-#{$i} {
+    lost-column: $i/$desktop-columns;
+  }
+}
+
+// loop through $desktop-columns and define grid classes
+@for $i from 1 through $mobile-columns {
+  .mcol-#{$i} {
+    lost-column: $i/$mobile-columns;
+  }
+}
+
+// loop through $desktop-columns and define responsive grid columns
+@for $i from 1 through $desktop-columns {
+  .col-#{$i}--dlg  { @include breakpoint($desktop-lg) { lost-column: $i/$desktop-columns; } }
+  .col-#{$i}--dmd  { @include breakpoint($desktop-md) { lost-column: $i/$desktop-columns; } }
+  .col-#{$i}--dsm  { @include breakpoint($desktop-sm) { lost-column: $i/$desktop-columns; } }
+  .col-#{$i}--tlg  { @include breakpoint($tablet-lg) { lost-column: $i/$desktop-columns;  } }
+  .col-#{$i}--tmd  { @include breakpoint($tablet-md) { lost-column: $i/$desktop-columns;  } }
+  .col-#{$i}--tsm  { @include breakpoint($tablet-sm) { lost-column: $i/$desktop-columns;  } }
+}
+
+// loop through $mobile-columns and define responsive grid columns
+@for $i from 1 through $mobile-columns {
+  .col-#{$i}--mlg  { @include breakpoint($mobile-lg) { lost-column: $i/$mobile-columns; } }
+  .col-#{$i}--mmd  { @include breakpoint($mobile-md) { lost-column: $i/$mobile-columns; } }
+  .col-#{$i}--msm  { @include breakpoint($mobile-sm) { lost-column: $i/$mobile-columns; } }
+}
+
+// force element to be last item in grid, removes right gutter
+.col-last:nth-child(1n) { margin-right: 0; }
+.col-last--dlg:nth-child(1n) { @include breakpoint($desktop-lg) { margin-right: 0; } }
+.col-last--dmd:nth-child(1n) { @include breakpoint($desktop-md) { margin-right: 0; } }
+.col-last--dsm:nth-child(1n) { @include breakpoint($desktop-sm) { margin-right: 0; } }
+.col-last--tlg:nth-child(1n) { @include breakpoint($tablet-lg) { margin-right: 0; } }
+.col-last--tmd:nth-child(1n) { @include breakpoint($tablet-md) { margin-right: 0; } }
+.col-last--tsm:nth-child(1n) { @include breakpoint($tablet-sm) { margin-right: 0; } }
+.col-last--mlg:nth-child(1n) { @include breakpoint($mobile-lg) { margin-right: 0; } }
+.col-last--mmd:nth-child(1n) { @include breakpoint($mobile-md) { margin-right: 0; } }
+.col-last--msm:nth-child(1n) { @include breakpoint($mobile-sm) { margin-right: 0; } }
+
+// center element inside of it's parent, combine with .col-# or max-width
+.col-center:nth-child(1n) {
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
+.col-center--mlg:nth-child(1n) {
+  // media queries
+  @include breakpoint($mobile-lg) {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+  }
+}
+
+// show / hide at desktop-lg
+.show--dlg {
+  display: none;
+  // media queries
+  @include breakpoint($desktop-lg) {
+    display: block;
+  }
+}
+
+.hide--dlg {
+  // media queries
+  @include breakpoint($desktop-lg) {
+    display: none;
+  }
+}
+
+// show / hide at desktop-sm
+.show--dsm {
+  display: none;
+  // media queries
+  @include breakpoint($desktop-sm) {
+    display: block;
+  }
+}
+
+.hide--dsm {
+  // media queries
+  @include breakpoint($desktop-sm) {
+    display: none;
+  }
+}
+
+// show / hide at tablet-lg
+.show--tlg {
+  display: none;
+  // media queries
+  @include breakpoint($tablet-lg) {
+    display: block;
+  }
+}
+
+.hide--tlg {
+  // media queries
+  @include breakpoint($tablet-lg) {
+    display: none !important; // sass-lint:disable-line no-important
+  }
+}
+
+// show / hide at tablet-md
+.show--tmd {
+  display: none;
+  // media queries
+  @include breakpoint($tablet-md) {
+    display: block;
+  }
+}
+
+.hide--tmd {
+  // media queries
+  @include breakpoint($tablet-md) {
+    display: none;
+  }
+}
+
+// show / hide at tablet-sm
+.show--tsm {
+  display: none;
+  // media queries
+  @include breakpoint($tablet-sm) {
+    display: block;
+  }
+}
+
+.hide--tsm {
+  // media queries
+  @include breakpoint($tablet-sm) {
+    display: none;
+  }
+}
+
+// show / hide at mobile-lg
+.show--mlg {
+  display: none;
+  // media queries
+  @include breakpoint($mobile-lg) {
+    display: block;
+  }
+}
+
+.hide--mlg {
+  // media queries
+  @include breakpoint($mobile-lg) {
+    display: none !important; // sass-lint:disable-line no-important
+  }
+}
+
+// show / hide at mobile-sm
+.show--msm {
+  display: none;
+  // media queries
+  @include breakpoint($mobile-sm) {
+    display: block;
+  }
+}
+
+.hide--msm {
+  // media queries
+  @include breakpoint($mobile-sm) {
+    display: none;
+  }
+}
+
+// show / hide at mobile-xsm
+.show--mxsm {
+  display: none;
+  // media queries
+  @include breakpoint($mobile-sm) {
+    display: block;
+  }
+}
+
+.hide--mxsm {
+  // media queries
+  @include breakpoint($mobile-sm) {
+    display: none;
+  }
+}

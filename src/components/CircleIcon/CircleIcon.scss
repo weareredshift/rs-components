@@ -1,0 +1,47 @@
+@import 'sass-includes';
+
+.circleicon {
+  position: relative;
+
+  img {
+    z-index: 2;
+    position: relative;
+    width: 16rem;
+  }
+}
+
+.circleicon__circle {
+  content: '';
+  width: 10rem;
+  height: 10rem;
+  display: block;
+  border-radius: 50%;
+  background: $light-grey;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.circleicon__group {
+  @extend %clearfix;
+  max-width: 61rem;
+}
+
+.circleicon__group__item {
+  width: calc(50% - 3rem);
+  // media queries
+  @include breakpoint($mobile-lg) {
+    width: 100%;
+    max-width: 22rem;
+  }
+
+  .btn--icon {
+    padding-right: 5rem;
+    // media queries
+    @include breakpoint($mobile-lg) {
+      max-width: 22rem;
+    }
+  }
+}

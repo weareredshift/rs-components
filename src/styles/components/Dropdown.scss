@@ -11,7 +11,6 @@
       border-color: transparent;
     }
 
-    // TODO replace with up arrow icon when available
     .dropdown__icon:before {
       transform: translateY(-50%) rotate(180deg);
     }
@@ -22,7 +21,7 @@
     top: 0;
     left: 0;
     padding: 4rem 2rem 1rem;
-    border: 0.1rem solid $noon-yellow;
+    border: 0.1rem solid $medium-grey;
     width: 100%;
     border-radius: 0.3rem;
     color: $medium-grey;
@@ -35,7 +34,10 @@
       &:hover:not(.is-active) { color: $dark-grey; }
     }
 
-    .is-active { font-weight: $noon-yellow; }
+    .is-active {
+      color: $medium-grey;
+      font-weight: bold;
+    }
   }
 
   .dropdown__toggle {
@@ -46,7 +48,7 @@
     cursor: pointer;
     position: relative;
 
-    &:hover { border-color: $noon-yellow; }
+    &:hover { border-color: $medium-grey; }
   }
 
   .dropdown__icon:before {

@@ -1,6 +1,5 @@
 export default {
   props: {
-    element: [],
     dropID: 'whatever',
     items: [
       'Item 1',

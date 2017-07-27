@@ -1,22 +1,10 @@
 import Immutable from 'immutable';
 
-import ConnectedCheckbox, { Checkbox } from 'components/Checkbox';
-import testComponent from 'support/testComponent';
-import { assertObjectEquality } from 'support/assertions';
+import { CheckboxUC } from 'components/Checkbox';
+const Checkbox = CheckboxUC;
 
+import assert from 'support/assert';
 import { setCheckboxValue } from 'store/actions';
-
-testComponent({
-  name: 'Checkbox',
-  connected: ConnectedCheckbox,
-  unconnected: Checkbox,
-  searchFor: 'label',
-  props: {
-    name: 'Imma box',
-    boxID: 'box',
-    checkboxes: Immutable.fromJS({})
-  }
-});
 
 describe('<Checkbox />', () => {
   it('Dispatches correctly on click', () => {
@@ -30,7 +18,7 @@ describe('<Checkbox />', () => {
     expect(input.props().checked).to.eq(undefined);
 
     input.simulate('change', { value: true });
-    assertObjectEquality(
+    assert.objEq(
       dispatch.firstCall.args[0],
       setCheckboxValue('test', true)
     );
@@ -47,7 +35,7 @@ describe('<Checkbox />', () => {
     expect(input.props().checked).to.eq(true);
 
     input.simulate('change', { value: false });
-    assertObjectEquality(
+    assert.objEq(
       dispatch.firstCall.args[0],
       setCheckboxValue('test', false)
     );

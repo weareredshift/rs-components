@@ -1,21 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { map } from 'react-immutable-proptypes';
+import classnames from 'classnames';
 
 import { setCheckboxValue } from 'store/actions';
 
 /**
- * Checkbox
- * @param {number} boxID - TODO
- * @param {string} name - TODO
+ * Renders a Redux-connected Checkbox with label
+ *
+ * @param {string} boxID - Unique string identifier of checkbox
+ * @param {string} name - Label text to display
  * @param {function} dispatch - Redux dispatch function
- * @param {Object} checkboxes - TODO
- * @returns {React.Component}
+ * @param {Immutable.Map} checkboxes - Redux checkboxes Map
+ * @param {string[]} className - Optional additional classes
+ *
+ * @returns {React.Component} A checkbox with globally-tracked value
  */
-export function Checkbox ({ boxID, name, dispatch, checkboxes }) {
+export function CheckboxUC ({ boxID, name, dispatch, checkboxes, className }) {
   const checked = checkboxes.get(boxID);
   return (
-    <label className="checkable" htmlFor={ boxID }>
+    <label className={ classnames('checkbox rscomp', className) } htmlFor={ boxID }>
       <input
         className="checkable__input"
         type="checkbox"
@@ -36,11 +40,12 @@ const mapStateToProps = state => ({
 });
 
 const { string, func } = React.PropTypes;
-Checkbox.propTypes = {
+CheckboxUC.propTypes = {
   boxID: string.isRequired,
   name: string.isRequired,
   checkboxes: map.isRequired,
-  dispatch: func
+  dispatch: func,
+  className: string
 };
 
-export default connect(mapStateToProps)(Checkbox);
+export default connect(mapStateToProps)(CheckboxUC);

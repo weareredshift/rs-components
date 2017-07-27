@@ -1,9 +1,11 @@
-import { BaseForm } from 'components/BaseForm';
-import validators from 'components/BaseForm/validators';
-import FormInput from 'components/FormInput';
+import { BaseFormUC } from 'components/BaseForm';
+const BaseForm = BaseFormUC;
+
+import { validators } from 'utils/components/BaseForm';
+import Input from 'components/Input';
 
 describe('<BaseForm />', () => {
-  it('renders a FormInput for each field', () => {
+  it('renders an Input for each field', () => {
     const onSubmit = sinon.spy();
     const comp = mockComp(
       BaseForm, {
@@ -17,12 +19,12 @@ describe('<BaseForm />', () => {
         breakpoint: {}
       }
     );
-    const nameField = comp.find(FormInput).get(0);
+    const nameField = comp.find(Input).get(0);
     expect(nameField.props.label).to.eq('Full Name');
     expect(nameField.props.stateKey).to.eq('name');
     expect(nameField.props.type).to.eq('text');
 
-    const passwordField = comp.find(FormInput).get(1);
+    const passwordField = comp.find(Input).get(1);
     expect(passwordField.props.label).to.eq('Password');
     expect(passwordField.props.stateKey).to.eq('password');
     expect(passwordField.props.type).to.eq('password');

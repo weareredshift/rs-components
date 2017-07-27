@@ -4,9 +4,12 @@ import classnames from 'classnames';
 import { flatten } from 'lodash';
 import { Link } from 'react-router';
 
-import FormInput from 'components/FormInput';
+import Input from 'components/Input';
 import { setClass } from 'utils/responsiveHelpers';
 import { connect } from 'react-redux';
+
+import { formatKey } from 'utils/components/BaseForm';
+import 'styles/Components/BaseForm.scss';
 
 /**
  * Basic form from array of field rows
@@ -29,7 +32,7 @@ import { connect } from 'react-redux';
  * @param {string}    props.actions[].label               String to display as action label
  * @param {Function}  props.actions[].action              Function to run onClick of action text
  */
-export class BaseForm extends React.Component {
+export class BaseFormUC extends React.Component {
   constructor (props) {
     super(props);
     this.state = this.initialState(props.fields);
@@ -83,7 +86,7 @@ export class BaseForm extends React.Component {
     const invalidFields = fields
       .reduce((obj, field) => {
         const validator = field.validator || (() => null);
-        const errorMessage = validator(this.state[field.stateKey], field.label, this.state);
+        const errorMessage = validator(this.state[field.stateKey], field.label || formatKey(field.stateKey), this.state);
 
         if (errorMessage) {
           obj[field.stateKey] = errorMessage;
@@ -116,17 +119,17 @@ export class BaseForm extends React.Component {
     };
 
     return (
-      <div className={ classnames([title && 'py10', 'form__base', className]) } onKeyPress={ (e) => this.handleKeyPress(e) } style={ style }>
+      <div className={ classnames([title && 'py10', 'form', 'rscomp', className]) } onKeyPress={ (e) => this.handleKeyPress(e) } style={ style }>
         { title && <h2 className={ 'typ--heading typ--center mb3 '.concat(setClass({ tabletSm: 'typ--h1' }, breakpoint)) }>{ title }</h2>}
         <div className="form__fields">
           { error && <p className="form__error">{ error }</p> }
           { note && <p className="form__note">{ note }</p> }
           {
             fields.map((fieldRow, rowIndex) => (
-              <div className={ `field-row field-row__${rowIndex}` } key={ rowIndex }>
+              <div className={ `form__fieldrow form__fieldrow-${rowIndex}` } key={ rowIndex }>
                 {
                   fieldRow.map((field, index) => (
-                    <FormInput key={ index } { ...stateInputParams } { ...field } />
+                    <Input key={ index } { ...stateInputParams } { ...field } />
                   ))
                 }
               </div>
@@ -136,7 +139,7 @@ export class BaseForm extends React.Component {
 
         { typeof submitButton === 'string'
             ? <a
-              className="btn btn--primary btn--fullwidth typ--bold typ--caps typ--sm mt2 btn--base-form__submit"
+              className="btn btn--primary btn--fullwidth typ--bold typ--caps typ--sm mt2 form__submit"
               onClick={ () => { this.handleSubmit(); } }
             >
               { submitButton }
@@ -170,7 +173,7 @@ export class BaseForm extends React.Component {
                   );
                 } else {
                   /* eslint-disable no-console */
-                  console.error(`Improper action passed to BaseForm: ${JSON.stringify(item)}`);
+                  console.error(`Improper action passed to BaseFormUC: ${JSON.stringify(item)}`);
                   /* eslint-enable no-console */
                   return null;
                 }
@@ -184,13 +187,14 @@ export class BaseForm extends React.Component {
 }
 
 const { string, func, arrayOf, array, shape, object, bool, oneOfType, element } = React.PropTypes;
-BaseForm.propTypes = {
+BaseFormUC.propTypes = {
   fields: arrayOf(
     arrayOf(shape({
       type: string,
       label: string,
       stateKey: string.isRequired,
-      startingValue: string
+      startingValue: string,
+      className: string
     })),
   ).isRequired,
   onSubmit: func.isRequired,
@@ -205,7 +209,7 @@ BaseForm.propTypes = {
   clearForm: bool
 };
 
-BaseForm.defaultProps = {
+BaseFormUC.defaultProps = {
   submitButton: 'Submit',
   onSubmit: (attrs) => {
     /* eslint-disable no-console */
@@ -219,4 +223,4 @@ const mapStateToPrpos = state => ({
   breakpoint: state.breakpoint
 });
 
-export default connect(mapStateToPrpos)(BaseForm);
+export default connect(mapStateToPrpos)(BaseFormUC);

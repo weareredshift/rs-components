@@ -1,4 +1,4 @@
-import { capitalize } from 'lodash';
+import { capitalize, kebabCase } from 'lodash';
 
 const websiteRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -15,7 +15,7 @@ const prettify = string => string.split(' ').map(s => capitalize(s)).join(' ');
  *
  * @type       {Object}
  */
-const validators = {
+export const validators = {
 
   /**
    * @memberof validators
@@ -107,4 +107,19 @@ const validators = {
     : 'Please enter a valid website URL.'
 };
 
-export default validators;
+/**
+ * Converts a string key with dash or underscore separators into title case.
+ * @param {string} key - A string to be converted.
+ * @returns {string} A PascalCased string.
+ */
+export function formatKey (key) {
+  const titleize = list => list.map((w, i) => i === 0 ? capitalize(w) : w).join(' ');
+  if (key.includes('-')) {
+    return titleize(key.split('-'));
+  } else if (key.includes('_')) {
+    return titleize(key.split('_'));
+  } else {
+    return titleize(kebabCase(key).split('-'));
+  }
+}
+

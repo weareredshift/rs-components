@@ -1,13 +1,13 @@
-import { assertObjectEquality } from 'support/assertions';
+import assert from 'support/assert';
 
-import FormInput from 'components/FormInput';
-import validators from 'components/BaseForm/validators';
+import Input from 'components/Input';
+import { validators } from 'utils/components/BaseForm';
 
-describe('<FormInput />', () => {
+describe('<Input />', () => {
   it('Renders the correct HTML and fires events properly', () => {
     const setParentState = sinon.spy();
     const baseProps = { setParentState, parentState: { formErrors: {} }, label: 'Whatever', labelType: 'label', type: 'whatever-type', stateKey: 'whatever' };
-    const comp = mockComp(FormInput, baseProps);
+    const comp = mockComp(Input, baseProps);
 
     expect(comp.find('label').exists()).to.eq(true);
     expect(comp.find('label').text()).to.eq('Whatever');
@@ -24,7 +24,7 @@ describe('<FormInput />', () => {
   it('Can take a validator function, which controls error classes and passes errors up', () => {
     const setParentState = sinon.spy();
     const baseProps = { setParentState, parentState: { formErrors: {} }, label: 'Whatever', labelType: 'label', type: 'email', stateKey: 'email', validator: validators.email(), reportErrorImmediately: true };
-    const comp = mockComp(FormInput, baseProps);
+    const comp = mockComp(Input, baseProps);
 
     expect(comp.find('label').exists()).to.eq(true);
     expect(comp.find('label').text()).to.eq('Whatever');
@@ -34,7 +34,7 @@ describe('<FormInput />', () => {
 
     comp.find('input').simulate('change', { target: { value: 'someContent' } });
 
-    assertObjectEquality(setParentState.lastCall.args[0], {
+    assert.objEq(setParentState.lastCall.args[0], {
       email: 'someContent',
       formErrors: {
         email: 'That whatever doesn\'t look right.'
@@ -45,7 +45,7 @@ describe('<FormInput />', () => {
   it('Validates length correctly', () => {
     const setParentState = sinon.spy();
     const baseProps = { setParentState, parentState: { formErrors: {} }, label: 'Whatever', labelType: 'label', type: 'email', stateKey: 'email', validator: validators.length(40), reportErrorImmediately: true };
-    const comp = mockComp(FormInput, baseProps);
+    const comp = mockComp(Input, baseProps);
 
     expect(comp.find('label').exists()).to.eq(true);
     expect(comp.find('label').text()).to.eq('Whatever');
@@ -62,7 +62,7 @@ describe('<FormInput />', () => {
       }
     });
 
-    const comp2 = mockComp(FormInput, Object.assign(baseProps, { validator: validators.length(2) }));
+    const comp2 = mockComp(Input, Object.assign(baseProps, { validator: validators.length(2) }));
 
     comp2.find('input').simulate('change', { target: { value: 'someContent' } });
     expect(setParentState.lastCall.args[0]).to.eql({
@@ -76,7 +76,7 @@ describe('<FormInput />', () => {
   it('displays errors in styles', () => {
     const setParentState = sinon.spy();
     const baseProps = { setParentState, parentState: { formErrors: { email: 'Error!' } }, label: 'Whatever', labelType: 'label', type: 'email', stateKey: 'email' };
-    const comp = mockComp(FormInput, baseProps);
+    const comp = mockComp(Input, baseProps);
 
     expect(comp.find('label').exists()).to.eq(true);
     expect(comp.find('label').text()).to.eq('Whatever');

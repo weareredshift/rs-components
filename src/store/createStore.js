@@ -15,7 +15,6 @@ export default function (initialState = {}) {
   // Middleware Configuration
   // ======================================================
   const middleware = [thunk];
-
   // ======================================================
   // Store Enhancers
   // ======================================================

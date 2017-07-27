@@ -14,6 +14,7 @@ const project = require(path.resolve(__dirname, '../project.config'));
 
 const app = express();
 
+app.use(require('connect-history-api-fallback')());
 // Apply gzip compression
 app.use(compress());
 

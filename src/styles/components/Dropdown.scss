@@ -1,0 +1,60 @@
+@import 'sass-includes';
+
+.dropdown {
+  position: relative;
+  z-index: 9;
+
+  &.has-error .dropdown__toggle { border-color: $red; }
+
+  &.is-open {
+    .dropdown__toggle {
+      border-color: transparent;
+    }
+
+    // TODO replace with up arrow icon when available
+    .dropdown__icon:before {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+
+  .dropdown__menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 4rem 2rem 1rem;
+    border: 0.1rem solid $noon-yellow;
+    width: 100%;
+    border-radius: 0.3rem;
+    color: $medium-grey;
+    z-index: 1;
+    background: $super-light-grey;
+
+    li {
+      cursor: pointer;
+      padding-bottom: 1rem;
+      &:hover:not(.is-active) { color: $dark-grey; }
+    }
+
+    .is-active { font-weight: $noon-yellow; }
+  }
+
+  .dropdown__toggle {
+    padding: 1rem 2rem;
+    border: 0.1rem solid $light-grey;
+    border-radius: 0.3rem;
+    z-index: 10;
+    cursor: pointer;
+    position: relative;
+
+    &:hover { border-color: $noon-yellow; }
+  }
+
+  .dropdown__icon:before {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    // font-size: 1.1rem;
+    pointer-events: none;
+  }
+}

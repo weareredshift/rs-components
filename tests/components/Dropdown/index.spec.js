@@ -1,6 +1,7 @@
 import assert from 'support/assert';
 
-import { Dropdown } from 'components/Dropdown';
+import { DropdownUC } from 'components/Dropdown';
+const Dropdown = DropdownUC; // Use unconnected version in test
 
 const drop = (addProps = {}) => {
   const props = Object.assign({

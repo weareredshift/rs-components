@@ -1,10 +1,10 @@
+import { connect } from 'react-redux';
 import React from 'react';
 import classNames from 'classnames';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { setOpenDropdownID, setDropdownValues } from 'store/actions';
-import './Dropdown.scss';
+import 'styles/components/Dropdown.scss';
 
 /**
  * A basic dropdown. With the callbacks (onTitleClick and onItemClick) unspecified, will behave sensibly, allowing
@@ -26,7 +26,7 @@ import './Dropdown.scss';
  *
  * @returns {React.Component} - A component representing a dropdown connected to the Redux store
  */
-export function Dropdown (props) {
+export function DropdownUC (props) {
   const { items, className, title, open, onTitleClick, style, selectedIndices, onItemClick, replaceTitle, multipleSelect } = props;
 
   const finalItems = typeof items[0] === 'string'
@@ -40,7 +40,10 @@ export function Dropdown (props) {
     : title;
 
   return (
-    <div className={ classNames([open && 'is-open', className, 'dropdown rs-comp']) } style={ style }>
+    <div
+      className={ classNames([open && 'is-open', className, 'dropdown rscomp', multipleSelect && 'dropdown__multi']) }
+      style={ style }
+    >
       <div className="dropdown__toggle" onClick={ onTitleClick }>
         <span className="dropdown__title">{ finalTitle }</span>
         <span className="icon-arrow-down dropdown__icon" />
@@ -68,7 +71,7 @@ export function Dropdown (props) {
 
 const { object, bool, string, arrayOf, shape, any, func, number, oneOfType } = PropTypes;
 
-Dropdown.propTypes = {
+DropdownUC.propTypes = {
   items: oneOfType([
     arrayOf(shape({
       label: string,
@@ -77,23 +80,21 @@ Dropdown.propTypes = {
     })),
     arrayOf(string)
   ]).isRequired,
-  dropID: string.isRequired,
   title: string.isRequired,
   onTitleClick: func.isRequired,
   onItemClick: func.isRequired,
   selectedIndices: arrayOf(number).isRequired,
-  replaceTitle: bool.isRequired,
-  open: bool.isRequired,
+  replaceTitle: bool,
+  open: bool,
   className: string,
   style: object,
   multipleSelect: bool
 };
 
-Dropdown.defaultProps = {
+DropdownUC.defaultProps = {
   replaceTitle: true,
   open: false,
-  title: 'Select One',
-  multipleSelect: false
+  title: 'Select One'
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -111,9 +112,12 @@ const mapStateToProps = (state, ownProps) => {
 const mergeProps = (stateProps, { dispatch }, ownProps) => ({
   ...stateProps,
   ...ownProps,
+  element: undefined,
   onItemClick: (item) => {
     let toDispatch = [item];
 
+    // If it's a multiple-select dropdown, add item if not in list
+    // and remove from list if it's there.
     if (ownProps.multipleSelect) {
       const previousSelections = stateProps.element;
       const preexisting = previousSelections.find(obj => obj.index === item.index);
@@ -124,9 +128,11 @@ const mergeProps = (stateProps, { dispatch }, ownProps) => ({
     }
 
     dispatch(setDropdownValues(ownProps.dropID, toDispatch));
-    dispatch(setOpenDropdownID(null));
+
+    // Close dropdown unless it's multiple-select
+    !ownProps.multipleSelect && dispatch(setOpenDropdownID(null));
   },
   onTitleClick: () => dispatch(setOpenDropdownID(stateProps.open ? null : ownProps.dropID))
 });
 
-export default connect(mapStateToProps, undefined, mergeProps)(Dropdown);
+export default connect(mapStateToProps, undefined, mergeProps)(DropdownUC);

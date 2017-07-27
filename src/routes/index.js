@@ -12,7 +12,7 @@ export function createRoutes () {
       component: AppWrapper,
       indexRoute: { component: Explorer },
       childRoutes: [
-        { path: '*', component: Explorer }
+        { path: 'other', component: Explorer }
       ]
     }
   ]);

@@ -47,7 +47,7 @@ Additionally, each component visible in the React Cosmos explorer has a second c
 
 All the styles for the components are nested under the top-level class, so as long as no other items in the app use the same toplevel class names, the built-in styles should cause no conflicts.
 
-# Adding components
+## Adding components
 
 A number of candidate components have not yet been added to the library. They are located in `src/comps`.
 
@@ -60,3 +60,10 @@ To add a component:
 
 3. Move the test from `tests/comps` to `test/components` (or write a complete new one) and get it passing.
 4. Add it to `src/root/index.js` to make the component available through library input.
+
+## Roadmap
+
+- Add a ton of components
+- Improve base styles
+- Clean out all unnecessary content, and release only the one lib file as NPM package
+- Improve documentation

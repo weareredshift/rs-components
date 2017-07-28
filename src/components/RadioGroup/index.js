@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { map } from 'react-immutable-proptypes';
 import classnames from 'classnames';
 
 import { setRadioValue } from 'store/actions';
@@ -13,20 +12,12 @@ import 'styles/components/RadioGroup.scss';
  * @param {string} props.groupID Unique identifier of this radio group in Redux
  * @param {string} props.className Optional additional classes
  * @param {Object[]} props.items List of radio item object
- * @param {Array} props.radios Redux representation of radio button values
- * @param {Function} props.afterCheck Callback run after the radio button value is selected in Redux
- * @param {function} props.dispatch
+ * @param {String} props.selectedValue String of selected value
+ * @param {Function} props.onCheck Run when a radio button is clicked, and passed the groupID and item
  *
  * @returns {React.Component} A group of radio buttons
  */
-export function RadioGroupUC ({ groupID, className, items, radios, dispatch, afterCheck }) {
-  const selectedValue = radios.getIn([groupID, 'value']);
-
-  const onCheck = (item) => {
-    dispatch(setRadioValue(groupID, item));
-    afterCheck && afterCheck(item);
-  };
-
+export function RadioGroupUC ({ groupID, className, items, selectedValue, onCheck }) {
   const fullItems = items.map((item, index) => {
     let fullItem;
 
@@ -89,13 +80,21 @@ RadioGroupUC.propTypes = {
   ).isRequired,
   groupID: string.isRequired,
   className: string,
-  radios: map.isRequired,
-  dispatch: func,
-  afterCheck: func
+  selectedValue: string,
+  onCheck: func.isRequired
 };
 
-const mapStateToProps = state => ({
-  radios: state.radios
+const mapStateToProps = (state, { groupID }) => ({
+  selectedValue: state.radios.getIn([groupID, 'value'])
 });
 
-export default connect(mapStateToProps)(RadioGroupUC);
+const mergeProps = (stateProps, { dispatch }, ownProps) => ({
+  ...stateProps,
+  ...ownProps,
+  onCheck: item => {
+    dispatch(setRadioValue(ownProps.groupID, item));
+    ownProps.afterCheck && ownProps.afterCheck(ownProps.groupID, item);
+  }
+});
+
+export default connect(mapStateToProps, undefined, mergeProps)(RadioGroupUC);

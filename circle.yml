@@ -11,6 +11,7 @@ test:
     - yarn run test
     - yarn run test:server
     - yarn run lint:errors
+    - yarn run sass-lint
     - yarn run test-docs
   post:
     - mkdir $CIRCLE_ARTIFACTS/htmlcov

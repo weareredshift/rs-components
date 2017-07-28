@@ -21,6 +21,7 @@ global.sinon = sinon;
 global.expect = chai.expect;
 global.should = chai.should();
 global.assert = chai.assert;
+global.noop = () => {};
 
 global.mockComp = (Component, props = {}) => shallow(<Component { ...props } />);
 

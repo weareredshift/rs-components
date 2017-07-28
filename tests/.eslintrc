@@ -9,6 +9,7 @@
     "sinon"  : false,
     "assert" : false,
     "React": false,
-    "mockComp": false
+    "mockComp": false,
+    "noop": false
   }
 }

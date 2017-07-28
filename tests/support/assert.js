@@ -35,9 +35,14 @@ export const arrEq = (arr1, arr2) => {
   pass();
 };
 
+export const eq = (one, two) => one instanceof Array
+  ? arrEq(one, two)
+  : objEq(one, two);
+
 export default {
   objEq,
   fail,
   arrEq,
-  pass
+  pass,
+  eq
 };

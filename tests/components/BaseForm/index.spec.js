@@ -51,7 +51,7 @@ describe('<BaseForm />', () => {
     expect(onSubmit.lastCall).to.eq(null);
     expect(comp.state().formErrors.password).to.eq('Password is required.');
     expect(comp.state().formErrors.name).to.eq(null);
-    expect(comp.find('.form__error').first().text()).to.eq('*Password is required.');
+    expect(comp.find('.form__error').first().text()).to.eq('Password is required.');
   });
 
   it('shows a global error if given', () => {

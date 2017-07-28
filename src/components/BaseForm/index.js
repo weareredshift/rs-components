@@ -111,7 +111,7 @@ export class BaseFormUC extends React.Component {
 
     const error = [undefined, null, -1].includes(firstErrorKey)
       ? globalError
-      : `*${formErrors[firstErrorKey]}`;
+      : formErrors[firstErrorKey];
 
     const stateInputParams = {
       setParentState: this.setState.bind(this),

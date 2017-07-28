@@ -6,3 +6,4 @@ src/index.html
 public/
 build/tests.js
 config/coverage/
+lib/

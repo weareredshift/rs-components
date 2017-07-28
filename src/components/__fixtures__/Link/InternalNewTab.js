@@ -1,5 +1,3 @@
-/* eslint-disable no-alert, no-console */
-
 const to = '/?component=Link&fixture=ExternalNewTab&editor=true';
 
 export default {

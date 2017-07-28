@@ -1,5 +1,3 @@
-/* eslint-disable no-alert, no-console */
-
 const to = 'https://www.google.com';
 
 export default {

@@ -1,10 +1,6 @@
-/* eslint-disable no-alert, no-console */
-
-const to = 'https://www.google.com';
-
 export default {
   props: {
-    to,
+    to: 'https://www.google.com',
     className: 'special-class',
     beforeGo: () => { alert('External link in new tab.'); },
     target: '_blank'

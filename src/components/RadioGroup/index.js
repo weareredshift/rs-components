@@ -4,10 +4,10 @@ import { map } from 'react-immutable-proptypes';
 import classNames from 'classnames';
 
 import { setRadioValue } from 'store/actions';
-import './RadioGroup.scss';
+import 'styles/components/RadioGroup.scss';
 
 /**
- *
+ * Renders a group of redux-connected radio buttons
  *
  * @param {Object} props
  * @param {string} props.groupID Unique identifier of this radio group in Redux
@@ -16,9 +16,10 @@ import './RadioGroup.scss';
  * @param {Array} props.radios Redux representation of radio button values
  * @param {Function} props.afterCheck Callback run after the radio button value is selected in Redux
  * @param {function} props.dispatch
+ *
  * @returns {React.Component} A group of radio buttons
  */
-export function RadioGroup ({ groupID, className, items, radios, dispatch, afterCheck }) {
+export function RadioGroupUC ({ groupID, className, items, radios, dispatch, afterCheck }) {
   const selectedValue = radios.getIn([groupID, 'value']);
 
   const onCheck = (item) => {
@@ -42,13 +43,13 @@ export function RadioGroup ({ groupID, className, items, radios, dispatch, after
   });
 
   return (
-    <ul className={ classNames('checkable__group list--block', className) }>
+    <ul className={ classNames('radio__group list--block rscomp', className) }>
       {
         fullItems.map(item => (
           <li key={ item.index } onClick={ () => { onCheck(item); } }>
-            <label className="checkable" htmlFor={ item.value }>
+            <label className="radio__label" htmlFor={ item.value }>
               <input
-                className="checkable__input"
+                className="radio__input"
                 type="radio"
                 checked={ selectedValue === item.value }
                 onChange={ () => {} }
@@ -56,10 +57,10 @@ export function RadioGroup ({ groupID, className, items, radios, dispatch, after
                 name={ groupID }
                 value={ item.value }
               />
-              <span className="checkable__mark" />
-              <span className="checkable__label">{ item.label }</span>
+              <span className="radio__mark" />
+              <span className="radio__text">{ item.label }</span>
             </label>
-            { item.tag && <span className="checkable__tag typ--dark-grey">{ item.tag }</span> }
+            { item.tag && <span className="radio__tag typ--dark-grey">{ item.tag }</span> }
           </li>
         ))
       }
@@ -68,12 +69,13 @@ export function RadioGroup ({ groupID, className, items, radios, dispatch, after
 }
 
 const { arrayOf, string, func, oneOfType, shape } = React.PropTypes;
-RadioGroup.propTypes = {
+RadioGroupUC.propTypes = {
   items: arrayOf(
     oneOfType([
       shape({
         label: string,
-        value: string.isRequired
+        value: string.isRequired,
+        tag: string
       }),
       string
     ]).isRequired
@@ -89,4 +91,4 @@ const mapStateToProps = state => ({
   radios: state.radios
 });
 
-export default connect(mapStateToProps)(RadioGroup);
+export default connect(mapStateToProps)(RadioGroupUC);

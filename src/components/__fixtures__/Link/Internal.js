@@ -1,5 +1,3 @@
-/* eslint-disable no-alert, no-console */
-
 const to = '/?component=Link&fixture=External&editor=true';
 const data = { someStuff: 'isHere' };
 

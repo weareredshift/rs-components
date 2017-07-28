@@ -11,7 +11,7 @@ yarn add rs-components
 The import components like so:
 
 ```
-import { Dropdown } from 'rs-components'
+import { Dropdown } from 'rs-components';
 ```
 
 ## To explore

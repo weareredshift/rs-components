@@ -104,7 +104,7 @@ export class BaseFormUC extends React.Component {
   }
 
   render () {
-    const { fields, submitButton, globalError, title, className, actions, breakpoint, note, style } = this.props;
+    const { fields, submitButton, globalError, title, className, actions, note, style } = this.props;
     const { formErrors } = this.state;
 
     const firstErrorKey = Object.keys(formErrors).find(k => formErrors[k]);
@@ -119,14 +119,18 @@ export class BaseFormUC extends React.Component {
     };
 
     return (
-      <div className={ classnames([title && 'py10', 'form', 'rscomp', className]) } onKeyPress={ (e) => this.handleKeyPress(e) } style={ style }>
-        { title && <h2 className={ 'typ--heading typ--center mb3 '.concat(setClass({ tabletSm: 'typ--h1' }, breakpoint)) }>{ title }</h2>}
+      <div
+        className={ classnames([title && 'form--hastitle', 'form', 'rscomp', className]) }
+        onKeyPress={ (e) => this.handleKeyPress(e) }
+        style={ style }
+      >
+        { title && <h2 className="form__title">{ title }</h2>}
         <div className="form__fields">
           { error && <p className="form__error">{ error }</p> }
           { note && <p className="form__note">{ note }</p> }
           {
             fields.map((fieldRow, rowIndex) => (
-              <div className={ `form__fieldrow form__fieldrow-${rowIndex}` } key={ rowIndex }>
+              <div className={ `form__fieldrow form__fieldrow--${rowIndex}` } key={ rowIndex }>
                 {
                   fieldRow.map((field, index) => (
                     <Input key={ index } { ...stateInputParams } { ...field } />
@@ -139,7 +143,7 @@ export class BaseFormUC extends React.Component {
 
         { typeof submitButton === 'string'
             ? <a
-              className="btn btn--primary btn--fullwidth typ--bold typ--caps typ--sm mt2 form__submit"
+              className="form__submit"
               onClick={ () => { this.handleSubmit(); } }
             >
               { submitButton }
@@ -148,10 +152,10 @@ export class BaseFormUC extends React.Component {
         }
 
         { actions &&
-          <ul className="list--inline mt1 typ--center">
+          <ul className="form__actions">
             {
               actions.map((item, index) => {
-                const classes = 'form__action typ--underline typ--sm typ--medium-grey mx1';
+                const classes = 'form__action';
                 if (item.action && item.action instanceof Function) {
                   return (
                     <li
@@ -173,7 +177,7 @@ export class BaseFormUC extends React.Component {
                   );
                 } else {
                   /* eslint-disable no-console */
-                  console.error(`Improper action passed to BaseFormUC: ${JSON.stringify(item)}`);
+                  console.error(`Improper action passed to BaseForm: ${JSON.stringify(item)}`);
                   /* eslint-enable no-console */
                   return null;
                 }
@@ -203,7 +207,6 @@ BaseFormUC.propTypes = {
   className: string,
   title: string,
   actions: array,
-  breakpoint: object,
   note: string,
   style: object,
   clearForm: bool
@@ -213,14 +216,10 @@ BaseFormUC.defaultProps = {
   submitButton: 'Submit',
   onSubmit: (attrs) => {
     /* eslint-disable no-console */
-    console.error('Base form submitted, but no submission function given! Attrs:');
+    console.error('BaseForm submitted, but no submission function given! Attrs:');
     console.error(attrs);
     /* eslint-disable no-console */
   }
 };
 
-const mapStateToPrpos = state => ({
-  breakpoint: state.breakpoint
-});
-
-export default connect(mapStateToPrpos)(BaseFormUC);
+export default BaseFormUC;

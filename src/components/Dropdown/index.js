@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { setOpenDropdownID, setDropdownValues } from 'store/actions';
@@ -41,30 +41,28 @@ export function DropdownUC (props) {
 
   return (
     <div
-      className={ classNames([open && 'is-open', className, 'dropdown rscomp', multipleSelect && 'dropdown__multi']) }
+      className={ classnames([open && 'dropdown--open', className, 'dropdown rscomp', multipleSelect && 'dropdown--multi']) }
       style={ style }
     >
       <div className="dropdown__toggle" onClick={ onTitleClick }>
         <span className="dropdown__title">{ finalTitle }</span>
-        <span className="icon-arrow-down dropdown__icon" />
+        <span className="dropdown__icon" />
       </div>
-      { open &&
-        <div className="dropdown__menu">
-          <ul className="list--block">
-            {
-              finalItems.map((item, index) => (
-                <li
-                  className={ classNames([selectedIndices.includes(index) && 'is-active', 'dropdown__item', item.className]) }
-                  key={ index }
-                  onClick={ () => onItemClick({ index, value: item.value || item.label }) }
-                >
-                  { item.label || item.value }
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      }
+      <div className={ classnames('dropdown__menu') }>
+        <ul>
+          {
+            finalItems.map((item, index) => (
+              <li
+                className={ classnames(['dropdown__item', selectedIndices.includes(index) && 'dropdown__item--active', item.className]) }
+                key={ index }
+                onClick={ () => onItemClick({ index, value: item.value || item.label }) }
+              >
+                { item.label || item.value }
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   );
 }

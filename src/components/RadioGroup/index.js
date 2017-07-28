@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { map } from 'react-immutable-proptypes';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 import { setRadioValue } from 'store/actions';
 import 'styles/components/RadioGroup.scss';
@@ -43,26 +43,33 @@ export function RadioGroupUC ({ groupID, className, items, radios, dispatch, aft
   });
 
   return (
-    <ul className={ classNames('radio__group list--block rscomp', className) }>
+    <ul className={ classnames('radio rscomp', className) }>
       {
-        fullItems.map(item => (
-          <li key={ item.index } onClick={ () => { onCheck(item); } }>
-            <label className="radio__label" htmlFor={ item.value }>
-              <input
-                className="radio__input"
-                type="radio"
-                checked={ selectedValue === item.value }
-                onChange={ () => {} }
-                id={ groupID }
-                name={ groupID }
-                value={ item.value }
-              />
-              <span className="radio__mark" />
-              <span className="radio__text">{ item.label }</span>
-            </label>
-            { item.tag && <span className="radio__tag typ--dark-grey">{ item.tag }</span> }
-          </li>
-        ))
+        fullItems.map(item => {
+          const selected = selectedValue === item.value;
+          return (
+            <li
+              className={ classnames('radio__li', selected && 'radio__li--selected') }
+              key={ item.index }
+              onClick={ () => { onCheck(item); } }
+            >
+              <label className="radio__label" htmlFor={ item.value }>
+                <input
+                  className="radio__input"
+                  type="radio"
+                  checked={ selectedValue === item.value }
+                  onChange={ () => {} }
+                  id={ groupID }
+                  name={ groupID }
+                  value={ item.value }
+                />
+                <span className="radio__mark" />
+                <span className="radio__text">{ item.label }</span>
+              </label>
+              { item.tag && <span className="radio__tag">{ item.tag }</span> }
+            </li>
+          );
+        })
       }
     </ul>
   );

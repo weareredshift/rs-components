@@ -22,7 +22,7 @@
     "postinstall": "npm rebuild node-sass",
     "danger": "danger",
     "prepublish": "npm run build",
-    "build": "babel --presets es2015 -d lib/ src/root/"
+    "build": "rimraf dist && node build/compile"
   },
   "repository": {
     "type": "git",

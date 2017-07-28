@@ -54,12 +54,12 @@ export function InputUC ({ setParentState, parentState, type, label, stateKey, v
   const input = React.createElement(
     type === 'textarea' ? 'textarea' : 'input',
     Object.assign({
-      className: classnames('form__input', error && 'has-error', className)
+      className: classnames('form__input', `form__input--${stateKey}`, error && 'form__input--error', className)
     }, inputParams)
   );
 
   return (
-    <label className={ `form__label form_input__${stateKey}` }>
+    <label className="form__label">
       { ['label', 'both'].includes(labelType) && <span className="label">{ finalLabel }</span> }
       { input }
     </label>

@@ -8,6 +8,8 @@ A library of reusable React-Redux components. This library is meant to be modula
 yarn add rs-components
 ```
 
+The import components like so:
+
 ```
 import { Dropdown } from 'rs-components'
 ```
@@ -26,10 +28,10 @@ Each component also has additional docs, collocated in the component folder. Go 
 
 The below are arrange alphabetically. The list of links may not be up to date:
 
-- [BaseForm](./components/BaseForm/README.md)
-- [Checkbox](./components/Checkbox/README.md)
-- [Dropdown](./components/Dropdown/README.md)
-- [Link](./components/Link/README.md)
+- [BaseForm](./src/components/BaseForm/README.md)
+- [Checkbox](./src/components/Checkbox/README.md)
+- [Dropdown](./src/components/Dropdown/README.md)
+- [Link](./src/components/Link/README.md)
 
 ## Styling
 

@@ -3,15 +3,15 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
-  entry: path.resolve(__dirname, 'src/index.js'),
+  entry: path.resolve(__dirname, '../src/index.js'),
   devtool: false,
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name].js'
   },
   resolve: {
     modules: [
-      path.resolve(__dirname, './src'),
+      path.resolve(__dirname, '../src'),
       'node_modules'
     ],
     extensions: ['.js']
@@ -53,7 +53,7 @@ config.module.rules.push({
         ['babel-preset-env', {
           targets: {
             ie9: true,
-            uglify: true,
+            uglify: false,
             modules: false
           }
         }]
@@ -124,7 +124,7 @@ config.module.rules.push({
         options: {
           sourceMap: false,
           includePaths: [
-            path.resolve(__dirname, 'src/styles')
+            path.resolve(__dirname, '../src/styles')
           ]
         }
       }
@@ -163,27 +163,25 @@ config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ names: bundles }))
 // ------------------------------------
 config.plugins.push(
   new webpack.LoaderOptionsPlugin({
-    minimize: true,
+    minimize: false,
     debug: false
-  }),
-  new webpack.optimize.UglifyJsPlugin({
-    sourceMap: !!config.devtool,
-    comments: false,
-    compress: {
-      warnings: false,
-      screw_ie8: true,
-      conditionals: true,
-      unused: true,
-      comparisons: true,
-      sequences: true,
-      dead_code: true,
-      evaluate: true,
-      if_return: true,
-      join_vars: true
-    }
   })
+  // new webpack.optimize.UglifyJsPlugin({
+  //   sourceMap: false,
+  //   comments: false,
+  //   compress: {
+  //     warnings: false,
+  //     screw_ie8: true,
+  //     conditionals: true,
+  //     unused: true,
+  //     comparisons: true,
+  //     sequences: true,
+  //     dead_code: true,
+  //     evaluate: true,
+  //     if_return: true,
+  //     join_vars: true
+  //   }
+  // })
 );
-
-console.error(JSON.stringify(config, null, 2))
 
 module.exports = config;

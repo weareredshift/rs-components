@@ -1,6 +1,6 @@
 {
   "name": "rs-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Redshift Component Library",
   "main": "dist/main.js",
   "engines": {
@@ -17,9 +17,9 @@
     "lint": "eslint . --quiet",
     "lint:fix": "elint . --fix",
     "sass-lint": "sass-lint --verbose",
-    "postinstall": "npm rebuild node-sass",
+    "sass-rebuild": "npm rebuild node-sass",
     "danger": "danger",
-    "prepublish": "npm run build",
+    "prepublish": "yarn build",
     "build": "rimraf dist && webpack --display-error-details --config config/build.config.js"
   },
   "repository": {
@@ -106,9 +106,7 @@
     "sinon-chai": "^2.11.0",
     "style-loader": "^0.17.0",
     "url-loader": "^0.5.8",
-    "webpack": "^2.5.1",
-    "webpack-dev-middleware": "^1.8.4",
-    "webpack-hot-middleware": "^2.13.2",
+    "webpack": "^3.4.1",
     "yargs": "^8.0.1"
   }
 }

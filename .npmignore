@@ -12,3 +12,4 @@ Gemfile
 Gemfile.lock
 yarn.lock
 project.config.js
+.circleci

@@ -1,6 +1,6 @@
 {
   "name": "rs-components",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Redshift Component Library",
   "main": "dist/main.js",
   "engines": {
@@ -19,8 +19,9 @@
     "sass-lint": "sass-lint --verbose",
     "sass-rebuild": "npm rebuild node-sass",
     "danger": "danger",
-    "prepublish": "yarn build",
-    "compile": "rimraf dist && webpack --display-error-details --config config/build.config.js"
+    "prepublish": "yarn compile",
+    "compile": "rimraf dist && webpack --display-error-details --config config/build.config.js",
+    "bump": "ruby bump.rb"
   },
   "repository": {
     "type": "git",

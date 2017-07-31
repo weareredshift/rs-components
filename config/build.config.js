@@ -14,7 +14,7 @@ const config = {
       path.resolve(__dirname, '../src'),
       'node_modules'
     ],
-    extensions: ['.js']
+    extensions: ['*', '.js']
   },
   module: {
     rules: []
@@ -37,14 +37,14 @@ config.module.rules.push({
           'babel-plugin-transform-runtime',
           {
             helpers: true,
-            polyfill: false, // We polyfill needed features in src/normalize.js
+            polyfill: true,
             regenerator: true
           }
         ],
         [
           'babel-plugin-transform-object-rest-spread',
           {
-            useBuiltIns: true // We polyfill Object.assign in src/normalize.js
+            useBuiltIns: false
           }
         ]
       ],
@@ -53,7 +53,7 @@ config.module.rules.push({
         ['babel-preset-env', {
           targets: {
             ie9: true,
-            uglify: false,
+            uglify: true,
             modules: false
           }
         }]
@@ -145,7 +145,7 @@ config.module.rules.push({
 
 // Bundle Splitting
 // ------------------------------------
-const bundles = ['normalize', 'manifest'];
+const bundles = ['manifest'];
 
 bundles.unshift('vendor');
 config.entry.vendor = [

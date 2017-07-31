@@ -1,6 +1,6 @@
 {
   "name": "rs-components",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Redshift Component Library",
   "main": "dist/main.js",
   "engines": {
@@ -20,7 +20,7 @@
     "sass-rebuild": "npm rebuild node-sass",
     "danger": "danger",
     "prepublish": "yarn compile",
-    "compile": "rimraf dist && webpack --display-error-details --config config/build.config.js",
+    "compile": "rimraf dist && NODE_ENV=production webpack --display-error-details --config config/build.config.js",
     "bump": "ruby bump.rb"
   },
   "repository": {
@@ -39,7 +39,6 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-addons-transition-group": "^15.6.0",
-    "react-cosmos-redux-proxy": "^2.0.0-beta.15",
     "react-dom": "^15.5.4",
     "react-gsap-enhancer": "^0.3.0",
     "react-immutable-proptypes": "^2.1.0",
@@ -99,6 +98,7 @@
     "nyc": "^11.0.2",
     "postcss-loader": "^2.0.5",
     "react-addons-test-utils": "^15.5.1",
+    "react-cosmos-redux-proxy": "^2.0.0-beta.15",
     "react-cosmos-webpack": "^2.0.0-beta.19",
     "react-test-renderer": "^15.5.4",
     "rimraf": "^2.6.1",

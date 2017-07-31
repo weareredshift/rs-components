@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import Input from 'components/Input';
 
 import { formatKey } from './utils';
+
 import './BaseForm.scss';
 
 /**

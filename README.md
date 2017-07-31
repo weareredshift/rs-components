@@ -32,6 +32,7 @@ The below are arrange alphabetically. The list of links may not be up to date:
 - [Checkbox](./src/components/Checkbox/README.md)
 - [Dropdown](./src/components/Dropdown/README.md)
 - [Link](./src/components/Link/README.md)
+- [RadioGroup](./src/components/RadioGroup/README.md)
 
 ## Styling
 

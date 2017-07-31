@@ -24,7 +24,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: bundle exec danger
+      # - run: bundle exec danger
       - run: yarn test
       - run: yarn test:server
       - run: yarn lint:errors

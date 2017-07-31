@@ -2,7 +2,6 @@
 .vagrant/
 node_modules
 .DS_STORE
-dist
 coverage
 .idea
 .nyc_output/*

@@ -5,10 +5,8 @@ import { flatten } from 'lodash';
 import { Link } from 'react-router';
 
 import Input from 'components/Input';
-import { setClass } from 'utils/responsiveHelpers';
-import { connect } from 'react-redux';
 
-import { formatKey } from 'utils/components/BaseForm';
+import { formatKey } from './utils';
 import 'styles/Components/BaseForm.scss';
 
 /**

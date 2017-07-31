@@ -1,10 +1,10 @@
 import assert from 'support/assert';
 
 import Input from 'components/Input';
-import { validators } from 'utils/components/BaseForm';
+import { validators } from 'components/BaseForm/utils';
 
 describe('<Input />', () => {
-  it('Renders the correct HTML and fires events properly', () => {
+  it('renders the correct HTML and fires events properly', () => {
     const setParentState = sinon.spy();
     const baseProps = { setParentState, parentState: { formErrors: {} }, label: 'Whatever', labelType: 'label', type: 'whatever-type', stateKey: 'whatever' };
     const comp = mockComp(Input, baseProps);
@@ -21,7 +21,7 @@ describe('<Input />', () => {
     });
   });
 
-  it('Can take a validator function, which controls error classes and passes errors up', () => {
+  it('can take a validator function, which controls error classes and passes errors up', () => {
     const setParentState = sinon.spy();
     const baseProps = { setParentState, parentState: { formErrors: {} }, label: 'Whatever', labelType: 'label', type: 'email', stateKey: 'email', validator: validators.email(), reportErrorImmediately: true };
     const comp = mockComp(Input, baseProps);
@@ -42,7 +42,7 @@ describe('<Input />', () => {
     });
   });
 
-  it('Validates length correctly', () => {
+  it('validates length correctly', () => {
     const setParentState = sinon.spy();
     const baseProps = { setParentState, parentState: { formErrors: {} }, label: 'Whatever', labelType: 'label', type: 'email', stateKey: 'email', validator: validators.length(40), reportErrorImmediately: true };
     const comp = mockComp(Input, baseProps);
@@ -82,6 +82,6 @@ describe('<Input />', () => {
     expect(comp.find('label').text()).to.eq('Whatever');
 
     expect(comp.find('input').exists()).to.eq(true);
-    expect(comp.find('input').hasClass('has-error')).to.eq(true);
+    expect(comp.find('input').hasClass('form__input--error')).to.eq(true);
   });
 });

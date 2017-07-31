@@ -1,7 +1,7 @@
 import { BaseFormUC } from 'components/BaseForm';
 const BaseForm = BaseFormUC;
 
-import { validators } from 'utils/components/BaseForm';
+import { validators } from 'components/BaseForm/utils';
 import Input from 'components/Input';
 
 describe('<BaseForm />', () => {
@@ -45,7 +45,7 @@ describe('<BaseForm />', () => {
       }
     );
 
-    const submit = comp.find('.btn').first();
+    const submit = comp.find('.form__submit').first();
 
     submit.props().onClick();
     expect(onSubmit.lastCall).to.eq(null);

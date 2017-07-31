@@ -19,10 +19,10 @@ module.exports = {
     main: ['./tests/test-bundler.js']
   },
   target: 'node',
-  output: {
-    path: path.resolve('./build', project.basePath),
-    filename: 'build/tests.js'
-  },
+  // output: {
+  //   path: path.resolve('./build', project.basePath),
+  //   filename: 'build/tests.js'
+  // },
   externals: [nodeExternals()],
   module: {
     rules: [

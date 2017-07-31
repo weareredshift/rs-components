@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import { formatKey } from 'utils/components/BaseForm';
+import { formatKey } from 'components/BaseForm/utils';
 
 /**
  * Generates a text/password input connected to parent's state object

@@ -1,4 +1,3 @@
-/* eslint react/jsx-no-bind:0 */
 import React from 'react';
 import classnames from 'classnames';
 import { flatten } from 'lodash';

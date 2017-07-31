@@ -1,0 +1,14 @@
+build/
+config/
+src/
+tests/
+.editorconfig/
+.gitignore
+.sass-lint.yml
+build.config.js
+circle.yml
+Dangerfile
+Gemfile
+Gemfile.lock
+yarn.lock
+project.config.js

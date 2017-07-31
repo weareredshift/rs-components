@@ -1,7 +1,7 @@
 var nodeExternals = require('webpack-node-externals');
 var path = require('path');
 
-var project = require('../project.config');
+var project = require('./project.config');
 const inProject = path.resolve.bind(path, project.basePath);
 
 // Unused, but might be useful later

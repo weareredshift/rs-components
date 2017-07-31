@@ -1,4 +1,4 @@
-import validators from 'components/BaseForm/validators';
+import { validators } from 'components/BaseForm/utils';
 
 let val;
 

@@ -1,11 +1,11 @@
 const argv = require('yargs').argv;
-const project = require('../project.config');
+const project = require('./project.config');
 const debug = require('debug')('app:config:karma');
 const path = require('path');
 
 debug('Creating configuration.');
 
-const webpackConfig = require('../build/webpack.config');
+const webpackConfig = require('./webpack.config');
 
 const TEST_BUNDLER = './tests/test-bundler.js';
 

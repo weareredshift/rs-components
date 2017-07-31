@@ -1,5 +1,5 @@
 /* eslint-disable no-alert, no-console */
-import { validators } from 'utils/components/BaseForm';
+import { validators } from 'components/BaseForm/utils';
 
 export default {
   props: {

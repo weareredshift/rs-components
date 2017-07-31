@@ -27,7 +27,9 @@ describe('<Dropdown />', () => {
       const closed = drop();
 
       expect(closed.find('.dropdown.rs-comp').first()).to.exist;
-      expect(closed.find('.dropdown__menu').length).to.eq(0);
+      expect(closed.find('.dropdown').props().className).not.to.include('dropdown--open');
+      expect(closed.find('.dropdown__menu').length).to.eq(1);
+      expect(closed.find('.dropdown__menu').first().props().className).to.eq('dropdown__menu');
       expect(closed.find('.dropdown__title').first().text()).to.eq('Default title');
     });
 
@@ -35,7 +37,9 @@ describe('<Dropdown />', () => {
       const closed = drop({ selectedIndices: [0] });
 
       expect(closed.find('.dropdown.rs-comp').first()).to.exist;
-      expect(closed.find('.dropdown__menu').length).to.eq(0);
+      expect(closed.find('.dropdown').props().className).not.to.include('dropdown--open');
+      expect(closed.find('.dropdown__menu').length).to.eq(1);
+      expect(closed.find('.dropdown__menu').first().props().className).to.eq('dropdown__menu');
       expect(closed.find('.dropdown__title').first().text()).to.eq('Label1');
     });
 
@@ -43,6 +47,7 @@ describe('<Dropdown />', () => {
       const open = drop({ open: true });
 
       expect(open.find('.dropdown.rs-comp').first()).to.exist;
+      expect(open.find('.dropdown').props().className).to.include('dropdown--open');
       expect(open.find('.dropdown__menu').length).to.eq(1);
       const menu = open.find('.dropdown__menu').first();
       assert.arrEq(
@@ -50,13 +55,14 @@ describe('<Dropdown />', () => {
         ['Label1', 'Label2']
       );
 
-      expect(menu.find('li.dropdown__item').first().props().className.includes('is-active')).to.eq(false);
+      expect(menu.find('li.dropdown__item').first().props().className.includes('dropdown__item--active')).to.eq(false);
     });
 
     it('displays correctly when opened with an item selected', () => {
       const open = drop({ open: true, selectedIndices: [0] });
 
       expect(open.find('.dropdown.rs-comp').first()).to.exist;
+      expect(open.find('.dropdown').props().className).to.include('dropdown--open');
       expect(open.find('.dropdown__menu').length).to.eq(1);
       const menu = open.find('.dropdown__menu').first();
 
@@ -65,7 +71,7 @@ describe('<Dropdown />', () => {
         ['Label1', 'Label2']
       );
 
-      expect(menu.find('li.dropdown__item').first().props().className.includes('is-active')).to.eq(true);
+      expect(menu.find('li.dropdown__item').first().props().className.includes('dropdown__item--active')).to.eq(true);
     });
   });
 
@@ -74,6 +80,7 @@ describe('<Dropdown />', () => {
       const open = drop({ open: true, selectedIndices: [0], items: [{ value: 'Label1', className: 'fancy' }] });
 
       expect(open.find('.dropdown.rs-comp').first()).to.exist;
+      expect(open.find('.dropdown').props().className).to.include('dropdown--open');
       expect(open.find('.dropdown__menu').length).to.eq(1);
       const menu = open.find('.dropdown__menu').first();
 
@@ -82,7 +89,7 @@ describe('<Dropdown />', () => {
         ['Label1']
       );
 
-      expect(menu.find('li.dropdown__item').first().props().className.includes('is-active')).to.eq(true);
+      expect(menu.find('li.dropdown__item').first().props().className.includes('dropdown__item--active')).to.eq(true);
       expect(menu.find('li.dropdown__item').first().props().className.includes('fancy')).to.eq(true);
     });
   });

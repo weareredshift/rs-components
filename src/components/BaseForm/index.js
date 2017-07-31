@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 import Input from 'components/Input';
 
 import { formatKey } from './utils';
-import 'styles/Components/BaseForm.scss';
+import './BaseForm.scss';
 
 /**
  * Basic form from array of field rows

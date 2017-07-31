@@ -2,7 +2,7 @@
   "name": "rs-components",
   "version": "1.0.0",
   "description": "Redshift Component Library",
-  "main": "lib/index.js",
+  "main": "dist/main.js",
   "engines": {
     "node": "^6.11.1",
     "npm": "^3.0.0"
@@ -22,7 +22,7 @@
     "postinstall": "npm rebuild node-sass",
     "danger": "danger",
     "prepublish": "npm run build",
-    "build": "rimraf dist && node build/compile"
+    "build": "rimraf dist && webpack --display-error-details --config build.config.js"
   },
   "repository": {
     "type": "git",

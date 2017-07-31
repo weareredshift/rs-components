@@ -2,21 +2,19 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const inProject = path.resolve.bind(path, '../');
-
 const config = {
-  entry: '../src/index.js',
+  entry: path.resolve(__dirname, 'src/index.js'),
   devtool: false,
   output: {
-    path: path.resolve('../dist/'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
   },
   resolve: {
     modules: [
-      inProject('../'),
+      path.resolve(__dirname, './src'),
       'node_modules'
     ],
-    extensions: ['*', '.js']
+    extensions: ['.js']
   },
   module: {
     rules: []
@@ -124,7 +122,10 @@ config.module.rules.push({
       {
         loader: 'sass-loader',
         options: {
-          sourceMap: false
+          sourceMap: false,
+          includePaths: [
+            path.resolve(__dirname, 'src/styles')
+          ]
         }
       }
     ]
@@ -182,5 +183,7 @@ config.plugins.push(
     }
   })
 );
+
+console.error(JSON.stringify(config, null, 2))
 
 module.exports = config;

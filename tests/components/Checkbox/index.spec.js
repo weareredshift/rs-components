@@ -4,7 +4,7 @@ import { CheckboxUC } from 'components/Checkbox';
 const Checkbox = CheckboxUC;
 
 import assert from 'support/assert';
-import { setCheckboxValue } from 'store/actions';
+import { setCheckboxValue } from 'components/Checkbox/actions';
 
 describe('<Checkbox />', () => {
   it('Dispatches correctly on click', () => {

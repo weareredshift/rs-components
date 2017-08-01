@@ -1,0 +1,12 @@
+/**
+ * Sets the given checkbox value as true or false
+ *
+ * @param      {string}  boxID              Unique identifier for this checkbox
+ * @param      {string}  value              Whether the box is selected
+ * @return     {Object} Action object
+ */
+export function setCheckboxValue (boxID, value) {
+  return ({
+    type: 'SET_CHECKBOX_VALUE', boxID, value
+  });
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 
-import { setRadioValue } from 'store/actions';
+import { setRadioValue } from './actions';
 import './RadioGroup.scss';
 
 /**

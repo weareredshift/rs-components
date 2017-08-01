@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { map } from 'react-immutable-proptypes';
 import classnames from 'classnames';
 
-import { setCheckboxValue } from 'store/actions';
+import { setCheckboxValue } from './actions';
 
 /**
  * Renders a Redux-connected Checkbox with label

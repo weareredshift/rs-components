@@ -24,12 +24,8 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # - run: bundle exec danger
       - run: yarn test
       - run: yarn test:server
       - run: yarn lint:errors
       - run: yarn sass-lint
       - run: yarn test-docs
-      # - post:
-      #   - mkdir $CIRCLE_ARTIFACTS/htmlcov
-      #   - mv coverage/* $CIRCLE_ARTIFACTS/htmlcov/

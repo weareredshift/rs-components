@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
   entry: {
-    'bundle': path.resolve(__dirname, '../src/index.js')
+    bundle: path.resolve(__dirname, '../src/index.js')
   },
   devtool: false,
   output: {
@@ -163,7 +163,7 @@ config.entry.vendor = [
   'react-router'
 ];
 
-config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }));
+// config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }));
 
 // Production Optimizations
 // ------------------------------------

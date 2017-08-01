@@ -1,8 +1,8 @@
 {
   "name": "rs-components",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Redshift Component Library",
-  "main": "src/index.js",
+  "main": "dist/bundle.js",
   "engines": {
     "node": "^6.11.1",
     "npm": "^3.0.0"

@@ -3,7 +3,9 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
-  entry: path.resolve(__dirname, '../src/index.js'),
+  entry: {
+    'bundle': path.resolve(__dirname, '../src/index.js')
+  },
   devtool: false,
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -161,7 +163,7 @@ config.entry.vendor = [
   'react-router'
 ];
 
-config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ names: bundles }));
+config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }));
 
 // Production Optimizations
 // ------------------------------------

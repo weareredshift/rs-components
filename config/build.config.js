@@ -18,6 +18,10 @@ const config = {
   },
   module: {
     rules: []
+  },
+  externals: {
+    react: 'react',
+    'prop-types': 'prop-types'
   }
 };
 

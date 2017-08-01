@@ -2,6 +2,8 @@
 
 The Dropdown component renders a Dropdown for users to choose values from, which are stored in Redux state.
 
+> Note: Sample base styles located [here](./Dropdown.scss).
+
 Below is a simple Dropdown example:
 
 ```jsx

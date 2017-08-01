@@ -6,8 +6,8 @@ import RadioGroup from './components/RadioGroup';
 
 import { validators } from './components/BaseForm/utils';
 
-import * as actions from '../store/actions';
-import * as handlers from '../store/handlers';
+import * as actions from './store/actions';
+import * as handlers from './store/handlers';
 
 export default {
   BaseForm,

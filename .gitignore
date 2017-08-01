@@ -1,5 +1,4 @@
-*.log
-.vagrant/
+lib/
 node_modules
 .DS_STORE
 coverage

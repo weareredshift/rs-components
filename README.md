@@ -8,7 +8,7 @@ A library of reusable React-Redux components. This library is meant to be modula
 yarn add rs-components
 ```
 
-The import components like so:
+Then import components like so:
 
 ```
 import { Dropdown } from 'rs-components';

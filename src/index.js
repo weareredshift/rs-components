@@ -18,10 +18,6 @@ export default {
   utils: {
     validators
   },
-  handlers: {
-    handlers
-  },
-  actions: {
-    actions
-  }
+  handlers,
+  actions
 };

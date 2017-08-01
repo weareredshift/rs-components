@@ -7,8 +7,6 @@ import Input from '../Input';
 
 import { formatKey } from './utils';
 
-import './BaseForm.scss';
-
 /**
  * Basic form from array of field rows
  *

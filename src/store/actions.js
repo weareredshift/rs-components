@@ -1,8 +1,8 @@
-import { setCheckboxValue } from '../components/Checkbox/actions';
-import { setDropdownValues, setOpenDropdownID } from '../components/Dropdown/actions';
-import { setRadioValue } from '../components/RadioGroup/actions';
+export { setCheckboxValue } from '../components/Checkbox/actions';
+export { setDropdownValues, setOpenDropdownID } from '../components/Dropdown/actions';
+export { setRadioValue } from '../components/RadioGroup/actions';
 
-function locationChange (location = '/') {
+export function locationChange (location = '/') {
   return ({
     type: 'LOCATION_CHANGE', location
   });
@@ -11,20 +11,11 @@ function locationChange (location = '/') {
 // Specialized actions below -- don't follow patterns
 // When adding actions here, add them to the exceptions array in the actions spec.
 
-function updateLocation ({ dispatch }: { dispatch: Function }) {
+export function updateLocation ({ dispatch }: { dispatch: Function }) {
   return function (nextLocation: string) {
     dispatch(locationChange(nextLocation));
   };
 }
-
-export default {
-  setCheckboxValue,
-  locationChange,
-  setDropdownValues,
-  setOpenDropdownID,
-  updateLocation,
-  setRadioValue
-};
 
 // export function setCarouselIndex (carouselID: string, index: number) {
 //   return ({

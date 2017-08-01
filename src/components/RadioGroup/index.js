@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 
 import { setRadioValue } from './actions';
-import './RadioGroup.scss';
 
 /**
  * Renders a group of redux-connected radio buttons

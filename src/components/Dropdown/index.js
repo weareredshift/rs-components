@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { setOpenDropdownID, setDropdownValues } from './actions';
-import './Dropdown.scss';
 
 /**
  * A basic dropdown. With the callbacks (onTitleClick and onItemClick) unspecified, will behave sensibly, allowing

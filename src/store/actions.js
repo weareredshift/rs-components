@@ -8,9 +8,6 @@ export function locationChange (location = '/') {
   });
 }
 
-// Specialized actions below -- don't follow patterns
-// When adding actions here, add them to the exceptions array in the actions spec.
-
 export function updateLocation ({ dispatch }: { dispatch: Function }) {
   return function (nextLocation: string) {
     dispatch(locationChange(nextLocation));

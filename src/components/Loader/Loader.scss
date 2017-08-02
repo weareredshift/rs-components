@@ -1,0 +1,25 @@
+.loader {
+  &.opacity {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+
+    &.loader--off {
+      opacity: 0;
+    }
+  }
+
+  .loader__child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &.flip {
+    transition: transform 2s ease;
+
+    &.loader--off {
+      transform: rotateX(180deg);
+    }
+  }
+}

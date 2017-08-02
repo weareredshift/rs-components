@@ -1,10 +1,9 @@
+*.log
 src/
 config/
-src/
 .circleci/
 tests/
 .editorconfig/
 .gitignore
 .sass-lint.yml
-yarn.lock
 todoComps/

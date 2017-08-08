@@ -1,6 +1,7 @@
 export { setCheckboxValue } from '../components/Checkbox/actions';
 export { setDropdownValues, setOpenDropdownID } from '../components/Dropdown/actions';
 export { setRadioValue } from '../components/RadioGroup/actions';
+export { sortTable } from '../components/SortableTable/actions';
 
 export function locationChange (location = '/') {
   return ({

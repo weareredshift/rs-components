@@ -25,6 +25,13 @@ export const checkboxes = {
   SET_CHECKBOX_VALUE: (state, action) => state.merge({ [action.boxID]: action.value })
 };
 
+export const sortableTables = {
+  _init: fromJS({}),
+  SORT_TABLE: (state, action) => state.merge({
+    [action.uid]: { sortBy: action.sortBy, sortDirection: action.sortDirection }
+  })
+};
+
 export const carousels = {
   _init: fromJS({}),
   SET_CAROUSEL_INDEX: (state, action) => state.setIn([action.carouselID, 'index'], action.index)

@@ -44,6 +44,7 @@ The below are arrange alphabetically. The list of links may not be up to date:
 - [Dropdown](./src/components/Dropdown/README.md)
 - [Link](./src/components/Link/README.md)
 - [RadioGroup](./src/components/RadioGroup/README.md)
+- [RadioGroup](./src/components/SortableTable/README.md)
 
 ## Styling
 

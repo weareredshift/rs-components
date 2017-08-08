@@ -8,7 +8,7 @@ import { setCheckboxValue } from './actions';
 /**
  * Renders a Redux-connected Checkbox with label
  *
- * @param {string} boxID - Unique string identifier of checkbox
+ * @param {string} uid - Unique string identifier of checkbox
  * @param {string} name - Label text to display
  * @param {function} dispatch - Redux dispatch function
  * @param {Immutable.Map} checkboxes - Redux checkboxes Map
@@ -16,15 +16,15 @@ import { setCheckboxValue } from './actions';
  *
  * @returns {React.Component} A checkbox with globally-tracked value
  */
-export function CheckboxUC ({ boxID, name, dispatch, checkboxes, className }) {
-  const checked = checkboxes.get(boxID);
+export function CheckboxUC ({ uid, name, dispatch, checkboxes, className }) {
+  const checked = checkboxes.get(uid);
   return (
-    <label className={ classnames('checkbox rscomp', className) } htmlFor={ boxID }>
+    <label className={ classnames('checkbox rscomp', className) } htmlFor={ uid }>
       <input
         className="checkable__input"
         type="checkbox"
         onChange={ () => {
-          dispatch(setCheckboxValue(boxID, !checked));
+          dispatch(setCheckboxValue(uid, !checked));
         } }
         name={ name }
         checked={ checked }
@@ -41,7 +41,7 @@ const mapStateToProps = state => ({
 
 const { string, func } = React.PropTypes;
 CheckboxUC.propTypes = {
-  boxID: string.isRequired,
+  uid: string.isRequired,
   name: string.isRequired,
   checkboxes: map.isRequired,
   dispatch: func,

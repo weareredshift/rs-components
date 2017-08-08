@@ -1,6 +1,6 @@
 export default {
   props: {
-    dropID: 'static-title',
+    uid: 'static-title',
     items: [
       'Item 1',
       'Item 2',

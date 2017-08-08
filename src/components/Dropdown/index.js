@@ -95,9 +95,9 @@ DropdownUC.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const { dropID } = ownProps;
-  const open = state.openDropdownID === dropID;
-  const element = state.dropdowns.get(dropID) ? state.dropdowns.get(dropID).toJS() : [];
+  const { uid } = ownProps;
+  const open = state.openDropdownID === uid;
+  const element = state.dropdowns.get(uid) ? state.dropdowns.get(uid).toJS() : [];
 
   return {
     open,
@@ -124,12 +124,12 @@ const mergeProps = (stateProps, { dispatch }, ownProps) => ({
         : previousSelections.concat(item);
     }
 
-    dispatch(setDropdownValues(ownProps.dropID, toDispatch));
+    dispatch(setDropdownValues(ownProps.uid, toDispatch));
 
     // Close dropdown unless it's multiple-select
     !ownProps.multipleSelect && dispatch(setOpenDropdownID(null));
   },
-  onTitleClick: () => dispatch(setOpenDropdownID(stateProps.open ? null : ownProps.dropID))
+  onTitleClick: () => dispatch(setOpenDropdownID(stateProps.open ? null : ownProps.uid))
 });
 
 export default connect(mapStateToProps, undefined, mergeProps)(DropdownUC);

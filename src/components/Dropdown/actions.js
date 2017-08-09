@@ -1,24 +1,24 @@
 /**
  * Sets the dropdown values.
  *
- * @param      {string}  id              Unique identifier for this dropdown
+ * @param      {string}  uid              Unique identifier for this dropdown
  * @param      {Array}  values           List of value objects selected
  * @return     {Object} Action object
  */
-export function setDropdownValues (id, values) {
+export function setDropdownValues (uid, values) {
   return ({
-    type: 'SET_DROPDOWN_VALUES', id, values
+    type: 'SET_DROPDOWN_VALUES', uid, values
   });
 }
 
 /**
- * Sets the given dropdown as open (or, if id is null, closes all dropdowns)
+ * Sets the given dropdown as open (or, if uid is null, closes all dropdowns)
  *
- * @param      {string}  id              Unique identifier for this dropdown
+ * @param      {string}  uid              Unique identifier for this dropdown
  * @return     {Object} Action object
  */
-export function setOpenDropdownID (id) {
+export function setOpenDropdownID (uid) {
   return ({
-    type: 'SET_OPEN_DROPDOWN_ID', id
+    type: 'SET_OPEN_DROPDOWN_ID', uid
   });
 }

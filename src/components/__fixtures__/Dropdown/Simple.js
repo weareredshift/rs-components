@@ -1,6 +1,6 @@
 export default {
   props: {
-    dropID: 'simple',
+    uid: 'simple',
     items: [
       'Item 1',
       'Item 2',

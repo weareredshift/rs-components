@@ -7,22 +7,29 @@ export const location = {
 
 export const dropdowns = {
   _init: fromJS({}),
-  SET_DROPDOWN_VALUES: (state, action) => state.merge({ [action.id]: action.values })
+  SET_DROPDOWN_VALUES: (state, action) => state.merge({ [action.uid]: action.values })
 };
 
 export const openDropdownID = {
   _init: null,
-  SET_OPEN_DROPDOWN_ID: (state, action) => action.id
+  SET_OPEN_DROPDOWN_ID: (state, action) => action.uid
 };
 
 export const radios = {
   _init: fromJS({}),
-  SET_RADIO_VALUE: (state, action) => state.merge({ [action.groupID]: action.item })
+  SET_RADIO_VALUE: (state, action) => state.merge({ [action.uid]: action.item })
 };
 
 export const checkboxes = {
   _init: fromJS({}),
-  SET_CHECKBOX_VALUE: (state, action) => state.merge({ [action.boxID]: action.value })
+  SET_CHECKBOX_VALUE: (state, action) => state.merge({ [action.uid]: action.value })
+};
+
+export const sortableTables = {
+  _init: fromJS({}),
+  SORT_TABLE: (state, action) => state.merge({
+    [action.uid]: { sortBy: action.sortBy, sortDirection: action.sortDirection }
+  })
 };
 
 export const carousels = {

@@ -8,7 +8,7 @@ Below is a simple Dropdown example:
 
 ```jsx
 <Dropdown
-  dropID="simple"
+  uid="simple"
   items={ [
     'Item 1',
     'Item 2',
@@ -25,7 +25,7 @@ Here's a more complex dropdown example, using objects instead of strings as item
 
 ```jsx
 <Dropdown
-  dropID="more-complex"
+  uid="more-complex"
   title="Choose a value"
   className="why-not"
   items={ [
@@ -43,7 +43,7 @@ The Dropdown component is also capable of allowing for multiple selection:
 
 ```
 <Dropdown
-  dropID="multiple"
+  uid="multiple"
   items={ [
     'Item 1',
     'Item 2',

@@ -1,6 +1,6 @@
 export default {
   props: {
-    groupID: 'radio-fancy',
+    uid: 'radio-fancy',
     items: [
       { value: 'vader', label: 'My favorite Star Wars character is Darth Vader', tag: 'Baddie' },
       { value: 'luke', label: 'My favorite Star Wars character is Luke Skywalker', tag: 'Hero' },

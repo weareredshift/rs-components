@@ -1,6 +1,6 @@
 export default {
   props: {
-    groupID: 'radio-simple',
+    uid: 'radio-simple',
     items: ['vader', 'luke', 'han']
   }
 };

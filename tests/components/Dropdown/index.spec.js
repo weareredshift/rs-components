@@ -11,7 +11,7 @@ const drop = (addProps = {}) => {
     ],
     title: 'Default title',
     className: 'extra-class',
-    dropID: 'testID',
+    uid: 'testID',
     selectedIndices: [],
     replaceTitle: true,
     onItemClick: () => {},

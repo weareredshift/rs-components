@@ -1,0 +1,35 @@
+.sortable-table {
+
+  text-align: left;
+
+  .sortable-table__head > tr {
+    height: 25px;
+  }
+
+  .sortable-table__th {
+
+    &.sortable-table__th--sortable {
+      cursor: pointer;
+    }
+
+    &.sortable-table__th--sortby {
+      font-style: italic;
+    }
+
+    &.sortable-table__th--sortby-asc:after {
+      content: '\2191';
+    }
+
+    &.sortable-table__th--sortby-desc:after {
+      content: '\2193';
+    }
+  }
+
+  .sortable-table__tr {
+    height: 20px;
+  }
+
+  .sortable-table__td {
+    min-width: 100px;
+  }
+}

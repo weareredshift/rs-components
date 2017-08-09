@@ -1,6 +1,6 @@
 export default {
   props: {
-    boxID: 'checkbox',
+    uid: 'checkbox',
     name: 'Check me'
   }
 };

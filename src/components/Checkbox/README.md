@@ -6,7 +6,7 @@ The only props it needs to take are a display `name` and a unique `boxID` under 
 
 ```jsx
 <Checkbox
-  boxID="checkbox"
+  uid="checkbox"
   name="Check me"
 />
 ```

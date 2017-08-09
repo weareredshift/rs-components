@@ -8,15 +8,15 @@ import { setRadioValue } from './actions';
  * Renders a group of redux-connected radio buttons
  *
  * @param {Object} props
- * @param {string} props.groupID Unique identifier of this radio group in Redux
+ * @param {string} props.uid Unique identifier of this radio group in Redux
  * @param {string} props.className Optional additional classes
  * @param {Object[]} props.items List of radio item object
  * @param {String} props.selectedValue String of selected value
- * @param {Function} props.onCheck Run when a radio button is clicked, and passed the groupID and item
+ * @param {Function} props.onCheck Run when a radio button is clicked, and passed the uid and item
  *
  * @returns {React.Component} A group of radio buttons
  */
-export function RadioGroupUC ({ groupID, className, items, selectedValue, onCheck }) {
+export function RadioGroupUC ({ uid, className, items, selectedValue, onCheck }) {
   const fullItems = items.map((item, index) => {
     let fullItem;
 
@@ -49,8 +49,8 @@ export function RadioGroupUC ({ groupID, className, items, selectedValue, onChec
                   type="radio"
                   checked={ selectedValue === item.value }
                   onChange={ () => {} }
-                  id={ groupID }
-                  name={ groupID }
+                  id={ uid }
+                  name={ uid }
                   value={ item.value }
                 />
                 <span className="radio__mark" />
@@ -77,22 +77,22 @@ RadioGroupUC.propTypes = {
       string
     ]).isRequired
   ).isRequired,
-  groupID: string.isRequired,
+  uid: string.isRequired,
   className: string,
   selectedValue: string,
   onCheck: func.isRequired
 };
 
-const mapStateToProps = (state, { groupID }) => ({
-  selectedValue: state.radios.getIn([groupID, 'value'])
+const mapStateToProps = (state, { uid }) => ({
+  selectedValue: state.radios.getIn([uid, 'value'])
 });
 
 const mergeProps = (stateProps, { dispatch }, ownProps) => ({
   ...stateProps,
   ...ownProps,
   onCheck: item => {
-    dispatch(setRadioValue(ownProps.groupID, item));
-    ownProps.afterCheck && ownProps.afterCheck(ownProps.groupID, item);
+    dispatch(setRadioValue(ownProps.uid, item));
+    ownProps.afterCheck && ownProps.afterCheck(ownProps.uid, item);
   }
 });
 

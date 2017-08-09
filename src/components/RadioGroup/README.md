@@ -6,7 +6,7 @@ The RadioGroup component creates a group of radio buttons and stores the selecte
 
 ```jsx
 <RadioButton
-  groupID="radio-fancy"
+  uid="radio-fancy"
   items={ [
     { value: 'vader', label: 'My favorite Star Wars character is Darth Vader', tag: 'Baddie' },
     { value: 'luke', label: 'My favorite Star Wars character is Luke Skywalker', tag: 'Hero' },

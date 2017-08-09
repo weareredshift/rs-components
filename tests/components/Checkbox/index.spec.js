@@ -1,43 +1,28 @@
-import Immutable from 'immutable';
-
 import { CheckboxUC } from 'components/Checkbox';
 const Checkbox = CheckboxUC;
 
-import assert from 'support/assert';
-import { setCheckboxValue } from 'components/Checkbox/actions';
-
 describe('<Checkbox />', () => {
   it('Dispatches correctly on click', () => {
-    const dispatch = sinon.spy();
-    const comp = mockComp(Checkbox, { boxID: 'test', name: 'Imma box', dispatch, checkboxes: Immutable.fromJS({}) });
+    const toggle = sinon.spy();
+    const comp = mockComp(Checkbox, { uid: 'test', name: 'Imma box', toggle, checked: false });
     const input = comp.find('input');
 
-    expect(dispatch.callCount).to.eq(0);
+    expect(toggle.callCount).to.eq(0);
 
     expect(input.props().name).to.eq('Imma box');
-    expect(input.props().checked).to.eq(undefined);
+    expect(input.props().checked).to.eq(false);
 
+    expect(toggle.firstCall).not.to.exist;
     input.simulate('change', { value: true });
-    assert.objEq(
-      dispatch.firstCall.args[0],
-      setCheckboxValue('test', true)
-    );
+    expect(toggle.firstCall).to.exist;
   });
 
-  it('Gets its value from the Immutable checkboxes object', () => {
-    const dispatch = sinon.spy();
-    const comp = mockComp(Checkbox, { boxID: 'test', name: 'Imma box', dispatch, checkboxes: Immutable.fromJS({ test: true }) });
+  it('shows up as checked if set correctly', () => {
+    const toggle = sinon.spy();
+    const comp = mockComp(Checkbox, { uid: 'test', name: 'Imma box', toggle, checked: true });
     const input = comp.find('input');
-
-    expect(dispatch.callCount).to.eq(0);
 
     expect(input.props().name).to.eq('Imma box');
     expect(input.props().checked).to.eq(true);
-
-    input.simulate('change', { value: false });
-    assert.objEq(
-      dispatch.firstCall.args[0],
-      setCheckboxValue('test', false)
-    );
   });
 });

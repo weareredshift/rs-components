@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { map } from 'react-immutable-proptypes';
 import classnames from 'classnames';
 
 import { setCheckboxValue } from './actions';
@@ -16,16 +16,13 @@ import { setCheckboxValue } from './actions';
  *
  * @returns {React.Component} A checkbox with globally-tracked value
  */
-export function CheckboxUC ({ uid, name, dispatch, checkboxes, className }) {
-  const checked = checkboxes.get(uid);
+export function CheckboxUC ({ name, toggle, checked, className, uid }) {
   return (
     <label className={ classnames('checkbox rscomp', className) } htmlFor={ uid }>
       <input
         className="checkable__input"
         type="checkbox"
-        onChange={ () => {
-          dispatch(setCheckboxValue(uid, !checked));
-        } }
+        onChange={ () => { toggle(!checked); } }
         name={ name }
         checked={ checked }
       />
@@ -35,17 +32,23 @@ export function CheckboxUC ({ uid, name, dispatch, checkboxes, className }) {
   );
 }
 
-const mapStateToProps = state => ({
-  checkboxes: state.checkboxes
+const mapStateToProps = (state, ownProps) => ({
+  checked: state.checkboxes.get(ownProps.uid)
 });
 
-const { string, func } = React.PropTypes;
+const mergeProps = (stateProps, { dispatch }, ownProps) => ({
+  ...ownProps,
+  ...stateProps,
+  toggle: () => { dispatch(setCheckboxValue(ownProps.uid, !stateProps.checked)); }
+});
+
+const { string, func, bool } = PropTypes;
 CheckboxUC.propTypes = {
   uid: string.isRequired,
   name: string.isRequired,
-  checkboxes: map.isRequired,
-  dispatch: func,
-  className: string
+  className: string,
+  toggle: func.isRequired,
+  checked: bool
 };
 
-export default connect(mapStateToProps)(CheckboxUC);
+export default connect(mapStateToProps, undefined, mergeProps)(CheckboxUC);

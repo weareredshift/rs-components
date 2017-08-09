@@ -29,3 +29,6 @@ jobs:
       - run: yarn lint:errors
       - run: yarn sass-lint
       - run: yarn test-docs
+dependencies:
+  post:
+    - bash scripts/get-latest-chrome.sh

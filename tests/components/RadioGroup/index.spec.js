@@ -5,7 +5,7 @@ import assert from 'support/assert';
 describe('<RadioGroup />', () => {
   it('Can be generated from an array of strings', () => {
     const onCheck = sinon.spy();
-    const comp = mockComp(RadioGroup, { groupID: 'test', items: ['One', 'Two'], onCheck });
+    const comp = mockComp(RadioGroup, { uid: 'test', items: ['One', 'Two'], onCheck });
     const ul = comp.find('ul');
     const li = ul.find('li').first();
     const li2 = ul.find('li').last();
@@ -29,7 +29,7 @@ describe('<RadioGroup />', () => {
   });
 
   it('Responds to value in Immutable radios', () => {
-    const comp = mockComp(RadioGroup, { groupID: 'test', items: ['One', 'Two'], selectedValue: 'Two', onCheck: noop });
+    const comp = mockComp(RadioGroup, { uid: 'test', items: ['One', 'Two'], selectedValue: 'Two', onCheck: noop });
 
     expect(comp.find('input').first().props().checked).to.eq(false);
     expect(comp.find('input').last().props().checked).to.eq(true);

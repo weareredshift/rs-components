@@ -9,7 +9,7 @@ import Respond from './components/Respond';
 import { initReduxBreakpoints } from './components/Respond/utils';
 import * as actions from './store/actions';
 import reducers from './store/reducers';
-import handlers from './store/handlers';
+import * as handlers from './store/handlers';
 
 const utils = { validators, initReduxBreakpoints };
 

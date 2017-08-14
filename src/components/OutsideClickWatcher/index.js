@@ -40,7 +40,7 @@ const ifNotInParents = (event, targetClasses, callback) => {
  * @param      {string[]}           props.watchables[].stateKey Key of Redux state object to watch. When truthy, component will dispatch
  * @param      {*[]}              props.watchables[].stateValue Value of Redux state object to watch. When truthy, comp will dispatch
  */
-export function CloseOnClickUC ({ children, dispatch, watchables }) {
+export function OutsideClickWatcherUC ({ children, dispatch, watchables }) {
   const dispatchAsNecessary = (event) => {
     watchables.forEach(watchable => {
       if (watchable.stateValue) {
@@ -58,7 +58,7 @@ export function CloseOnClickUC ({ children, dispatch, watchables }) {
   );
 }
 
-CloseOnClickUC.propTypes = {
+OutsideClickWatcherUC.propTypes = {
   children: oneOfType([node, array, string]).isRequired,
   watchables: arrayOf(
     shape({
@@ -70,7 +70,7 @@ CloseOnClickUC.propTypes = {
   dispatch: func
 };
 
-CloseOnClickUC.defaultProps = {
+OutsideClickWatcherUC.defaultProps = {
   watchables: []
 };
 
@@ -106,4 +106,4 @@ const mapStateToProps = (state, { watchables }) => {
   };
 };
 
-export default connect(mapStateToProps)(CloseOnClickUC);
+export default connect(mapStateToProps)(OutsideClickWatcherUC);

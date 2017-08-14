@@ -1,6 +1,7 @@
 import BaseForm from './components/BaseForm';
 import Checkbox from './components/Checkbox';
 import Dropdown from './components/Dropdown';
+import OutsideClickWatcher from './components/OutsideClickWatcher';
 import Link from './components/Link';
 import RadioGroup from './components/RadioGroup';
 import SortableTable from './components/SortableTable';
@@ -20,6 +21,7 @@ export {
   Link,
   RadioGroup,
   SortableTable,
+  OutsideClickWatcher,
   Respond,
   utils,
   actions,

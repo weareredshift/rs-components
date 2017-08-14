@@ -74,15 +74,16 @@ OutsideClickWatcherUC.defaultProps = {
   watchables: []
 };
 
-const mapStateToProps = (state, { watchables }) => {
+const mapStateToProps = (state, ownProps) => {
   const dropdownDefault = {
     classes: ['dropdown'],
     action: setOpenDropdownID(null),
     stateKey: 'openDropdownID'
   };
+  const watchables = ownProps.watchables || [];
 
   // Combine default and given dropdown classes, or add dropdown as default watchable
-  let dropdownWatchable = watchables.find(w => w.classes.includes('dropdown'));
+  let dropdownWatchable = (watchables).find(w => w.classes.includes('dropdown'));
   if (dropdownWatchable) {
     dropdownWatchable = Object.assign(dropdownDefault, dropdownWatchable);
   } else {
@@ -92,17 +93,13 @@ const mapStateToProps = (state, { watchables }) => {
   return {
     // Convert the key of the state value being watched
     // to the actual value
-    watchables: Object.keys(watchables)
-      .reduce((obj, key) => Object.assign(
-        obj,
-        {
-          [key]: Object.assign(
-            watchables[key],
-            watchables[key].stateKey ? { stateValue: state[watchables[key].stateKey] } : {},
-            { stateKey: undefined }
-          )
-        }
-      ), {})
+    watchables: watchables
+      .map((watchable) => ({
+        classes: watchable.classes,
+        action: watchable.action,
+        stateValue: state[watchable.stateKey] || undefined,
+        stateKey: undefined
+      }))
   };
 };
 

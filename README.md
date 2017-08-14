@@ -43,6 +43,7 @@ The below are arrange alphabetically. The list of links may not be up to date:
 - [Link](./src/components/Link)
 - [RadioGroup](./src/components/RadioGroup)
 - [SortableTable](./src/components/SortableTable)
+- [OutsideClickWatcher](./src/components/OutsideClickWatcher)
 
 ## Styling
 

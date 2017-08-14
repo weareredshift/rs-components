@@ -14,15 +14,13 @@ Then import components like so:
 import { Dropdown } from 'rs-components';
 ```
 
-Most of these components depend on Redux actions and accompanying "handlers" to run smoothly, so those should be imported as well and incorporated into the Redux store:
+Most of these components depend on Redux actions and accompanying reducers to run smoothly, so those should be imported as well and incorporated into the Redux store:
 
-***store/reducers.js**
-
+**store/createStore.js**
 ```
-import { constructReducers, curryMakeRootReducer, curryInjectReducer } from './boilerplate';
-import { handlers } from 'rs-components';
+import { reducers } from 'rs-components';
 
-export const reducers = constructReducers({ ...handlers, ...otherHandlers }, {});
+// Create that store
 ```
 
 ## To explore
@@ -39,12 +37,12 @@ Each component also has additional docs, collocated in the component folder. Go 
 
 The below are arrange alphabetically. The list of links may not be up to date:
 
-- [BaseForm](./src/components/BaseForm/README.md)
-- [Checkbox](./src/components/Checkbox/README.md)
-- [Dropdown](./src/components/Dropdown/README.md)
-- [Link](./src/components/Link/README.md)
-- [RadioGroup](./src/components/RadioGroup/README.md)
-- [SortableTable](./src/components/SortableTable/README.md)
+- [BaseForm](./src/components/BaseForm)
+- [Checkbox](./src/components/Checkbox)
+- [Dropdown](./src/components/Dropdown)
+- [Link](./src/components/Link)
+- [RadioGroup](./src/components/RadioGroup)
+- [SortableTable](./src/components/SortableTable)
 
 ## Styling
 
@@ -52,15 +50,13 @@ Where relevant, components have been given a basic set of styles in React Cosmos
 
 Styling the components is designed to be easy. Each component declares a sensible top-level class, as well as classes for most of its contained nodes. For example, the Dropdown component has a `dropdown` class, as well as containing nodes with classes like `dropdown__menu`, `dropdown__item`, and `dropdown__title`. These classes follow BEM syntax.
 
-Additionally, each component visible in the React Cosmos explorer has a second class applied at a high level: `rscomp` (for Redshift component). None of the built-in styles use this class, so by using this class as well as the normal built-in class, you should be able to overwrite all built-in styles because of the greater selector specificity:
+Additionally, each component visible in the React Cosmos explorer has a second class applied at a high level: `rscomp` (for Redshift component). This is simply (and probably unnecessarily) to allow for added specificity, if there happens to be a clash between one of the RS Component classes and one in your app.:
 
 ```scss
 .dropdown.rscomp {
-  z-index: 1; // will overwrite
+  z-index: 1;
 }
 ```
-
-All the example styles for the components are nested under the top-level class, so as long as no other items in the app use the same toplevel class names, the built-in styles should cause no conflicts.
 
 ## Adding components
 
@@ -74,9 +70,12 @@ To add a component:
   > A fixture specifies the starting props for an instance of the component in the React Cosmos explorer.
 
 3. Move the test from `tests/comps` to `test/components` (or write a complete new one) and get it passing.
-4. Add it to `src/index.js` to make the component available through library input.
-5. Optionally, add a `.scss` file, and import it into `src/styles/components.scss` to get the styles showing in React Cosmos.
+4. Add it to `src/index.js` to make the component available through library import.
+5. Optionally, add a `.scss` file, and import it into `src/styles/components.scss` to get the styles showing in React Cosmos. (These styles will not be exported).
 
 ## Roadmap
 
-- Add a ton of components
+- Add a ton of components. Some hi-priority ones:
+  - Breakpoint wrapper
+  - Inline search field
+  - Expandable

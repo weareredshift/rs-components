@@ -5,10 +5,12 @@ import Link from './components/Link';
 import RadioGroup from './components/RadioGroup';
 import SortableTable from './components/SortableTable';
 import { validators } from './components/BaseForm/utils';
+import Respond from './components/Respond';
+import { initReduxBreakpoints } from './components/Respond/utils';
 import * as actions from './store/actions';
-import * as handlers from './store/handlers';
+import reducers from './store/reducers';
 
-const utils = { validators };
+const utils = { validators, initReduxBreakpoints };
 
 export {
   BaseForm,
@@ -17,7 +19,8 @@ export {
   Link,
   RadioGroup,
   SortableTable,
+  Respond,
   utils,
   actions,
-  handlers
+  reducers
 };

@@ -129,7 +129,7 @@ const mergeProps = (stateProps, { dispatch }, ownProps) => ({
     // Close dropdown unless it's multiple-select
     !ownProps.multipleSelect && dispatch(setOpenDropdownID(null));
   },
-  onTitleClick: () => dispatch(setOpenDropdownID(stateProps.open ? null : ownProps.uid))
+  onTitleClick: (nextState = stateProps.open ? null : ownProps.uid) => dispatch(setOpenDropdownID(nextState))
 });
 
 export default connect(mapStateToProps, undefined, mergeProps)(DropdownUC);

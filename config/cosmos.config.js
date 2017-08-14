@@ -8,6 +8,8 @@ module.exports = {
   ],
   ignore: [
     /actions.js/,
-    /utils.js/
+    /utils.js/,
+    /Respond/,
+    /Input/
   ]
 };

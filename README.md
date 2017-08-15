@@ -18,9 +18,15 @@ Most of these components depend on Redux actions and accompanying reducers to ru
 
 **store/createStore.js**
 ```
-import { reducers } from 'rs-components';
+import { fromJS } from 'immutable';
+import { initializeRSReducers } from 'rs-components';
 
-// Create that store
+// Create that store, with optional initial values
+const store = createStore(initializeRsReducers({
+  dropdowns: fromJS({
+    someDrop: [{ value: 'I start selected', index: 2 }]
+  })
+}));
 ```
 
 ## To explore

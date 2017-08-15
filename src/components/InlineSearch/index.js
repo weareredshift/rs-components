@@ -2,6 +2,15 @@ import React from 'react';
 import classnames from 'classnames';
 import { string, arrayOf, node, shape } from 'prop-types';
 
+/**
+ * Searches through given options for relevant results, and presents first match inline.
+ *
+ * @param {Object} props
+ * @param {string} props.className
+ * @param {Object[]} props.options Array of option objects through which to search
+ * @param {React.Component} props.options[].image Optional node (usually image) to display before search
+ * @param {string} props.options[].name Name to search through
+ */
 export class InlineSearchUC extends React.Component {
   constructor(props) {
     super(props);

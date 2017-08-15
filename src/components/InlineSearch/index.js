@@ -5,7 +5,7 @@ import { string, arrayOf, node, shape } from 'prop-types';
 export class InlineSearchUC extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { search: '' };
+    this.state = { search: '', focused: false };
   }
 
   foundText(find, regex) {
@@ -15,11 +15,7 @@ export class InlineSearchUC extends React.Component {
 
     return (
       <span
-        className={
-          'inlinesearch__fake-results'.concat(
-            selected && 'inlinesearch__fake-results--selected'
-          )
-        }
+        className={ classnames('inlinesearch__result', selected && 'inlinesearch__fake-results--selected') }
       >
         { find.image && <span className="inlinesearch__image">{ find.image }</span> }
         { split[0] }
@@ -35,7 +31,7 @@ export class InlineSearchUC extends React.Component {
     const { search, focused } = this.state;
 
     return (
-      <span>
+      <span className="inlinesearch__noresult">
         { search || focused ?
             search :
             <span className="inlinesearch__placeholder">{ placeholder }</span>
@@ -45,9 +41,14 @@ export class InlineSearchUC extends React.Component {
     );
   }
 
+  focus() {
+    if (this.el) { this.el.focus(); }
+    this.setState({ focused: true });
+  }
+
   render () {
     const { className, options } = this.props;
-    const { search } = this.state;
+    const { search, focused } = this.state;
 
     const searchRegex = new RegExp('(' + search + ')', 'i');
     const firstFind = search.length > 0 && options.find(opt => opt.name.match(searchRegex));
@@ -57,7 +58,7 @@ export class InlineSearchUC extends React.Component {
         <input
           type="text"
           ref={ el => { this.el = el; } }
-          className="inlinesearch__input"
+          className={ classnames('inlinesearch__input', focused && 'inlinesearch__input--focused') }
           onKeyPress={ e => { this.handleKeypress(e.target.value); } }
           value={ search }
           onChange={ e => { this.setState({ search: e.target.value }); } }
@@ -65,10 +66,7 @@ export class InlineSearchUC extends React.Component {
         />
         <div
           className="inlinesearch__fake-input"
-          onClick={ () => {
-            this.setState({ focused: true });
-            this.el.focus();
-          } }
+          onClick={ () => { this.focus(); } }
         >
           { firstFind
             ? this.foundText(firstFind, searchRegex)

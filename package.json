@@ -29,6 +29,7 @@
   "author": "Redshift Digital <engineering@redshiftdigital.com> (https://redshiftdigital.com)",
   "dependencies": {
     "classnames": "^2.2.5",
+    "documentation": "^5.2.1",
     "gsap": "^1.19.1",
     "immutable": "^3.8.1",
     "is-url-external": "^1.0.3",

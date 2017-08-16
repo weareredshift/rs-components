@@ -38,6 +38,10 @@
     animation: 1s linear infinite blink_effect;
   }
 
+  .inlinesearch__search-text--selected {
+    background-color: lightblue;
+  }
+
   @-webkit-keyframes blink_effect { // for android
     0% {
       visibility: hidden;

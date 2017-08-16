@@ -19,6 +19,40 @@ export class InlineSearchUC extends React.Component {
     this.state = { search: '', focused: false, cursorIndex: 0 };
   }
 
+  focus() {
+    if (this.el) { this.el.focus(); }
+    this.setState({ focused: true, selected: false });
+  }
+
+  handleKeyPress (item, key) {
+    const { cursorIndex, search, metaKey } = this.state;
+
+    const bound = (index) => Math.max(0, Math.min(search.length + 1, index));
+
+    let newState = { selected: false, focused: true, cursorIndex: bound(cursorIndex + 1), metaKey: null };
+
+    if (key === 'Enter' && item) {
+      item.onAction && item.onAction(search);
+      newState = Object.assign(newState, { search: '', cursorIndex: 0 });
+    } else if (['ArrowLeft', 'Backspace'].includes(key)) {
+      newState.cursorIndex = bound(cursorIndex - 1);
+    } else if (['Shift', 'Meta', 'Control'].includes(key)) {
+      newState = Object.assign(newState, { metaKey: key, cursorIndex });
+    } else if (['Escape', 'Tab'].includes(key)) {
+      newState.cursorIndex = cursorIndex;
+    } else {
+      if (metaKey === 'Meta') {
+        if (key === 'a') {
+          newState.selected = true;
+        }
+      } else {
+        newState.cursorIndex = bound(cursorIndex + 1);
+      }
+    }
+
+    this.setState(newState);
+  }
+
   foundText(find, regex) {
     const { cursor } = this.props;
     const { selected, focused, cursorIndex, search } = this.state;
@@ -36,16 +70,18 @@ export class InlineSearchUC extends React.Component {
     const result = find.replacement
       ? find.replacement
       : (
-        <span>
+        <span className="inlinesearch__resulttext">
           { beforeMatch }
-          { matchNode }
+          <span className={ classnames('inlinesearch__search-text', selected && 'inlinesearch__search-text--selected') }>
+            { matchNode }
+          </span>
           { afterMatch }
         </span>
       );
 
     return (
       <span
-        className={ classnames('inlinesearch__result inlinesearch__result--found', selected && 'inlinesearch__result--selected') }
+        className={ classnames('inlinesearch__result inlinesearch__result--found') }
         onClick={ () => { find.onAction && find.onAction(search); } }
       >
         { find.left && <span className="inlinesearch__left">{ find.left }</span> }
@@ -60,10 +96,10 @@ export class InlineSearchUC extends React.Component {
     const { search, focused, selected, cursorIndex } = this.state;
 
     return (
-      <span className={ classnames('inlinesearch__result inlinesearch__result--empty', selected && 'inlinesearch__result--selected') }>
+      <span className="inlinesearch__result inlinesearch__result--empty">
         <span className="inlinesearch__left" />
         { search || focused
-            ? (<span>
+            ? (<span className={ classnames('inlinesearch__search-text', selected && 'inlinesearch__search-text--selected') }>
               { search.slice(0, cursorIndex) }
               { cursor }
               { search.slice(cursorIndex) }
@@ -73,31 +109,6 @@ export class InlineSearchUC extends React.Component {
         <span className="inlinesearch__right" />
       </span>
     );
-  }
-
-  focus() {
-    if (this.el) { this.el.focus(); }
-    this.setState({ focused: true });
-  }
-
-  handleKeyPress (item, key) {
-    const { cursorIndex, search } = this.state;
-
-    const bound = (index) => Math.max(0, Math.min(search.length + 1, index));
-
-    if (key === 'Enter' && item) {
-      item.onAction && item.onAction(search);
-      this.setState({ search: '', cursorIndex: 0 });
-    } else if (key === 'ArrowLeft') {
-      this.setState({ cursorIndex: bound(cursorIndex - 1) });
-    } else if (key === 'Delete') {
-      this.setState({ cursorIndex: bound(cursorIndex - 1) });
-    } else if (key === 'Meta') {
-      // Do nothing on Ctrl, Cmd, etc
-      // TODO: Handle command-right, command-a etc
-    } else {
-      this.setState({ cursorIndex: bound(cursorIndex + 1) });
-    }
   }
 
   render () {
@@ -114,6 +125,7 @@ export class InlineSearchUC extends React.Component {
           ref={ el => { this.el = el; } }
           className={ classnames('inlinesearch__input', focused && 'inlinesearch__input--focused') }
           onKeyDown={ e => { this.handleKeyPress(firstFind, e.key); } }
+          onKeyUp={ () => { this.setState({ metaKey: null }); } }
           onChange={ e => { this.setState({ search: e.target.value }); } }
           value={ search }
           onBlur={ () => { this.setState({ focused: false }); } }

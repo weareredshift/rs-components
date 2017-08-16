@@ -21,7 +21,7 @@ export class InlineSearchUC extends React.Component {
 
   foundText(find, regex) {
     const { cursor } = this.props;
-    const { selected, focused, cursorIndex } = this.state;
+    const { selected, focused, cursorIndex, search } = this.state;
 
     const split = find.name.split(regex);
     const beforeMatch = split[0];
@@ -46,6 +46,7 @@ export class InlineSearchUC extends React.Component {
     return (
       <span
         className={ classnames('inlinesearch__result inlinesearch__result--found', selected && 'inlinesearch__result--selected') }
+        onClick={ () => { find.onAction && find.onAction(search); } }
       >
         { find.left && <span className="inlinesearch__left">{ find.left }</span> }
         { result }
@@ -82,20 +83,20 @@ export class InlineSearchUC extends React.Component {
   handleKeyPress (item, key) {
     const { cursorIndex, search } = this.state;
 
-    const bound = (index) => index < 0 ? 0 : (index > search.length ? search.length : index);
+    const bound = (index) => Math.max(0, Math.min(search.length + 1, index));
 
-    if (key === 'Enter') {
-      item.onAction && item.onAction(item);
+    if (key === 'Enter' && item) {
+      item.onAction && item.onAction(search);
       this.setState({ search: '', cursorIndex: 0 });
     } else if (key === 'ArrowLeft') {
       this.setState({ cursorIndex: bound(cursorIndex - 1) });
-      console.log(bound(cursorIndex - 1));
+    } else if (key === 'Delete') {
+      this.setState({ cursorIndex: bound(cursorIndex - 1) });
     } else if (key === 'Meta') {
       // Do nothing on Ctrl, Cmd, etc
-      // TODO: Handle command-right etc
+      // TODO: Handle command-right, command-a etc
     } else {
       this.setState({ cursorIndex: bound(cursorIndex + 1) });
-      console.log(bound(cursorIndex + 1));
     }
   }
 
@@ -113,8 +114,8 @@ export class InlineSearchUC extends React.Component {
           ref={ el => { this.el = el; } }
           className={ classnames('inlinesearch__input', focused && 'inlinesearch__input--focused') }
           onKeyDown={ e => { this.handleKeyPress(firstFind, e.key); } }
-          value={ search }
           onChange={ e => { this.setState({ search: e.target.value }); } }
+          value={ search }
           onBlur={ () => { this.setState({ focused: false }); } }
         />
         <div

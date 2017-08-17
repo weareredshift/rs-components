@@ -97,6 +97,7 @@ DropdownUC.defaultProps = {
 const mapStateToProps = (state, ownProps) => {
   const { uid } = ownProps;
   const open = state.openDropdownID === uid;
+
   const element = state.dropdowns.get(uid) ? state.dropdowns.get(uid).toJS() : [];
 
   return {

@@ -1,3 +1,4 @@
+import { fromJS } from 'immutable';
 import { constructReducers, curryMakeRootReducer, curryInjectReducer } from './boilerplate';
 import * as handlers from './handlers';
 /**
@@ -11,13 +12,17 @@ export const initializeRSReducers = (initializers = {}) => {
   const initializedHandlers = Object.keys(handlers)
     .reduce((obj, key) => Object.assign(obj, {
       [key]: initializers[key]
-        ? Object.assign(handlers[key], { _init: initializers[key] })
+        ? Object.assign(handlers[key], { init: initializers[key] })
         : handlers[key]
     }), {});
   return constructReducers({ ...initializedHandlers }, {});
 };
 
-export const reducers = initializeRSReducers();
+export const reducers = initializeRSReducers({
+  dropdowns: fromJS({
+    simple: [{ index: 0 }]
+  })
+});
 
 export const makeRootReducer = curryMakeRootReducer(reducers);
 

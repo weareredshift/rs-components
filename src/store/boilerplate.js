@@ -3,9 +3,9 @@ import { combineReducers } from 'redux';
 function reducerObjFromHandlerWrapper (handlers) {
   return function produceReducerObj (handlerName) {
     const handler = handlers[handlerName];
-    const initState = handler._init;
+    const initState = handler.init;
 
-    delete handler['_init'];
+    delete handler['init'];
 
     const reducerFunc = (state = initState, action) => handler[action.type]
             ? handler[action.type](state, action)

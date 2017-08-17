@@ -1,40 +1,35 @@
 import { fromJS } from 'immutable';
 
 export const location = {
-  _init: '/',
+  init: '/',
   LOCATION_CHANGE: (state, action) => action.location
 };
 
 export const dropdowns = {
-  _init: fromJS({}),
+  init: fromJS({}),
   SET_DROPDOWN_VALUES: (state, action) => state.merge({ [action.uid]: action.values })
 };
 
 export const openDropdownID = {
-  _init: null,
+  init: null,
   SET_OPEN_DROPDOWN_ID: (state, action) => action.uid
 };
 
 export const radios = {
-  _init: fromJS({}),
+  init: fromJS({}),
   SET_RADIO_VALUE: (state, action) => state.merge({ [action.uid]: action.item })
 };
 
 export const checkboxes = {
-  _init: fromJS({}),
+  init: fromJS({}),
   SET_CHECKBOX_VALUE: (state, action) => state.merge({ [action.uid]: action.value })
 };
 
 export const sortableTables = {
-  _init: fromJS({}),
+  init: fromJS({}),
   SORT_TABLE: (state, action) => state.merge({
     [action.uid]: { sortBy: action.sortBy, sortDirection: action.sortDirection }
   })
-};
-
-export const carousels = {
-  _init: fromJS({}),
-  SET_CAROUSEL_INDEX: (state, action) => state.setIn([action.carouselID, 'index'], action.index)
 };
 
 /**
@@ -42,7 +37,7 @@ export const carousels = {
  * @type {Object}
  */
 export const breakpoint = {
-  _init: { name: 'default', size: null, queryState: [] },
+  init: { name: 'default', size: null, queryState: [] },
   SET_ACTIVE_BREAKPOINT: (state, action) => {
     const newobj = {
       name: action.breakpointName,
@@ -54,22 +49,26 @@ export const breakpoint = {
   }
 };
 
-/**
- * Object defining modal state
- * @type {Object}
- */
-export const modal = {
-  _init: { open: false, activeID: '' },
-  TOGGLE_MODAL: (state, action) => Object.assign({}, state, { open: action.open }),
-  SET_ACTIVE_MODAL: (state, action) => Object.assign({}, state, { activeID: action.modalID })
-};
-
-/**
- * Determines state of expanded content specific to sections of the site
- *
- * @type       {string}
- */
-export const expandedContent = {
-  _init: fromJS({}),
-  SET_EXPANDED: (state, action) => state.set(action.section, action.name)
-};
+// NOT YET BUILT
+// export const carousels = {
+//   init: fromJS({}),
+//   SET_CAROUSEL_INDEX: (state, action) => state.setIn([action.carouselID, 'index'], action.index)
+// };
+// /**
+//  * Object defining modal state
+//  * @type {Object}
+//  */
+// export const modal = {
+//   init: { open: false, activeID: '' },
+//   TOGGLE_MODAL: (state, action) => Object.assign({}, state, { open: action.open }),
+//   SET_ACTIVE_MODAL: (state, action) => Object.assign({}, state, { activeID: action.modalID })
+// };
+// /**
+//  * Determines state of expanded content specific to sections of the site
+//  *
+//  * @type       {string}
+//  */
+// export const expandedContent = {
+//   init: fromJS({}),
+//   SET_EXPANDED: (state, action) => state.set(action.section, action.name)
+// };

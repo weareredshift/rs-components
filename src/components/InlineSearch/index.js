@@ -70,7 +70,7 @@ export class InlineSearchUC extends React.Component {
     const result = find.replacement
       ? find.replacement
       : (
-        <span className="inlinesearch__resulttext">
+        <span className="inlinesearch__result-text">
           { beforeMatch }
           <span className={ classnames('inlinesearch__search-text', selected && 'inlinesearch__search-text--selected') }>
             { matchNode }

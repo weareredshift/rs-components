@@ -1,6 +1,6 @@
 {
   "name": "rs-components",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Redshift Component Library",
   "main": "lib/index.js",
   "engines": {
@@ -20,7 +20,8 @@
     "sass-rebuild": "npm rebuild node-sass",
     "bump": "ruby bump.rb",
     "build": "babel -d lib/ src/",
-    "deploy": "yarn build && npm publish && rimraf lib/"
+    "prepublishOnly": "yarn build",
+    "postpublish": "rimraf lib/"
   },
   "repository": {
     "type": "git",

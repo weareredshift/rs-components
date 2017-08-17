@@ -22,7 +22,7 @@ import { fromJS } from 'immutable';
 import { initializeRSReducers } from 'rs-components';
 
 // Create that store, with optional initial values
-const store = createStore(initializeRsReducers({
+const store = createStore(initializeRSReducers({
   dropdowns: fromJS({
     someDrop: [{ value: 'I start selected', index: 2 }]
   })
@@ -35,13 +35,9 @@ This repo includes a server for testing out the components, using [React Cosmos]
 
 ## To learn more
 
-To view the programmatic JSDocs, pull down the repo and run `yarn server-docs`.
+To view the programmatic JSDocs, pull down the repo and run `yarn docs:build && yarn docs:serve`.
 
-Each component also has additional docs, collocated in the component folder. Go there to read more.
-
-#### Doc links
-
-The below are arrange alphabetically. The list of links may not be up to date:
+Each component also has additional Markdown docs, co-located in the component folder. Go there to read more:
 
 - [BaseForm](./src/components/BaseForm)
 - [Checkbox](./src/components/Checkbox)
@@ -57,7 +53,7 @@ Where relevant, components have been given a basic set of styles in React Cosmos
 
 Styling the components is designed to be easy. Each component declares a sensible top-level class, as well as classes for most of its contained nodes. For example, the Dropdown component has a `dropdown` class, as well as containing nodes with classes like `dropdown__menu`, `dropdown__item`, and `dropdown__title`. These classes follow BEM syntax.
 
-Additionally, each component visible in the React Cosmos explorer has a second class applied at a high level: `rscomp` (for Redshift component). This is simply (and probably unnecessarily) to allow for added specificity, if there happens to be a clash between one of the RS Component classes and one in your app.:
+Additionally, each component visible in the React Cosmos explorer has a second class applied at a high level: `rscomp` (for Redshift component). This is simply (and probably unnecessarily) to allow for added specificity, if there happens to be a clash between one of the RS Component classes and one in your app:
 
 ```scss
 .dropdown.rscomp {
@@ -72,17 +68,31 @@ A number of candidate components have not yet been added to the library. They ar
 To add a component:
 
 1. Write the new component or move the preexisting component into `src/components`.
+
+> Note: Components should be exported by name (for testing) and by default (for use), and should *not* be named the same as their containing folders, because React Cosmos will grab the named export, which isn't connected. The pattern we've been using is to name components `SomeComponentUC` (for UnConnected). See any of the existing components for examples.
+
 2. Create a Fixture in `src/components/__fixtures__/`, following the examples
 
   > A fixture specifies the starting props for an instance of the component in the React Cosmos explorer.
 
-3. Move the test from `tests/comps` to `test/components` (or write a complete new one) and get it passing.
+3. Move the test file from `tests/comps` to `test/components` (or write a complete new one) and get it passing.
 4. Add it to `src/index.js` to make the component available through library import.
 5. Optionally, add a `.scss` file, and import it into `src/styles/components.scss` to get the styles showing in React Cosmos. (These styles will not be exported).
+
+## Deploying
+
+To deploy, 1) bump the version, 2) add and commit, 3) push the code, and 4) run `npm publish`:
+
+```
+yarn bump // Defaults to patch, but you could also do 'yarn bump minor' etc
+git add . // Or specify files
+git commit -m 'My commit name'
+npm publish // NOT yarn publish, which doesn't work for some reason
+git push
+```
 
 ## Roadmap
 
 - Add a ton of components. Some hi-priority ones:
   - Breakpoint wrapper
-  - Inline search field
-  - Expandable
+  - Expandable (maybe rely on external libraries)

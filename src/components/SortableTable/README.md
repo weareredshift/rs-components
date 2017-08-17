@@ -1,6 +1,6 @@
 # SortableTable
 
-The SortableTable component allows for creating tables the contents of which can be sorted by column. Users just click on columns, and the table is sorted by them (starting descending). When the column is clicked again, the sorting direction is switched. Classes are applied to elements throught the DOM of the component to make it easy to style in almost any circumstance.
+The SortableTable component allows for creating tables the contents of which can be sorted by column. Users just click on columns, and the table is sorted by them (starting descending). When the column is clicked again, the sorting direction is switched. Classes are applied to elements throughout the DOM of the component to make it easy to style in almost any circumstance.
 
 The simplest example uses an array of strings for both the columns and for each row. This produces a table which is sortable by all columns, and in which every cell of every row is provided in the same order as the column order, and each cell displays just this string:
 

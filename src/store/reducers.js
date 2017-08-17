@@ -8,7 +8,7 @@ import * as handlers from './handlers';
  *                                     and values are how they should initialize
  * @return     {Object} reducers object
  */
-export const initializeRSReducers = (initializers = {}) => {
+export const initReducers = (initializers = {}) => {
   const initializedHandlers = Object.keys(handlers)
     .reduce((obj, key) => Object.assign(obj, {
       [key]: initializers[key]
@@ -18,7 +18,7 @@ export const initializeRSReducers = (initializers = {}) => {
   return constructReducers({ ...initializedHandlers }, {});
 };
 
-export const reducers = initializeRSReducers({
+export const reducers = initReducers({
   dropdowns: fromJS({
     simple: [{ index: 0 }]
   })

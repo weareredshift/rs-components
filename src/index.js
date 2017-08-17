@@ -9,9 +9,11 @@ import { validators } from './components/BaseForm/utils';
 import Respond from './components/Respond';
 import { initReduxBreakpoints } from './components/Respond/utils';
 import * as actions from './store/actions';
-import { initializeRSReducers } from './store/reducers';
+import { initReducers } from './store/reducers';
+import { constructReducers, curryMakeRootReducer, curryInjectReducer } from './store/boilerplate';
 
 const utils = { validators, initReduxBreakpoints };
+const reduxUtils = { constructReducers, curryInjectReducer, curryMakeRootReducer, initReducers };
 
 export {
   BaseForm,
@@ -22,7 +24,8 @@ export {
   SortableTable,
   OutsideClickWatcher,
   Respond,
+
   utils,
-  actions,
-  initializeRSReducers
+  reduxUtils,
+  actions
 };

@@ -19,7 +19,6 @@ import { sortTable } from './actions';
  * @param      {[React.Component]}    props.rows[][].fieldContent     Optional node to show in place of field value
  * @param      {Object[]}  props.columns                              Array of columns in table
  * @param      {string}    props.columns[].name                       Name of column
- * @param      {Boolean}   props.columns[].allowSortBy                Whether the table can be sorted by this column
  * @param      {string}    props.sortBy                               The column to sort by
  * @param      {string}    props.sortDirection                        The direction (asc or desc) to sort by
  * @param      {Function}  props.onHeaderClick                        Function called on header item click (to sort table)

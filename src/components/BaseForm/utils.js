@@ -87,8 +87,6 @@ export const validators = {
   /**
    * @memberof validators
    *
-   * @param      {string} text Text to be tested
-   *
    * @return     {Function} Rejects input text unless it looks like a phone number
    */
   phone: () => text => phoneRegex.test(text)
@@ -97,8 +95,6 @@ export const validators = {
 
   /**
    * @memberof validators
-   *
-   * @param      {string} text Text to be tested
    *
    * @return     {Function} Rejects input text unless it looks like a website
    */

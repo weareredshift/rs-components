@@ -9,8 +9,7 @@ import { validators } from './components/BaseForm/utils';
 import Respond from './components/Respond';
 import { initReduxBreakpoints } from './components/Respond/utils';
 import * as actions from './store/actions';
-import { reducers } from './store/reducers';
-import * as handlers from './store/handlers';
+import { initializeRSReducers } from './store/reducers';
 
 const utils = { validators, initReduxBreakpoints };
 
@@ -25,6 +24,5 @@ export {
   Respond,
   utils,
   actions,
-  reducers,
-  handlers
+  initializeRSReducers
 };

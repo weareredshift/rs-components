@@ -11,7 +11,7 @@ import { setRadioValue } from './actions';
  * @param {string} props.uid Unique identifier of this radio group in Redux
  * @param {string} props.className Optional additional classes
  * @param {Object[]} props.items List of radio item object
- * @param {String} props.selectedValue String of selected value
+ * @param {string} props.selectedValue String of selected value
  * @param {Function} props.onCheck Run when a radio button is clicked, and passed the uid and item
  *
  * @returns {React.Component} A group of radio buttons

@@ -1,13 +1,23 @@
 import { constructReducers, curryMakeRootReducer, curryInjectReducer } from './boilerplate';
 import * as handlers from './handlers';
-
-// EXPORTS
-
 /**
- * Dictionary of reducer functions, with each key the function name, and each
- * value the associated function.
+ * Takes an object of reducer initializers, and returns initialized reducers
+ *
+ * @param      {Object}  initializers  Initializer object. Keys are names of reducers,
+ *                                     and values are how they should initialize
+ * @return     {Object} reducers object
  */
-export const reducers = constructReducers({ ...handlers }, {});
+export const initializeRSReducers = (initializers = {}) => {
+  const initializedHandlers = Object.keys(handlers)
+    .reduce((obj, key) => Object.assign(obj, {
+      [key]: initializers[key]
+        ? Object.assign(handlers[key], { _init: initializers[key] })
+        : handlers[key]
+    }), {});
+  return constructReducers({ ...initializedHandlers }, {});
+};
+
+export const reducers = initializeRSReducers();
 
 export const makeRootReducer = curryMakeRootReducer(reducers);
 

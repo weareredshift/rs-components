@@ -8,11 +8,13 @@ import { setCheckboxValue } from './actions';
 /**
  * Renders a Redux-connected Checkbox with label
  *
- * @param {string} uid - Unique string identifier of checkbox
- * @param {string} name - Label text to display
- * @param {function} dispatch - Redux dispatch function
- * @param {Immutable.Map} checkboxes - Redux checkboxes Map
- * @param {string[]} className - Optional additional classes
+ * @param {Object} props
+ * @param {string} props.uid - Unique string identifier of checkbox
+ * @param {string} props.name - Label text to display
+ * @param {boolean} props.checked - Whether the box is checked
+ * @param {function} props.toggle - Toggles the checkbox
+ *
+ * @param {string[]} props.className - Optional additional classes
  *
  * @returns {React.Component} A checkbox with globally-tracked value
  */

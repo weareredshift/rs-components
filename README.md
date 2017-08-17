@@ -87,7 +87,7 @@ To deploy, 1) bump the version, 2) add and commit, 3) push the code, and 4) run 
 yarn bump // Defaults to patch, but you could also do 'yarn bump minor' etc
 git add . // Or specify files
 git commit -m 'My commit name'
-npm publish // NOT yarn publish, which doesn't work for some reason
+yarn deploy
 git push
 ```
 

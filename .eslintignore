@@ -7,3 +7,4 @@ public/
 build/tests.js
 config/coverage/
 lib/
+todos/

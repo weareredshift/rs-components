@@ -5,9 +5,11 @@ import OutsideClickWatcher from './components/OutsideClickWatcher';
 import Link from './components/Link';
 import RadioGroup from './components/RadioGroup';
 import SortableTable from './components/SortableTable';
+import Responder from './components/Responder';
+
 import { validators } from './components/BaseForm/utils';
-import Respond from './components/Respond';
-import { initReduxBreakpoints } from './components/Respond/utils';
+import { initReduxBreakpoints } from './components/Responder/utils';
+
 import * as actions from './store/actions';
 import { initReducers } from './store/reducers';
 import { constructReducers, curryMakeRootReducer, curryInjectReducer } from './store/boilerplate';
@@ -23,7 +25,7 @@ export {
   RadioGroup,
   SortableTable,
   OutsideClickWatcher,
-  Respond,
+  Responder,
 
   utils,
   reduxUtils,

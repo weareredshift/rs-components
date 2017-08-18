@@ -63,7 +63,7 @@ Additionally, each component visible in the React Cosmos explorer has a second c
 
 ## Adding components
 
-A number of candidate components have not yet been added to the library. They are located in `todos`.
+A number of candidate components have not yet been added to the library. They are located in `todos/components` and the corresponding tests are in `todos/tests`.
 
 To add a component:
 
@@ -75,7 +75,7 @@ To add a component:
 
   > A fixture specifies the starting props for an instance of the component in the React Cosmos explorer.
 
-3. Move the test file from `tests/comps` to `test/components` (or write a complete new one) and get it passing.
+3. Move the test file from `todos/tests` to `test/components` (or write a complete new one) and get it passing.
 4. Add it to `src/index.js` to make the component available through library import.
 5. Optionally, add a `.scss` file, and import it into `src/styles/components.scss` to get the styles showing in React Cosmos. (These styles will not be exported).
 
@@ -87,7 +87,7 @@ To deploy, 1) bump the version, 2) add and commit, 3) push the code, and 4) run 
 yarn bump // Defaults to patch, but you could also do 'yarn bump minor' etc
 git add . // Or specify files
 git commit -m 'My commit name'
-npm publish // Note -- yarn publish is currently causing issues
+npm publish // Note -- yarn publish is currently buggy
 git push
 ```
 

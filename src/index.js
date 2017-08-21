@@ -8,7 +8,7 @@ import SortableTable from './components/SortableTable';
 import Responder from './components/Responder';
 import RedirectWithFlash from './components/RedirectWithFlash';
 
-import { redirectWithFlash } from './components/utils';
+import { redirectWithFlash } from './components/RedirectWithFlash/utils';
 import { validators } from './components/BaseForm/utils';
 import { initReduxBreakpoints } from './components/Responder/utils';
 

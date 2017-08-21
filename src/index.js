@@ -7,6 +7,7 @@ import RadioGroup from './components/RadioGroup';
 import SortableTable from './components/SortableTable';
 import Responder from './components/Responder';
 import RedirectWithFlash from './components/RedirectWithFlash';
+import Flash from './components/Flash';
 
 import { redirectWithFlash } from './components/RedirectWithFlash/utils';
 import { validators } from './components/BaseForm/utils';
@@ -29,6 +30,7 @@ export {
   OutsideClickWatcher,
   Responder,
   RedirectWithFlash,
+  Flash,
 
   utils,
   reduxUtils,

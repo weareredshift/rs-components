@@ -6,7 +6,9 @@ import Link from './components/Link';
 import RadioGroup from './components/RadioGroup';
 import SortableTable from './components/SortableTable';
 import Responder from './components/Responder';
+import RedirectWithFlash from './components/RedirectWithFlash';
 
+import { redirectWithFlash } from './components/utils';
 import { validators } from './components/BaseForm/utils';
 import { initReduxBreakpoints } from './components/Responder/utils';
 
@@ -14,7 +16,7 @@ import * as actions from './store/actions';
 import { initReducers } from './store/reducers';
 import { constructReducers, curryMakeRootReducer, curryInjectReducer } from './store/boilerplate';
 
-const utils = { validators, initReduxBreakpoints };
+const utils = { validators, initReduxBreakpoints, redirectWithFlash };
 const reduxUtils = { constructReducers, curryInjectReducer, curryMakeRootReducer, initReducers };
 
 export {
@@ -26,6 +28,7 @@ export {
   SortableTable,
   OutsideClickWatcher,
   Responder,
+  RedirectWithFlash,
 
   utils,
   reduxUtils,

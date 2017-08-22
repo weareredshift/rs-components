@@ -19,7 +19,7 @@ import { get } from 'lodash';
 export class FlashUC extends React.Component {
   constructor (props) {
     super(props);
-    this.state = { status: !!props.message };
+    this.state = { status: props.message ? 'on' : 'off' };
     this.setFlashTimeout();
   }
 

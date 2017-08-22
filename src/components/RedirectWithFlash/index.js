@@ -8,7 +8,7 @@ import { node, string, bool } from 'prop-types';
  *
  * @param      {Object}  props
  * @param      {React.Component}  props.children      The child component to display
- * @param      {Boolean}  props.redirectIf     The condition to fulfill in order to redirect
+ * @param      {boolean}  props.redirectIf     The condition to fulfill in order to redirect
  * @param      {string}  props.redirectPath   Where to redirect if condition fails
  * @param      {string}  props.message         Flash message to display on redirect.
  * @param      {string}  props.type          String class of flash type (ie alert, notification, success)

@@ -1,0 +1,11 @@
+.flash {
+  transition: opacity 1s ease;
+
+  &.flash--off {
+    opacity: 0;
+  }
+
+  &.flash--on {
+    opacity: 1;
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { number, object, string } from 'prop-types';
+import { number, string } from 'prop-types';
 import classnames from 'classnames';
 import { get } from 'lodash';
 
@@ -10,75 +10,75 @@ import { get } from 'lodash';
  *
  * @extends React.Component
  * @param {Object} props
- * @param {Object} props.location Location tracking object
+ * @param {string} props.message  Flash message to display
+ * @param {string} props.type     Type of flash (ie warning, success, notification) - displayed as class
  * @param {number} props.duration Number of milliseconds to wait before clearing flash
+ * @param {string} props.className Optional className to add
  *
  * @returns {React.Component}
  */
-export class Flash extends React.Component {
+export class FlashUC extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {};
-    this.setFlash(
-      get(props, 'location.state.flash'),
-      get(props, 'location.state.flashType')
-    );
+    this.state = { status: 'on' };
+    this.setFlashTimeout();
   }
 
-  componentWillReceiveProps (newProps) {
-    this.setFlash(
-      get(newProps, 'location.state.flash'),
-      get(newProps, 'location.state.flashType')
-    );
+  componentWillReceiveProps ({ message }) {
+    if (message && message !== this.props.message) {
+      this.setState({ status: 'on' });
+      this.setFlashTimeout();
+    }
   }
 
   componentWillUnmount () {
     if (this.flashTimeout) clearTimeout(this.flashTimeout);
   }
 
-  setFlash (flash) {
-    const { flashDuration } = this.props;
-    this.setState({ flash });
+  setFlashTimeout () {
+    const { duration } = this.props;
 
-    if (flash) {
-      // Fade out flash after 1 second
-      this.flashTimeout = setTimeout(() => {
-        this.setState({ flash: null });
-      }, flashDuration);
-    }
+    // Fade out flash after given duration
+    this.flashTimeout = setTimeout(() => {
+      this.setState({ status: 'off' });
+    }, duration);
   }
 
   render () {
-    const { className } = this.props;
-    const { flash, flashType } = this.state;
+    const { className, message, type } = this.props;
+    const { status } = this.state;
 
     return (
       <div
         className={ classnames(
           'flash',
-          flashType && `flash--${flashType}`,
-          `flash--${ flash ? 'on' : 'off' }`,
+          type && `flash--${type}`,
+          `flash--${status}`,
           className
         ) }
       >
-        { flash || null }
+        <span className="flash__message">
+          { message || null }
+        </span>
       </div>
     );
   }
 }
 
-Flash.propTypes = {
-  location: object,
+FlashUC.propTypes = {
+  message: string.isRequired,
+  type: string.isRequired,
   className: string,
-  flashDuration: number
+  duration: number.isRequired
 };
 
-Flash.defaultProps = {
-  flashDuration: 1000
+FlashUC.defaultProps = {
+  duration: 1000
 };
 
-const mapStateToProps = state => ({
-  location: state.location
+const mapStateToProps = (state, ownProps) => ({
+  message: ownProps.message || get(state, 'location.state.flash'),
+  type: ownProps.type || get(state, 'location.state.flashType')
 });
 
-export default connect(mapStateToProps)(Flash);
+export default connect(mapStateToProps)(FlashUC);

@@ -13,7 +13,7 @@ import { node, string, bool } from 'prop-types';
  * @param      {string}  props.message         Flash message to display on redirect.
  * @param      {string}  props.type          String class of flash type (ie alert, notification, success)
  */
-export function RedirectWithFlash ({ children, redirectIf, redirectPath, message, type }) {
+export function RedirectWithFlashUC ({ children, redirectIf, redirectPath, message, type }) {
   if (redirectIf) {
     redirectWithFlash(redirectPath, message, type);
     return null;
@@ -22,15 +22,15 @@ export function RedirectWithFlash ({ children, redirectIf, redirectPath, message
   }
 }
 
-RedirectWithFlash.propTypes = {
+RedirectWithFlashUC.propTypes = {
   children: node.isRequired,
   redirectIf: bool.isRequired,
   redirectPath: string.isRequired,
   message: string.isRequired
 };
 
-RedirectWithFlash.defaultProps = {
+RedirectWithFlashUC.defaultProps = {
   type: 'notification'
 };
 
-export default RedirectWithFlash;
+export default RedirectWithFlashUC;

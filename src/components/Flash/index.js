@@ -8,7 +8,6 @@ import { get } from 'lodash';
  * Wrapper component for most components in app.
  * Provides basic layout.
  *
- * @extends React.Component
  * @param {Object} props
  * @param {string} props.message  Flash message to display
  * @param {string} props.type     Type of flash (ie warning, success, notification) - displayed as class
@@ -20,7 +19,7 @@ import { get } from 'lodash';
 export class FlashUC extends React.Component {
   constructor (props) {
     super(props);
-    this.state = { status: 'on' };
+    this.state = { status: !!props.message };
     this.setFlashTimeout();
   }
 
@@ -66,8 +65,8 @@ export class FlashUC extends React.Component {
 }
 
 FlashUC.propTypes = {
-  message: string.isRequired,
-  type: string.isRequired,
+  message: string,
+  type: string,
   className: string,
   duration: number.isRequired
 };

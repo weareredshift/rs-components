@@ -34,8 +34,9 @@ export default {
         }
       ]
     ],
-    onSubmit: (attrs) => {
+    onSubmit: (attrs, setGlobalError) => {
       alert('Submitted successfully! Attrs in console');
+      setGlobalError('This is an error resulting from form submission, just because I can!');
       console.log(attrs);
     },
     title: 'Example form',

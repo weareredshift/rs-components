@@ -1,3 +1,4 @@
+/* eslint no-negated-condition:0 */
 import React from 'react';
 import classnames from 'classnames';
 import { flatten } from 'lodash';
@@ -38,6 +39,8 @@ export class BaseFormUC extends React.Component {
     // Clear form if told to from outside component
     if (newProps.clearForm && !this.props.clearForm) {
       this.state = this.initialState(this.props.fields);
+    } else if (newProps.globalError !== this.props.globalError) {
+      this.setState({ globalError: newProps.globalError });
     } else {
       const newFieldState = {};
 
@@ -67,6 +70,7 @@ export class BaseFormUC extends React.Component {
     }, {});
 
     state.formErrors = formErrors;
+    state.globalError = this.props.globalError;
     return state;
   }
 
@@ -95,13 +99,14 @@ export class BaseFormUC extends React.Component {
         formErrors: Object.assign({}, this.state.formErrors, invalidFields)
       });
     } else {
-      this.props.onSubmit(this.state);
+      // Submit values, and pass up a function for creating a form-wide error from results
+      this.props.onSubmit(this.state, globalError => { this.setState({ globalError }); });
     }
   }
 
   render () {
-    const { fields, submitButton, globalError, title, className, actions, note, style } = this.props;
-    const { formErrors } = this.state;
+    const { fields, submitButton, title, className, actions, note, style } = this.props;
+    const { formErrors, globalError } = this.state;
 
     const firstErrorKey = Object.keys(formErrors).find(k => formErrors[k]);
 

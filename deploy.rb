@@ -33,9 +33,9 @@ else
 
   `git add .`
   `git commit -m '#{commit_message}'`
+  commit = `git rev-parse --short HEAD`
   puts "Committed '#{commit_message}' (#{commit})"
 
-  commit = `git rev-parse --short HEAD`
   `git tag 'v#{new_version}' -m '#{message}' #{commit}`
   puts "Tagged commit #{commit} as v#{new_version}"
 

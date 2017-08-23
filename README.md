@@ -81,14 +81,11 @@ To add a component:
 
 ## Deploying
 
-To deploy, 1) bump the version, 2) add and commit, 3) push the code, and 4) run `npm publish`:
+To deploy, run `yarn prep` with the change type (patch, minor, major) the tag message, and an optional commit message (will default to tag message). This will add and commit your code, bump the version, and push the code and tags. Then run `npm publish` (NOT `yarn publish`), to deploy to NPM:
 
 ```
-yarn bump // Defaults to patch, but you could also do 'yarn bump minor' etc
-git add . // Or specify files
-git commit -m 'My commit name'
-npm publish // Note -- yarn publish is currently buggy
-git push
+yarn prep patch "Message for tag" "Optional separate message for commit"
+npm publish
 ```
 
 ## Roadmap

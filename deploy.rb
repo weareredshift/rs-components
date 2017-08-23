@@ -39,9 +39,9 @@ else
   `git tag 'v#{new_version}' -m '#{message}' #{commit}`
   puts "Tagged commit #{commit} as v#{new_version}"
 
-  # `npm publish`
+  `npm publish`
   puts "Published to NPM"
 
-  # `git push && git push --tags`
+  `git push && git push --tags`
   puts "Pushed code and tags"
 end

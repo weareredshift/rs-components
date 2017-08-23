@@ -33,7 +33,7 @@ else
 
   `git add .`
   `git commit -m '#{commit_message}'`
-  commit = `git rev-parse --short HEAD`
+  commit = `git rev-parse --short HEAD`.strip
   puts "Committed '#{commit_message}' (#{commit})"
 
   `git tag 'v#{new_version}' -m '#{message}' #{commit}`

@@ -71,4 +71,29 @@ describe('<BaseForm />', () => {
 
     expect(comp.find('.form__error').first().text()).to.eq('Something went wrong!');
   });
+
+  it('allows for an error callback post-submission', () => {
+    const doOnSubmit = sinon.spy();
+    const comp = mockComp(BaseForm, {
+      fields: [
+        [
+          { label: 'Full Name', stateKey: 'name' },
+          { label: 'Password', stateKey: 'password', type: 'password' }
+        ]
+      ],
+      onSubmit: (attrs, setError) => {
+        doOnSubmit({ some: 'data' });
+        setError('Here is an error.');
+      },
+      breakpoint: {},
+      globalError: 'Something went wrong!'
+    });
+
+    expect(doOnSubmit.lastCall).to.eq(null);
+    expect(comp.state().globalError).to.eq('Something went wrong!');
+
+    comp.find('.form__submit').first().simulate('click');
+    expect(doOnSubmit.lastCall.args[0]).to.eql({ some: 'data' });
+    expect(comp.state().globalError).to.eq('Here is an error.');
+  });
 });

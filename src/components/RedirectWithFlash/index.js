@@ -1,5 +1,6 @@
+import { func, node, string, bool } from 'prop-types';
+
 import { redirectWithFlash } from './utils';
-import { node, string, bool } from 'prop-types';
 
 /**
  * Wraps a component, and takes a redirectIf condition, which determines whether the component
@@ -12,10 +13,11 @@ import { node, string, bool } from 'prop-types';
  * @param      {string}  props.redirectPath   Where to redirect if condition fails
  * @param      {string}  props.message         Flash message to display on redirect.
  * @param      {string}  props.type          String class of flash type (ie alert, notification, success)
+ * @param      {Funciton} props.redirect     Function to redirect (with flash)
  */
-export function RedirectWithFlashUC ({ children, redirectIf, redirectPath, message, type }) {
+export function RedirectWithFlashUC ({ children, redirectIf, redirectPath, message, type, redirect }) {
   if (redirectIf) {
-    redirectWithFlash(redirectPath, message, type);
+    redirect(redirectPath, message, type);
     return null;
   } else {
     return children;
@@ -26,11 +28,14 @@ RedirectWithFlashUC.propTypes = {
   children: node.isRequired,
   redirectIf: bool.isRequired,
   redirectPath: string.isRequired,
-  message: string.isRequired
+  message: string.isRequired,
+  redirect: func.isRequired
 };
 
 RedirectWithFlashUC.defaultProps = {
-  type: 'notification'
+  type: 'notification',
+  redirectPath: '/',
+  redirect: redirectWithFlash
 };
 
 export default RedirectWithFlashUC;

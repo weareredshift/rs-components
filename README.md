@@ -46,6 +46,8 @@ Each component also has additional Markdown docs, co-located in the component fo
 - [RadioGroup](./src/components/RadioGroup)
 - [SortableTable](./src/components/SortableTable)
 - [OutsideClickWatcher](./src/components/OutsideClickWatcher)
+- [Flash](./src/components/Flash)
+- [RedirectWithFlash](./src/components/RedirectWithFlash)
 
 ## Styling
 

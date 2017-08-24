@@ -3,6 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { flatten } from 'lodash';
 import { Link } from 'react-router';
+import { string, func, arrayOf, array, shape, object, bool, oneOfType, element } from 'prop-types';
 
 import Input from '../Input';
 
@@ -76,11 +77,13 @@ export class BaseFormUC extends React.Component {
 
   handleKeyPress (e) {
     if (e.charCode === 13) { // Enter
-      this.handleSubmit();
+      this.handleSubmit(e);
     }
   }
 
-  handleSubmit () {
+  handleSubmit (e) {
+    e && e.preventDefault && e.preventDefault();
+
     const fields = flatten(this.props.fields);
 
     const invalidFields = fields
@@ -120,7 +123,7 @@ export class BaseFormUC extends React.Component {
     };
 
     return (
-      <div
+      <form
         className={ classnames([title && 'form--hastitle', 'form', 'rscomp', className]) }
         onKeyPress={ (e) => this.handleKeyPress(e) }
         style={ style }
@@ -143,12 +146,12 @@ export class BaseFormUC extends React.Component {
         </div>
 
         { typeof submitButton === 'string'
-            ? <a
+            ? <input
+              type="submit"
               className="form__submit"
-              onClick={ () => { this.handleSubmit(); } }
-            >
-              { submitButton }
-            </a>
+              onClick={ (e) => { this.handleSubmit(e); } }
+              value={ submitButton }
+            />
             : React.cloneElement(submitButton, { onClick: () => { this.handleSubmit(); } })
         }
 
@@ -186,12 +189,11 @@ export class BaseFormUC extends React.Component {
             }
           </ul>
         }
-      </div>
+      </form>
     );
   }
 }
 
-const { string, func, arrayOf, array, shape, object, bool, oneOfType, element } = React.PropTypes;
 BaseFormUC.propTypes = {
   fields: arrayOf(
     arrayOf(shape({

@@ -39,6 +39,7 @@ To view the programmatic JSDocs, pull down the repo and run `yarn docs:build && 
 
 Each component also has additional Markdown docs, co-located in the component folder. Go there to read more:
 
+- [RenderIf](./src/components/RenderIf)
 - [BaseForm](./src/components/BaseForm)
 - [Checkbox](./src/components/Checkbox)
 - [Dropdown](./src/components/Dropdown)

@@ -20,7 +20,7 @@ export function RenderIfUC ({ children, shouldRender = false, loader = null }) {
 }
 
 RenderIfUC.propTypes = {
-  shouldRender: bool.isRequired,
+  shouldRender: bool,
   test: func,
   children: node,
   loader: node

@@ -37,6 +37,9 @@ export class FlashUC extends React.Component {
   setFlashTimeout () {
     const { duration } = this.props;
 
+    // Allow for non-fading flashes
+    if (!duration) return null;
+
     // Fade out flash after given duration
     this.flashTimeout = setTimeout(() => {
       this.setState({ status: 'off' });

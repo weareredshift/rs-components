@@ -1,6 +1,6 @@
 # Responder
 
-The respond component wraps another component, and passes it a `className` prop which results from watching the window size and calculating the class string appropriate for the breakpoint.
+The Responder component wraps another component, and passes it a `className` prop which results from watching the window size and calculating the class string appropriate for the breakpoint.
 
 At its simplest, the Responder component takes one prop: `classes`, an object defining classes for various breakpoints. It passes the right class to its child:
 

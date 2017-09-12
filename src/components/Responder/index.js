@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { object, node } from 'prop-types';
+import classnames from 'classnames';
 
 import { setClass, defaultBreakpoints } from './utils';
 
@@ -13,15 +14,16 @@ import { setClass, defaultBreakpoints } from './utils';
  * @param      {[Object]}  props.breakpoint   The Redux breakpoint object
  * @param      {[Object]}  props.breakpoints  Object defining breakpoints for the app.
  */
-export function RespondUC ({ classes, children, breakpoint, breakpoints }) {
+export function ResponderUC ({ classes, children, breakpoint, breakpoints }) {
   const finalBreakpoints = Object.assign(defaultBreakpoints, breakpoints);
+
   return (
     <div className="respond rscomp">
       {
         React.cloneElement(
           children,
           {
-            className: setClass(classes, breakpoint, finalBreakpoints)
+            className: classnames(children.props.className, setClass(classes, breakpoint, finalBreakpoints))
           }
         )
       }
@@ -29,14 +31,14 @@ export function RespondUC ({ classes, children, breakpoint, breakpoints }) {
   );
 }
 
-RespondUC.propTypes = {
+ResponderUC.propTypes = {
   classes: object.isRequired,
   children: node.isRequired,
   breakpoint: object.isRequired,
   breakpoints: object
 };
 
-RespondUC.defaultProps = {
+ResponderUC.defaultProps = {
   breakpoints: {}
 };
 
@@ -44,4 +46,4 @@ const mapStateToProps = state => ({
   breakpoint: state.breakpoint
 });
 
-export default connect(mapStateToProps)(RespondUC);
+export default connect(mapStateToProps)(ResponderUC);

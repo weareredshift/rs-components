@@ -9,7 +9,6 @@ module.exports = {
   ignore: [
     /actions.js/,
     /utils.js/,
-    /Respond/,
     /Input/
   ]
 };

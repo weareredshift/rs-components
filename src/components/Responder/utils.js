@@ -81,3 +81,61 @@ export function initReduxBreakpoints (breakpoints = defaultBreakpoints, action =
   dispatchActiveQuery(this.props.dispatch, this.mediaQueryState, action);
 }
 
+function breakpointFromString (string, breakpoints) {
+  const breakpoint = breakpoints[string];
+
+  if (!breakpoint) {
+    throw new Error(`Bad breakpoint variable given: ${string}`);
+  }
+
+  return breakpoint;
+}
+
+/**
+ * Returns a boolean indicating whether or not the currentBreakpointSize value
+ * is greater than the passed breakpointToCompare value
+ * @param {Object} breakpointToCompare           String or number, if string, it is used to retrieve
+ *                                               the correct value from breakpoints[]
+ * @param {number} currentBreakpointSize         Number indicating the current breakpoint value
+ *                                               (usually breakpoint.size)
+ * @param {Object} breakpoints                   Object defining breakpoints for app
+ * @return {boolean}                             Returns boolean that indicates whether the passed
+ *                                               breakpointToCompare string or number is currently
+ *                                               greater than the currentBreakpointSize
+ */
+export const breakpointIsGreaterThan = (breakpointToCompare, currentBreakpointSize, breakpoints = defaultBreakpoints) => {
+  const comparison = typeof breakpointToCompare === 'string'
+    ? breakpointFromString(breakpointToCompare, breakpoints)
+    : breakpointToCompare;
+
+  if (currentBreakpointSize === null || currentBreakpointSize > comparison) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+/**
+ * Returns a boolean indicating whether or not the currentBreakpointSize value
+ * is less than the passed breakpointToCompare value
+ * @param {Object} breakpointToCompare           String or number, if string, it is used to retrieve
+ *                                               the correct value from breakpoints[]
+ * @param {number} currentBreakpointSize         Number indicating the current breakpoint value
+ *                                               (usually breakpoint.size)
+ * @param {Object} breakpoints                   Object defining breakpoints for app
+ * @return {boolean}                             Returns boolean that indicates whether the passed
+ *                                               breakpointToCompare string or number is currently
+ *                                               less than the currentBreakpointSize
+ */
+export const breakpointIsLessThan = (breakpointToCompare, currentBreakpointSize, breakpoints = defaultBreakpoints) => {
+  const comparison = typeof breakpointToCompare === 'string'
+    ? breakpointFromString(breakpointToCompare, breakpoints)
+    : breakpointToCompare;
+
+  if (currentBreakpointSize !== null &&
+      currentBreakpointSize <= comparison) {
+    return true;
+  } else {
+    return false;
+  }
+};

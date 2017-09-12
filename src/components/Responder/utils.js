@@ -58,6 +58,8 @@ function dispatchActiveQuery (dispatch, mediaQueryState, action) {
  * @param      {Object[]}   windowObj    The window object (default given)
  */
 export function initReduxBreakpoints (breakpoints = defaultBreakpoints, action = setActiveBreakpoint, windowObj = window) {
+  if (!this.mediaQueryState) { this.mediaQueryState = []; }
+
   Object.keys(breakpoints).forEach(key => {
     // Create breakpoint object
     const query = windowObj.matchMedia(`(max-width: ${breakpoints[key]}px)`);

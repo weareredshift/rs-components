@@ -12,13 +12,13 @@ import RenderIf from './components/RenderIf';
 
 import { redirectWithFlash } from './components/RedirectWithFlash/utils';
 import { validators } from './components/BaseForm/utils';
-import { initReduxBreakpoints, breakpointGreaterThan, breakpointLessThan, setClass } from './components/Responder/utils';
+import { initReduxBreakpoints, breakpointIsGreaterThan, breakpointIsLessThan, setClass } from './components/Responder/utils';
 
 import * as actions from './store/actions';
 import { initReducers } from './store/reducers';
 import { constructReducers, curryMakeRootReducer, curryInjectReducer } from './store/boilerplate';
 
-const utils = { validators, initReduxBreakpoints, redirectWithFlash, breakpointGreaterThan, breakpointLessThan, setClass };
+const utils = { validators, initReduxBreakpoints, redirectWithFlash, breakpointIsGreaterThan, breakpointIsLessThan, setClass };
 const reduxUtils = { constructReducers, curryInjectReducer, curryMakeRootReducer, initReducers };
 
 export {

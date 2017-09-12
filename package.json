@@ -1,11 +1,11 @@
 {
   "name": "rs-components",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Redshift Component Library",
   "main": "lib/index.js",
   "license": "MIT",
   "engines": {
-    "node": "^6.11.1",
+    "node": ">6.11.1",
     "npm": "^3.0.0"
   },
   "scripts": {

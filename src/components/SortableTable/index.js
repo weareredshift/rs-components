@@ -109,8 +109,7 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                         <td
                           className={ classnames(
                             'sortable-table__td',
-                            `sortable-table__td--cell-${ kebabCase(col.name) }`,
-                            cell.className
+                            `sortable-table__td--cell-${ kebabCase(col.name) }`
                           ) }
                           key={ colIndex }
                         />
@@ -159,7 +158,8 @@ const mapStateToProps = (state, ownProps) => {
       ? ownProps.rows.map(cells => cells
           .map((cell, index) => ({ columnName: columns[index].name, fieldValue: cell }))
         )
-      : ownProps.rows;
+      : ownProps.rows.map(cells => cells
+          .map((cell, index) => Object.assign({ columnName: columns[index].name }, cell)));
 
   return {
     sortBy: state.sortableTables.getIn([ownProps.uid, 'sortBy']),

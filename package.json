@@ -1,12 +1,12 @@
 {
   "name": "rs-components",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Redshift Component Library",
   "main": "lib/index.js",
   "license": "MIT",
   "engines": {
-    "node": ">6.11.1",
-    "npm": ">3.0.0"
+    "node": ">=6.11.1",
+    "npm": ">=3.0.0"
   },
   "scripts": {
     "start": "node_modules/.bin/cosmos --config config/cosmos.config.js",

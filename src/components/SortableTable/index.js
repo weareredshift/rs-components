@@ -19,6 +19,8 @@ import { sortTable } from './actions';
  * @param      {[React.Component]}    props.rows[][].fieldContent     Optional node to show in place of field value
  * @param      {Object[]}  props.columns                              Array of columns in table
  * @param      {string}    props.columns[].name                       Name of column
+ * @param      {[string]}  props.columns[].className                  Optional class name to add to column
+ * @param      {string}    props.columns[].allowSortBy                Whether the column is sortable (default: true)
  * @param      {string}    props.sortBy                               The column to sort by
  * @param      {string}    props.sortDirection                        The direction (asc or desc) to sort by
  * @param      {Function}  props.onHeaderClick                        Function called on header item click (to sort table)
@@ -62,12 +64,12 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                   // Classes if sorting by this column
                   sortBy === column.name && `sortable-table__th--sortby sortable-table__th--sortby-${sortDirection}`,
                   `sortable-table__th--column-${ kebabCase(column.name) }`, // Column-specific class
-                  column.allowSortBy && `sortable-table__th--sortable`
+                  (column.allowSortBy && !column.hideName) && `sortable-table__th--sortable`
                 ) }
                 onClick={ () => { onHeaderClick(column); } }
                 key={ index }
               >
-                { column.name }
+                { column.hideName ? null : column.name }
               </th>
             ))
           }
@@ -93,7 +95,9 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                           className={ classnames(
                             'sortable-table__td',
                             `sortable-table__td--cell-${ kebabCase(col.name) }`,
-                            `sortable-table__td--col-${colIndex}`
+                            `sortable-table__td--col-${colIndex}`,
+                            col.className,
+                            cell.className
                           ) }
                           key={ colIndex }
                         >
@@ -123,13 +127,15 @@ SortableTableUC.propTypes = {
   uid: string.isRequired,
   columns: arrayOf(shape({
     name: string.isRequired,
-    allowSortBy: bool.isRequired
+    allowSortBy: bool.isRequired,
+    hideName: bool.isRequired
   })),
   rows: arrayOf(
     arrayOf(shape({ // Cell
       columnName: string.isRequired,
       fieldValue: string.isRequired,
-      fieldContent: oneOfType([node, string])
+      fieldContent: oneOfType([node, string]),
+      className: string
     }))
   ).isRequired,
   sortBy: string,

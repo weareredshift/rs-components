@@ -64,7 +64,8 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                   // Classes if sorting by this column
                   sortBy === column.name && `sortable-table__th--sortby sortable-table__th--sortby-${sortDirection}`,
                   `sortable-table__th--column-${ kebabCase(column.name) }`, // Column-specific class
-                  (column.allowSortBy && !column.hideName) && `sortable-table__th--sortable`
+                  (column.allowSortBy && !column.hideName) && `sortable-table__th--sortable`,
+                  column.className
                 ) }
                 onClick={ () => { onHeaderClick(column); } }
                 key={ index }
@@ -96,7 +97,6 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                             'sortable-table__td',
                             `sortable-table__td--cell-${ kebabCase(col.name) }`,
                             `sortable-table__td--col-${colIndex}`,
-                            col.className,
                             cell.className
                           ) }
                           key={ colIndex }
@@ -107,7 +107,11 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                     } else {
                       return (
                         <td
-                          className={ `sortable-table__td sortable-table__td--cell-${ kebabCase(col.name) }` }
+                          className={ classnames(
+                            'sortable-table__td',
+                            `sortable-table__td--cell-${ kebabCase(col.name) }`,
+                            cell.className
+                          ) }
                           key={ colIndex }
                         />
                       );
@@ -148,7 +152,7 @@ const mapStateToProps = (state, ownProps) => {
   // Allow for array of column strings to be passed in, for more simple format
   const columns = typeof ownProps.columns[0] === 'string'
       ? ownProps.columns.map(col => ({ name: col, allowSortBy: true }))
-      : ownProps.columns;
+      : ownProps.columns.map(col => Object.assign({ allowSortBy: true }, col));
 
   // Allow for array of row strings to be passed in, for more simple format
   const rows = typeof ownProps.rows[0][0] === 'string'

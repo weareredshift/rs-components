@@ -20,13 +20,17 @@ import { setCheckboxValue } from './actions';
  */
 export function CheckboxUC ({ name, toggle, checked, className, uid }) {
   return (
-    <label className={ classnames('checkbox rscomp', className) } htmlFor={ uid }>
+    <label
+      className={ classnames('checkbox rscomp', className) }
+      htmlFor={ uid }
+      onClick={ () => { toggle(!checked); } }
+    >
       <input
         className="checkable__input"
         type="checkbox"
-        onChange={ () => { toggle(!checked); } }
         name={ name }
-        checked={ checked }
+        checked={ !!checked }
+        onChange={ () => {} }
       />
       <span className="checkable__mark" />
       <span className="checkable__label">{ name }</span>

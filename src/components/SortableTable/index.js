@@ -131,7 +131,7 @@ SortableTableUC.propTypes = {
   columns: arrayOf(shape({
     name: string.isRequired,
     allowSortBy: bool.isRequired,
-    hideName: bool.isRequired
+    hideName: bool
   })),
   rows: arrayOf(
     arrayOf(shape({ // Cell

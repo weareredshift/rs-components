@@ -62,11 +62,11 @@ export function DropdownUC (props) {
           }
         </ul>
       </div>
-      <select className="dropdown__phantom-menu">
+      <select className="dropdown__phantom-menu" value={ selectedIndices[0] }>
         <option value="" disabled={ true }>{ finalTitle }</option>
         {
           finalItems.map((item, index) => (
-            <option value={ item.value } key={ index } selected={ selectedIndices.includes(index) }>
+            <option value={ item.value } key={ index }>
               { item.value }
             </option>
           ))

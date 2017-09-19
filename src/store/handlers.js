@@ -58,16 +58,16 @@ export const openModalID = {
       const newURL = url.includes('?')
         ? url.replace(
           /modal=([^&]+)/,
-          match => action.openModalID
-            ? [match.split('=')[0], action.openModalID].join('=')
+          match => action.id
+            ? [match.split('=')[0], action.id].join('=')
             : ''
         )
-        : url.concat(`?modal=${action.openModalID}`);
+        : url.concat(`?modal=${action.id}`);
 
       window.history.pushState({}, null, newURL);
     }
 
-    return action.openModalID;
+    return action.id;
   }
 };
 

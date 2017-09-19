@@ -9,6 +9,7 @@ import Responder from './components/Responder';
 import RedirectWithFlash from './components/RedirectWithFlash';
 import Flash from './components/Flash';
 import RenderIf from './components/RenderIf';
+import Modal from './components/Modal';
 
 import { redirectWithFlash } from './components/RedirectWithFlash/utils';
 import { validators } from './components/BaseForm/utils';
@@ -33,6 +34,7 @@ export {
   RedirectWithFlash,
   Flash,
   RenderIf,
+  Modal,
 
   utils,
   reduxUtils,

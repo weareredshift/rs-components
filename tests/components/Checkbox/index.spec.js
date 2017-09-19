@@ -13,7 +13,7 @@ describe('<Checkbox />', () => {
     expect(input.props().checked).to.eq(false);
 
     expect(toggle.firstCall).not.to.exist;
-    input.simulate('change', { value: true });
+    comp.simulate('click');
     expect(toggle.firstCall).to.exist;
   });
 

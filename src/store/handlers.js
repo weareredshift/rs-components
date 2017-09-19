@@ -49,26 +49,30 @@ export const breakpoint = {
   }
 };
 
+export const openModalID = {
+  init: null,
+  SET_OPEN_MODAL_ID: (state, action) => {
+    // Update URL with modal ID
+    if (action.updateURL && window) {
+      const url = window.location.pathname + window.location.search;
+      const newURL = url.includes('?')
+        ? url.replace(
+          /modal=([^&]+)/,
+          match => action.openModalID
+            ? [match.split('=')[0], action.openModalID].join('=')
+            : ''
+        )
+        : url.concat(`?modal=${action.openModalID}`);
+
+      window.history.pushState({}, null, newURL);
+    }
+
+    return action.openModalID;
+  }
+};
+
 // NOT YET BUILT
 // export const carousels = {
 //   init: fromJS({}),
 //   SET_CAROUSEL_INDEX: (state, action) => state.setIn([action.carouselID, 'index'], action.index)
-// };
-// /**
-//  * Object defining modal state
-//  * @type {Object}
-//  */
-// export const modal = {
-//   init: { open: false, activeID: '' },
-//   TOGGLE_MODAL: (state, action) => Object.assign({}, state, { open: action.open }),
-//   SET_ACTIVE_MODAL: (state, action) => Object.assign({}, state, { activeID: action.modalID })
-// };
-// /**
-//  * Determines state of expanded content specific to sections of the site
-//  *
-//  * @type       {string}
-//  */
-// export const expandedContent = {
-//   init: fromJS({}),
-//   SET_EXPANDED: (state, action) => state.set(action.section, action.name)
 // };

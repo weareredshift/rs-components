@@ -31,7 +31,7 @@ export function ModalUC ({ modals, openModalID, dispatch, history, log }) {
 
   if (openModalID) {
     if (Object.keys(modals).includes(openModalID)) {
-      return <div className="modal">{ modals[openModalID] }</div>;
+      return <div className="modal__wrapper">{ modals[openModalID] }</div>;
     } else {
       log(`No modal found for ID: ${openModalID}`);
       return null;

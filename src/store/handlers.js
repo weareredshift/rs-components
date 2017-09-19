@@ -55,7 +55,7 @@ export const openModalID = {
     // Update URL with modal ID
     if (action.updateURL && window) {
       const url = window.location.pathname + window.location.search;
-      const newURL = url.includes('?')
+      let newURL = url.includes('?')
         ? url.replace(
           /modal=([^&]+)/,
           match => action.id
@@ -63,6 +63,10 @@ export const openModalID = {
             : ''
         )
         : url.concat(`?modal=${action.id}`);
+
+      if (newURL[newURL.length - 1] === '?') {
+        newURL = newURL.slice(0, newURL.length - 1);
+      }
 
       window.history.pushState({}, null, newURL);
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { object, string, func } from 'prop-types';
+import { object, string, func, number } from 'prop-types';
 import { browserHistory } from 'react-router';
 
 import { setOpenModalID } from './actions';
@@ -13,31 +13,56 @@ import { setOpenModalID } from './actions';
  * @param      {Object}   props.modals       Object mapping modal IDs to content nodes
  * @param      {string}   props.openModalID  The ID of the open modal (if any) in the app
  * @param      {Object}   props.history      React-Router browserHistory object
+ * @param      {Number}   props.animateOutDelay Seconds to delay unmounting to allow space for animation
  * @param      {Funciton} props.dispatch
  * @return     {React.Component}  The rendered modal
  */
-export function ModalUC ({ modals, openModalID, dispatch, history, log }) {
-  // Ensure that any modal ID in URL is reflected in store
-  const updateStoreFromlocation = location => {
-    const modalInURL = location.query.modal;
-    if (modalInURL && !openModalID) {
-      dispatch(setOpenModalID(modalInURL));
+export class ModalUC extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalID: props.openModalID
+    };
+
+    const { dispatch, openModalID, history } = props;
+
+    // Ensure that any modal ID in URL is reflected in store
+    const updateStoreFromlocation = location => {
+      const modalInURL = location.query.modal;
+      if (modalInURL && !openModalID) {
+        dispatch(setOpenModalID(modalInURL));
+      }
+    };
+
+    const firstLocation = history.getCurrentLocation();
+    updateStoreFromlocation(firstLocation);
+    history.listen(updateStoreFromlocation);
+  }
+
+  componentWillReceiveProps ({ openModalID, animateOutDelay }) {
+    if (openModalID === null) {
+      setTimeout(() => {
+        this.setState({ modalID: openModalID });
+      }, animateOutDelay);
+    } else if (openModalID !== this.state.modalID) {
+      this.setState({ modalID: openModalID });
     }
-  };
+  }
 
-  const firstLocation = history.getCurrentLocation();
-  updateStoreFromlocation(firstLocation);
-  history.listen(updateStoreFromlocation);
+  render () {
+    const { modals, log } = this.props;
+    const { modalID } = this.state;
 
-  if (openModalID) {
-    if (Object.keys(modals).includes(openModalID)) {
-      return <div className="modal__wrapper">{ modals[openModalID] }</div>;
+    if (modalID) {
+      if (Object.keys(modals).includes(modalID)) {
+        return <div className="modal__wrapper">{ modals[modalID] }</div>;
+      } else {
+        log(`No modal found for ID: ${modalID}`);
+        return null;
+      }
     } else {
-      log(`No modal found for ID: ${openModalID}`);
       return null;
     }
-  } else {
-    return null;
   }
 }
 
@@ -50,7 +75,8 @@ const mapStateToProps = state => ({
 
 ModalUC.defaultProps = {
   history: browserHistory,
-  log: () => {}
+  log: () => {},
+  animateOutDelay: 0
 };
 
 ModalUC.propTypes = {
@@ -58,7 +84,8 @@ ModalUC.propTypes = {
   openModalID: string,
   dispatch: func,
   history: object.isRequired,
-  log: func
+  log: func,
+  animateOutDelay: number
 };
 
 export default connect(mapStateToProps)(ModalUC);

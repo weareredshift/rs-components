@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+import { setQueryString } from '../components/Modal/utils';
 
 export const location = {
   init: '/',
@@ -32,6 +33,11 @@ export const sortableTables = {
   })
 };
 
+export const renderIfRequests = {
+  init: fromJS({}),
+  LOG_REQUEST: (state, action) => state.set(action.uid, true)
+};
+
 /**
  * Object defining current breakpoint state
  * @type {Object}
@@ -49,29 +55,16 @@ export const breakpoint = {
   }
 };
 
-export const openModalID = {
-  init: null,
-  SET_OPEN_MODAL_ID: (state, action) => {
+export const openModal = {
+  init: fromJS({}),
+  SET_OPEN_MODAL: (state, action) => {
+    const { id, updateURL, data } = action;
     // Update URL with modal ID
-    if (action.updateURL && window) {
-      const url = window.location.pathname + window.location.search;
-      let newURL = url.includes('?')
-        ? url.replace(
-          /modal=([^&]+)/,
-          match => action.id
-            ? [match.split('=')[0], action.id].join('=')
-            : ''
-        )
-        : url.concat(`?modal=${action.id}`);
-
-      if (newURL[newURL.length - 1] === '?') {
-        newURL = newURL.slice(0, newURL.length - 1);
-      }
-
-      window.history.pushState({}, null, newURL);
+    if (updateURL) {
+      setQueryString('modal', id);
     }
 
-    return action.id;
+    return fromJS({ id, data });
   }
 };
 

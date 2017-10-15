@@ -14,12 +14,13 @@ import Modal from './components/Modal';
 import { redirectWithFlash } from './components/RedirectWithFlash/utils';
 import { validators } from './components/BaseForm/utils';
 import { initReduxBreakpoints, breakpointIsGreaterThan, breakpointIsLessThan, setClass } from './components/Responder/utils';
+import { setQueryString, handleQueryStringChange } from './components/Modal/utils';
 
 import * as actions from './store/actions';
 import { initReducers } from './store/reducers';
 import { constructReducers, curryMakeRootReducer, curryInjectReducer } from './store/boilerplate';
 
-const utils = { validators, initReduxBreakpoints, redirectWithFlash, breakpointIsGreaterThan, breakpointIsLessThan, setClass };
+const utils = { validators, initReduxBreakpoints, redirectWithFlash, breakpointIsGreaterThan, breakpointIsLessThan, setClass, setQueryString, handleQueryStringChange };
 const reduxUtils = { constructReducers, curryInjectReducer, curryMakeRootReducer, initReducers };
 
 export {

@@ -2,7 +2,7 @@ export { setCheckboxValue } from '../components/Checkbox/actions';
 export { setDropdownValues, setOpenDropdownID } from '../components/Dropdown/actions';
 export { setRadioValue } from '../components/RadioGroup/actions';
 export { sortTable } from '../components/SortableTable/actions';
-export { setOpenModalID } from '../components/Modal/actions';
+export { setOpenModal } from '../components/Modal/actions';
 export { logRequest } from '../components/RenderIf/actions';
 
 export function locationChange (location = '/') {

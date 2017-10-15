@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bool, object, string, func, number } from 'prop-types';
+import { bool, object, func, number } from 'prop-types';
 import { browserHistory } from 'react-router';
 import { map } from 'react-immutable-proptypes';
 
-import { setOpenModalID } from './actions';
+import { setOpenModal } from './actions';
 import { handleQueryStringChange } from './utils';
 
 /**
@@ -22,17 +22,18 @@ import { handleQueryStringChange } from './utils';
 export class ModalUC extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      modalID: props.openModal
-    };
-
     const { tieToURL, dispatch, openModal, history } = props;
+
+    this.state = {
+      modalID: openModal && openModal.get('id'),
+      data: openModal && openModal.get('data') && openModal.get('data').toJS()
+    };
 
     if (tieToURL) {
       // Ensure that any modal ID in URL is reflected in store
       const updateStoreFromlocation = location => {
         const modalInURL = location.query.modal;
-        if (modalInURL && !openModal.get('id')) {
+        if (modalInURL && !openModal || !openModal.get('id')) {
           dispatch(setOpenModal(modalInURL));
         }
       };
@@ -44,12 +45,14 @@ export class ModalUC extends React.Component {
   }
 
   componentWillReceiveProps ({ openModal, animateOutDelay, location, dispatch }) {
-    if (openModal.get('id') === null) {
+    const modalID = openModal && openModal.get('id');
+
+    if (modalID === null) {
       setTimeout(() => {
-        this.setState({ modalID: openModal.get('id') });
+        this.setState({ modalID });
       }, animateOutDelay);
-    } else if (openModal.get('id') !== this.state.modalID) {
-      this.setState({ modalID: openModal.get('id') });
+    } else if (modalID !== this.state.modalID) {
+      this.setState({ modalID: modalID, data: openModal.get('data') && openModal.get('data').toJS() });
     }
 
     handleQueryStringChange('modal', this.props.location, location, val => {
@@ -58,16 +61,11 @@ export class ModalUC extends React.Component {
   }
 
   render () {
-    const { modals, log } = this.props;
-    const { modalID } = this.state;
+    const { modals } = this.props;
+    const { modalID, data } = this.state;
 
-    if (modalID) {
-      if (Object.keys(modals).includes(modalID)) {
-        return <div className="modal__wrapper">{ modals[modalID] }</div>;
-      } else {
-        log(`No modal found for ID: ${modalID}`);
-        return null;
-      }
+    if (modalID && Object.keys(modals).includes(modalID)) {
+      return <div className="modal__wrapper">{ React.cloneElement(modals[modalID], { data: data || {} }) }</div>;
     } else {
       return null;
     }
@@ -81,7 +79,6 @@ const mapStateToProps = state => ({
 
 ModalUC.defaultProps = {
   history: browserHistory,
-  log: () => {},
   animateOutDelay: 0,
   tieToURL: true
 };
@@ -91,7 +88,6 @@ ModalUC.propTypes = {
   openModal: map.isRequired,
   dispatch: func,
   history: object.isRequired,
-  log: func,
   animateOutDelay: number,
   tieToURL: bool,
   location: object

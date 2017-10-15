@@ -1,11 +1,13 @@
 import React from 'react';
+import { fromJS } from 'immutable';
+
 import { ModalUC } from 'components/Modal';
 import { objEq } from 'support/assert';
 
 describe('<Modal />', () => {
   it('renders the modal for the open ID', () => {
     const comp = mockComp(ModalUC, {
-      openModalID: 'account',
+      openModal: fromJS({ id: 'account' }),
       modals: {
         decoy: <div>Decoy</div>,
         account: <div>Account</div>
@@ -16,17 +18,14 @@ describe('<Modal />', () => {
   });
 
   it('renders nothing if nothing matches', () => {
-    const log = sinon.spy();
     const comp = mockComp(ModalUC, {
-      openModalID: 'bs',
+      openModal: fromJS({ id: 'bs' }),
       modals: {
         account: <div>Account</div>
-      },
-      log
+      }
     });
 
     expect(comp.html()).to.eq(null);
-    expect(log.lastCall.args[0]).to.eq('No modal found for ID: bs');
   });
 
   it('updates the store based on browser history', () => {
@@ -40,10 +39,29 @@ describe('<Modal />', () => {
     objEq(
       dispatch.lastCall.args[0],
       {
-        type: 'SET_OPEN_MODAL_ID',
+        type: 'SET_OPEN_MODAL',
         id: 'whatever',
-        updateURL: true
+        updateURL: true,
+        data: {}
       }
     );
+  });
+
+  it('passes data to the child', () => {
+    const dispatch = sinon.spy();
+    const comp = mockComp(ModalUC, {
+      dispatch,
+      modals: {
+        /* eslint-disable react/prop-types */
+        account: <span>Thing</span>
+        /* eslint-enable react/prop-types */
+      },
+      openModal: fromJS({
+        id: 'account',
+        data: { name: 'whatever' }
+      })
+    });
+
+    expect(comp.find('span').first().props().data.name).to.eq('whatever');
   });
 });

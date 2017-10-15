@@ -20,7 +20,10 @@ import * as actions from './store/actions';
 import { initReducers } from './store/reducers';
 import { constructReducers, curryMakeRootReducer, curryInjectReducer } from './store/boilerplate';
 
-const utils = { validators, initReduxBreakpoints, redirectWithFlash, breakpointIsGreaterThan, breakpointIsLessThan, setClass, setQueryString, handleQueryStringChange };
+const utils = { validators, initReduxBreakpoints, redirectWithFlash,
+  breakpointIsGreaterThan, breakpointIsLessThan, setClass,
+  setQueryString, handleQueryStringChange };
+
 const reduxUtils = { constructReducers, curryInjectReducer, curryMakeRootReducer, initReducers };
 
 export {

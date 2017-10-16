@@ -44,9 +44,7 @@ export const mapStateToProps = (state, ownProps) => ({
 const mergeProps = (stateProps, { dispatch }, ownProps) => ({
   ...stateProps,
   ...ownProps,
-  request: () => {
-    stateProps.request(dispatch);
-  }
+  request: stateProps.request(dispatch)
 });
 
 export default connect(mapStateToProps, undefined, mergeProps)(RenderIfUC);

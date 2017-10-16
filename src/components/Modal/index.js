@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bool, object, func, number } from 'prop-types';
+import { object, number } from 'prop-types';
 import { browserHistory } from 'react-router';
 import { map } from 'react-immutable-proptypes';
-
-import { setOpenModal } from './actions';
-import { handleQueryStringChange } from './utils';
 
 /**
  * Renders the modal specified by openModal and described in the
@@ -22,29 +19,15 @@ import { handleQueryStringChange } from './utils';
 export class ModalUC extends React.Component {
   constructor(props) {
     super(props);
-    const { tieToURL, dispatch, openModal, history } = props;
+    const { openModal } = props;
 
     this.state = {
       modalID: openModal && openModal.get('id'),
       data: openModal && openModal.get('data') && openModal.get('data').toJS()
     };
-
-    if (tieToURL) {
-      // Ensure that any modal ID in URL is reflected in store
-      const updateStoreFromlocation = location => {
-        const modalInURL = location.query.modal;
-        if (modalInURL && !openModal || !openModal.get('id')) {
-          dispatch(setOpenModal(modalInURL));
-        }
-      };
-
-      const firstLocation = history.getCurrentLocation();
-      updateStoreFromlocation(firstLocation);
-      history.listen(updateStoreFromlocation);
-    }
   }
 
-  componentWillReceiveProps ({ openModal, animateOutDelay, location, dispatch }) {
+  componentWillReceiveProps ({ openModal, animateOutDelay }) {
     const modalID = openModal && openModal.get('id');
 
     if (modalID === null) {
@@ -54,10 +37,6 @@ export class ModalUC extends React.Component {
     } else if (modalID !== this.state.modalID) {
       this.setState({ modalID: modalID, data: openModal.get('data') && openModal.get('data').toJS() });
     }
-
-    handleQueryStringChange('modal', this.props.location, location, val => {
-      dispatch(setOpenModal(val));
-    });
   }
 
   render () {
@@ -79,18 +58,13 @@ const mapStateToProps = state => ({
 
 ModalUC.defaultProps = {
   history: browserHistory,
-  animateOutDelay: 0,
-  tieToURL: true
+  animateOutDelay: 0
 };
 
 ModalUC.propTypes = {
   modals: object.isRequired,
   openModal: map.isRequired,
-  dispatch: func,
-  history: object.isRequired,
-  animateOutDelay: number,
-  tieToURL: bool,
-  location: object
+  animateOutDelay: number
 };
 
 export default connect(mapStateToProps)(ModalUC);

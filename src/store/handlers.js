@@ -33,11 +33,6 @@ export const sortableTables = {
   })
 };
 
-export const renderIfRequests = {
-  init: fromJS({}),
-  LOG_REQUEST: (state, action) => state.set(action.uid, true)
-};
-
 /**
  * Object defining current breakpoint state
  * @type {Object}

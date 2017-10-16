@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import { node, func, bool, string } from 'prop-types';
 
-import { logRequest } from './actions';
-
 /**
  * Renders the given child if shouldRender is true. If not, renders the loader.
  *
@@ -15,16 +13,13 @@ import { logRequest } from './actions';
  * @param      {string}            props.uid           Unique ID of component
  * @param      {Function}          props.request       If the component isn't ready to render, this function is called
  *                                                     with state an dispatch, to fetch necessary data.
- * @param      {boolean}           props.requested     Whether a request has been made for data
  */
-export function RenderIfUC ({ children, shouldRender = false, loader = null, request, requested }) {
+export function RenderIfUC ({ children, shouldRender = false, loader = null, request }) {
   const requestFunc = request || (() => {});
   if (shouldRender) {
     return children;
   } else {
-    if (!requested) {
-      requestFunc();
-    }
+    requestFunc();
     return loader;
   }
 }
@@ -43,9 +38,6 @@ export const mapStateToProps = (state, ownProps) => ({
   // Determine whether the component should render statically or using test function
   // given state object
   shouldRender: ownProps.shouldRender || (ownProps.test && ownProps.test(state)),
-  requested: ownProps.request
-    ? true
-    : ownProps.requested || (state.renderIfRequests && state.renderIfRequests.get(ownProps.uid)),
   request: dispatch => () => { ownProps.request(state, dispatch); }
 });
 

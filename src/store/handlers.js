@@ -64,7 +64,7 @@ export const openModal = {
       setQueryString('modal', id);
     }
 
-    return fromJS({ id, data });
+    return fromJS({ id, data: id ? data : {} });
   }
 };
 

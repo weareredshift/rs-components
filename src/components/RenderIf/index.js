@@ -45,7 +45,6 @@ const mergeProps = (stateProps, { dispatch }, ownProps) => ({
   ...stateProps,
   ...ownProps,
   request: () => {
-    dispatch(logRequest(ownProps.uid));
     stateProps.request(dispatch);
   }
 });

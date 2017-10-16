@@ -78,7 +78,7 @@ const mapStateToProps = (state, ownProps) => {
   const dropdownDefault = {
     classes: ['dropdown'],
     action: setOpenDropdownID(null),
-    ifTrue: state => state.setOpenDropdownID
+    ifTrue: state => state.openDropdownID
   };
 
   const watchables = ownProps.watchables || [];

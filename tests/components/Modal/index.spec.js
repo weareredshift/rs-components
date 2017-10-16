@@ -28,25 +28,6 @@ describe('<Modal />', () => {
     expect(comp.html()).to.eq(null);
   });
 
-  it('updates the store based on browser history', () => {
-    window.history.pushState({}, null, '?modal=whatever');
-    const dispatch = sinon.spy();
-    mockComp(ModalUC, {
-      dispatch,
-      modals: {}
-    });
-
-    objEq(
-      dispatch.lastCall.args[0],
-      {
-        type: 'SET_OPEN_MODAL',
-        id: 'whatever',
-        updateURL: true,
-        data: {}
-      }
-    );
-  });
-
   it('passes data to the child', () => {
     const dispatch = sinon.spy();
     const comp = mockComp(ModalUC, {

@@ -43,7 +43,7 @@ const ifNotInParents = (event, targetClasses, callback) => {
 export function OutsideClickWatcherUC ({ children, dispatch, watchables }) {
   const dispatchAsNecessary = (event) => {
     watchables.forEach(watchable => {
-      if (watchable.stateValue) {
+      if (watchable.shouldDispatch) {
         ifNotInParents(event, watchable.classes, () => {
           dispatch(watchable.action);
         });
@@ -64,7 +64,7 @@ OutsideClickWatcherUC.propTypes = {
     shape({
       classes: arrayOf(string),
       action: object,
-      stateKey: string
+      ifTrue: func
     })
   ),
   dispatch: func
@@ -78,8 +78,9 @@ const mapStateToProps = (state, ownProps) => {
   const dropdownDefault = {
     classes: ['dropdown'],
     action: setOpenDropdownID(null),
-    stateKey: 'openDropdownID'
+    ifTrue: state => state.setOpenDropdownID
   };
+
   const watchables = ownProps.watchables || [];
 
   // Combine default and given dropdown classes, or add dropdown as default watchable
@@ -97,8 +98,7 @@ const mapStateToProps = (state, ownProps) => {
       .map((watchable) => ({
         classes: watchable.classes,
         action: watchable.action,
-        stateValue: state[watchable.stateKey] || undefined,
-        stateKey: undefined
+        shouldDispatch: watchable.ifTrue(state)
       }))
   };
 };

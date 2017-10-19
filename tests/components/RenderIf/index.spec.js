@@ -20,14 +20,6 @@ describe('<RenderIf />', () => {
     expect(request.callCount).to.eq(1);
   });
 
-  it('does not make the request if it has already', () => {
-    const request = sinon.spy();
-    expect(request.callCount).to.eq(0);
-    const comp = mockComp(RenderIfUC, { children: <span>Hello</span>, loader: <span>Loader</span>, shouldRender: false, request, requested: true });
-    expect(comp.text()).to.eq('Loader');
-    expect(request.callCount).to.eq(0);
-  });
-
   it('mapStateToProps converts test to shouldRender appropriately', () => {
     expect(mapStateToProps({
       stateKey: 'specialValue'

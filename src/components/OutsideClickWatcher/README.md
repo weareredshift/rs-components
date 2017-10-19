@@ -4,7 +4,10 @@ The OutsideClickWatcher component watches for click events inside it, and dispat
 
 - an array of CSS `classes`
 - an `action` to perform if a user clicks outside of one of those classes
-- a `stateKey` to watch and dispatch the action if the value of the key is not `null` or `undefined`.
+
+  > `action` can be either a Redux action object (which will be dispatched), or a custom function, which takes `dispatch` as an argument.
+
+- an `ifTrue` function, (takes `state` as argument) to watch and dispatch the action if true.
 
 Dropdowns provide a good example:
 
@@ -16,7 +19,7 @@ import { setOpenDropdownID } from 'store/actions';
     [{
       classes: ['dropdown', 'some-other-class-not-to-close-dropdown-when-clicked-within']
       action: setOpenDropdownID(null),
-      stateKey: 'openDropdownID'
+      ifTrue: state => state.openDropdownID
     }]
   }
 />

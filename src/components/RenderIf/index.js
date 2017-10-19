@@ -30,8 +30,7 @@ RenderIfUC.propTypes = {
   children: node,
   loader: node,
   uid: string,
-  request: func,
-  requested: bool
+  request: func
 };
 
 export const mapStateToProps = (state, ownProps) => ({

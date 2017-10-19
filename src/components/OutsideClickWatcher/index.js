@@ -33,19 +33,18 @@ const ifNotInParents = (event, targetClasses, callback) => {
  *
  * @param      {Object}             props
  * @param      {React.Component}    props.children
- * @param      {Function}           props.dispatch
  * @param      {Object[]}           props.watchables            List of watchables to react to
  * @param      {string[]}           props.watchables[].classes  List of classes under which NOT to dispatch action
  * @param      {Object}             props.watchables[].action   Action to dispatch when clicked outside of classes
  * @param      {string[]}           props.watchables[].stateKey Key of Redux state object to watch. When truthy, component will dispatch
  * @param      {*[]}              props.watchables[].stateValue Value of Redux state object to watch. When truthy, comp will dispatch
  */
-export function OutsideClickWatcherUC ({ children, dispatch, watchables }) {
+export function OutsideClickWatcherUC ({ children, watchables }) {
   const dispatchAsNecessary = (event) => {
     watchables.forEach(watchable => {
       if (watchable.shouldDispatch) {
         ifNotInParents(event, watchable.classes, () => {
-          dispatch(watchable.action);
+          watchable.action();
         });
       }
     });
@@ -63,11 +62,10 @@ OutsideClickWatcherUC.propTypes = {
   watchables: arrayOf(
     shape({
       classes: arrayOf(string),
-      action: object,
+      action: oneOfType([object, func]),
       ifTrue: func
     })
-  ),
-  dispatch: func
+  )
 };
 
 OutsideClickWatcherUC.defaultProps = {
@@ -103,4 +101,15 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(OutsideClickWatcherUC);
+const mergeProps = (stateProps, { dispatch }, ownProps) => ({
+  ...stateProps,
+  ...ownProps,
+  watchables: stateProps.watchables
+    .map(watchable => Object.assign({}, watchable, {
+      action: typeof watchable.action === 'object'
+        ? () => { dispatch(watchable.action); }
+        : () => { watchable.action(dispatch); }
+    }))
+});
+
+export default connect(mapStateToProps, undefined, mergeProps)(OutsideClickWatcherUC);

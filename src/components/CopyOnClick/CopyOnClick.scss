@@ -1,0 +1,30 @@
+.copy-on-click {
+  .copy-on-click__text {
+    -webkit-appearance: button;
+    user-select: none;
+    cursor: pointer;
+    border: none;
+    resize: none;
+    padding: none;
+    background-color: transparent;
+    font-weight: bold;
+  }
+
+  .copy-on-click__success-text {
+    opacity: 0;
+    transition: opacity 1s ease;
+
+    &.copy-on-click__success-text--successful {
+      opacity: 1;
+    }
+  }
+
+  .copy-on-click__failure-text {
+    opacity: 0;
+    transition: opacity 1s ease;
+
+    &.copy-on-click__failure-text--failed {
+      opacity: 1;
+    }
+  }
+}

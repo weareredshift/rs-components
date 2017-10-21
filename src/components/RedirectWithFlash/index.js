@@ -1,4 +1,5 @@
 import { func, node, string, bool } from 'prop-types';
+import { connect } from 'react-redux';
 
 import { redirectWithFlash } from './utils';
 
@@ -29,7 +30,8 @@ RedirectWithFlashUC.propTypes = {
   redirectIf: bool.isRequired,
   redirectPath: string.isRequired,
   message: string.isRequired,
-  redirect: func.isRequired
+  redirect: func.isRequired,
+  computeRedirect: func
 };
 
 RedirectWithFlashUC.defaultProps = {
@@ -38,4 +40,27 @@ RedirectWithFlashUC.defaultProps = {
   redirect: redirectWithFlash
 };
 
-export default RedirectWithFlashUC;
+const mapStateToProps = (state, ownProps) => {
+  if (ownProps.computeRedirect) {
+    return { computeRedirect: (dispatch) => ownProps.computeRedirect(state, dispatch) };
+  }
+
+  return {};
+};
+
+const mergeProps = (stateProps, { dispatch }, ownProps) => {
+  const { computeRedirect } = stateProps;
+  const redirectPath = computeRedirect ? computeRedirect(dispatch) : null;
+
+  let props = Object.assign({}, ownProps);
+
+  if (redirectPath) {
+    props = typeof redirectPath === 'object'
+      ? { ...props, ...redirectPath, redirectIf: true }
+      : { ...props, redirectPath, redirectIf: true };
+  }
+
+  return props;
+};
+
+export default connect(mapStateToProps, undefined, mergeProps)(RedirectWithFlashUC);

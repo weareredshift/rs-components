@@ -60,7 +60,7 @@ export class FlashUC extends React.Component {
         ) }
       >
         <span className="flash__message">
-          { message || null }
+          { message }
         </span>
       </div>
     );
@@ -75,7 +75,8 @@ FlashUC.propTypes = {
 };
 
 FlashUC.defaultProps = {
-  duration: 1000
+  duration: 1000,
+  className: ''
 };
 
 const mapStateToProps = (state, ownProps) => ({

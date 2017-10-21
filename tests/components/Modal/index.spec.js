@@ -2,7 +2,6 @@ import React from 'react';
 import { fromJS } from 'immutable';
 
 import { ModalUC } from 'components/Modal';
-import { objEq } from 'support/assert';
 
 describe('<Modal />', () => {
   it('renders the modal for the open ID', () => {

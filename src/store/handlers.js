@@ -16,6 +16,11 @@ export const openDropdownID = {
   SET_OPEN_DROPDOWN_ID: (state, action) => action.uid
 };
 
+export const openTooltipID = {
+  init: fromJS(null),
+  SET_ACTIVE_TOOLTIP: (state, action) => action.tooltipID
+};
+
 export const radios = {
   init: fromJS({}),
   SET_RADIO_VALUE: (state, action) => state.merge({ [action.uid]: action.item })

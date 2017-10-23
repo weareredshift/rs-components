@@ -8,13 +8,13 @@ import { map } from 'react-immutable-proptypes';
  * Renders the modal specified by openModal and described in the
  * passed modals prop.
  *
- * @param      {Object}   props
- * @param      {Object}   props.modals       Object mapping modal IDs to content nodes
- * @param      {string}   props.openModal  The ID of the open modal (if any) in the app
- * @param      {Object}   props.history      React-Router browserHistory object
- * @param      {Number}   props.animateOutDelay Seconds to delay unmounting to allow space for animation
- * @param      {Funciton} props.dispatch
- * @return     {React.Component}  The rendered modal
+ * @param      {Object}   props                       React props object
+ * @param      {Object}   props.modals                Object mapping modal IDs to content nodes
+ * @param      {string}   props.openModal             The ID of the open modal (if any) in the app
+ * @param      {Object}   props.history               React-Router browserHistory object
+ * @param      {number}   props.animateOutDelay       Seconds to delay unmounting to allow space for animation
+ * @param      {Funciton} props.dispatch              Redux dispatch function
+ * @return     {React.Component}                      The rendered modal
  */
 export class ModalUC extends React.Component {
   constructor(props) {

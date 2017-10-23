@@ -3,6 +3,7 @@ export { setDropdownValues, setOpenDropdownID } from '../components/Dropdown/act
 export { setRadioValue } from '../components/RadioGroup/actions';
 export { sortTable } from '../components/SortableTable/actions';
 export { setOpenModal } from '../components/Modal/actions';
+export { setActiveTooltip } from '../components/Tooltip/actions';
 
 export function locationChange (location = '/') {
   return ({

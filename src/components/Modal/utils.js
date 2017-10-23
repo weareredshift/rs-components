@@ -25,8 +25,8 @@ export function setQueryString(key, val) {
  * Compares given query key on new and old URL locations, and performs callback on change.
  *
  * @param      {string}    key          The querystring key to watch
- * @param      {object}    oldLocation  The old location
- * @param      {object}    newLocation  The new location
+ * @param      {Object}    oldLocation  The old location
+ * @param      {Object}    newLocation  The new location
  * @param      {Function}  onChange     Called on change with the new query value
  */
 export function handleQueryStringChange(key, oldLocation, newLocation, onChange) {

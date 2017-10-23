@@ -10,6 +10,7 @@ import RedirectWithFlash from './components/RedirectWithFlash';
 import Flash from './components/Flash';
 import RenderIf from './components/RenderIf';
 import Modal from './components/Modal';
+import Tooltip from './components/Tooltip';
 import CopyOnClick from './components/CopyOnClick';
 
 import { redirectWithFlash } from './components/RedirectWithFlash/utils';
@@ -41,7 +42,7 @@ export {
   RenderIf,
   Modal,
   CopyOnClick,
-
+  Tooltip,
   utils,
   reduxUtils,
   actions

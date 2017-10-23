@@ -1,0 +1,43 @@
+@import 'sass-includes';
+
+.tooltip__trigger {
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  position: relative;
+  display: block;
+  cursor: pointer;
+
+  [class^='icon-'] {
+    color: $white;
+    font-size: 1.4rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.tooltip__content {
+  position: absolute;
+  left: 7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 7rem 1.6rem rgba($black, 0.06);
+  background-color: $white;
+  padding: 2rem;
+  width: 42rem;
+  z-index: 15;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: -3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 1.5rem solid transparent;
+    border-right: 3rem solid $white;
+    border-bottom: 1.5rem solid transparent;
+    z-index: -1;
+  }
+}

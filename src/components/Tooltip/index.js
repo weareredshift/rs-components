@@ -14,8 +14,8 @@ import { setActiveTooltip } from './actions';
  *                                          null if no tooltip is active.
  * @returns {React.Component}               Returns a react component
  */
-export function Tooltip (props) {
-  const { id, color, children, dispatch, openTooltipID } = props;
+export function TooltipUC (props) {
+  const { id, color, children, dispatch, openTooltipID, triggerContent } = props;
 
   const toggleTooltip = () => {
     const nextTooltip = openTooltipID === id ? null : id;
@@ -32,16 +32,16 @@ export function Tooltip (props) {
   );
 }
 
-Tooltip.propTypes = {
+TooltipUC.propTypes = {
   id: PropTypes.string.isRequired,
   triggerContent: PropTypes.object.isRequired,
   children: PropTypes.element.isRequired,
   dispatch: PropTypes.func,
-  openTooltipID: PropTypes.bool
+  openTooltipID: PropTypes.string
 };
 
 const mapStateToProps = state => ({
   openTooltipID: state.openTooltipID
 });
 
-export default connect(mapStateToProps)(Tooltip);
+export default connect(mapStateToProps)(TooltipUC);

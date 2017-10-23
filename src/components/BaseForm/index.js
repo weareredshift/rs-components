@@ -18,7 +18,6 @@ import { formatKey } from './utils';
  * @param  {Array}    props.fields[0]                     Array of fields to be shown in one row
  * @param  {Object}   props.fields[0][0]                  Object representing a form input field
  * @param  {string}   props.fields[0][0].label            Label for a field
- * @param  {string}   props.fields[0][0].labelType            How to display the label. Either 'label', 'placeholder', or 'both'.
  * @param  {string}   props.fields[0][0].type             Type of the field (default: 'text')
  * @param  {string}   props.fields[0][0].stateKey         How the field should be stored in form state
  * @param  {string}   props.fields[0][0].startingValue    The initial value in the field
@@ -130,7 +129,6 @@ export class BaseFormUC extends React.Component {
         style={ style }
       >
         { title && <h2 className="form__title">{ title }</h2>}
-        { subtitle && <p>{ subtitle }</p> }
         <div className="form__fields">
           { error && <p className="form__error">{ error }</p> }
           { note && <p className="form__note">{ note }</p> }
@@ -201,7 +199,6 @@ BaseFormUC.propTypes = {
     arrayOf(shape({
       type: string,
       label: string,
-      labelType: string,
       stateKey: string.isRequired,
       startingValue: string,
       className: string
@@ -212,7 +209,6 @@ BaseFormUC.propTypes = {
   globalError: string,
   className: string,
   title: string,
-  subtitle: string,
   actions: array,
   note: string,
   style: object,

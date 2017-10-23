@@ -15,7 +15,7 @@ import { setActiveTooltip } from './actions';
  * @returns {React.Component}               Returns a react component
  */
 export function TooltipUC (props) {
-  const { id, color, children, dispatch, openTooltipID, triggerContent } = props;
+  const { id, children, dispatch, openTooltipID, triggerContent } = props;
 
   const toggleTooltip = () => {
     const nextTooltip = openTooltipID === id ? null : id;

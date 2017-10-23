@@ -10,6 +10,7 @@ import RedirectWithFlash from './components/RedirectWithFlash';
 import Flash from './components/Flash';
 import RenderIf from './components/RenderIf';
 import Modal from './components/Modal';
+import CopyOnClick from './components/CopyOnClick';
 
 import { redirectWithFlash } from './components/RedirectWithFlash/utils';
 import { validators } from './components/BaseForm/utils';
@@ -39,6 +40,7 @@ export {
   Flash,
   RenderIf,
   Modal,
+  CopyOnClick,
 
   utils,
   reduxUtils,

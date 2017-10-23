@@ -19,9 +19,9 @@ import { actions } from 'rs-components';
 dispatch(actions.setActiveTooltip('someOpenTooltipID'))
 ```
 
-#### Closing the modal on outside click
+#### Closing the tooltip on outside click
 
-To enable closing of the tooltip on a click outside of the modal content, simply add the relevant classes to the `OutsideClickWatcher` in the app wrapper component, if you're using one:
+To enable closing of the tooltip on a click outside of the tooltip content, simply add the relevant classes to the `OutsideClickWatcher` in the app wrapper component, if you're using one:
 
 ```jsx
 import { actions } from 'rs-components';

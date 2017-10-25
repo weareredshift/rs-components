@@ -29,8 +29,8 @@ RedirectWithFlashUC.propTypes = {
   children: node.isRequired,
   redirectIf: bool.isRequired,
   redirectPath: string.isRequired,
-  message: string.isRequired,
   redirect: func.isRequired,
+  message: string,
   computeRedirect: func
 };
 

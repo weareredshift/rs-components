@@ -23,7 +23,7 @@ RedirectWithFlash can also be used with a `computeRedirect` function which is pa
 
 ```jsx
 <RedirectWithFlash
-  computeRedirectAndMakeRequests={ (state, dispatch) => {
+  computeRedirect={ (state, dispatch) => {
     const role = state.user.get('role');
     if (role === 'admin') {
       return null;

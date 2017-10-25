@@ -6,6 +6,7 @@ import Link from './components/Link';
 import RadioGroup from './components/RadioGroup';
 import SortableTable from './components/SortableTable';
 import Responder from './components/Responder';
+import Loader from './components/Loader';
 import RedirectWithFlash from './components/RedirectWithFlash';
 import Flash from './components/Flash';
 import RenderIf from './components/RenderIf';
@@ -43,6 +44,8 @@ export {
   Modal,
   CopyOnClick,
   Tooltip,
+  Loader,
+
   utils,
   reduxUtils,
   actions

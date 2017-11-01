@@ -11,11 +11,13 @@ import { sortTable } from './actions';
  *
  * @param      {Object}    props                                      React props object
  * @param      {[string]}  props.className                            Optional additional class for table
+ * @param      {Function}  props.onRowClick                           On click for row, fed cells and row index
  * @param      {Array[]}   props.rows                                 An array of rows, each represented by an array of cells
  * @param      {Object[]}  props.rows[]                               An array of objects representing row cells
  * @param      {Object}    props.rows[][]                             An object representing a row cell
  * @param      {string}    props.rows[][].columnName                  Column in which to display the cell
  * @param      {string}    props.rows[][].fieldValue                  Sortable string value, displayed as default
+ * @param      {Function}  props.rows[][].onClick                     On click event for cell, fed cell, cell index, and row index
  * @param      {[React.Component]}    props.rows[][].fieldContent     Optional node to show in place of field value
  * @param      {Object[]}  props.columns                              Array of columns in table
  * @param      {string}    props.columns[].name                       Name of column
@@ -27,7 +29,7 @@ import { sortTable } from './actions';
  *
  * @return     {React.Component}    Table which can be sorted by column, using Redux store
  */
-export function SortableTableUC ({ className, rows, columns, sortBy, sortDirection, onHeaderClick }) {
+export function SortableTableUC ({ className, rows, columns, sortBy, sortDirection, onHeaderClick, onRowClick }) {
   let orderedRows = rows;
   if (sortBy) {
     const val = cells => {
@@ -86,6 +88,7 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                   `sortable-table__tr--row-${index}`
                 ) }
                 key={ index }
+                onClick={ () => { onRowClick && onRowClick(cells, index) } }
               >
                 {
                   columns.map((col, colIndex) => {
@@ -100,6 +103,7 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                             cell.className
                           ) }
                           key={ colIndex }
+                          onClick={ () => cell.onClick && cell.onClick(cell, colIndex, index) }
                         >
                           { cell.fieldContent || cell.fieldValue }
                         </td>
@@ -128,6 +132,7 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
 const { string, shape, arrayOf, oneOfType, node, bool, func } = PropTypes;
 SortableTableUC.propTypes = {
   uid: string.isRequired,
+  onRowClick: func,
   columns: arrayOf(shape({
     name: string.isRequired,
     allowSortBy: bool.isRequired,
@@ -138,7 +143,8 @@ SortableTableUC.propTypes = {
       columnName: string.isRequired,
       fieldValue: string.isRequired,
       fieldContent: oneOfType([node, string]),
-      className: string
+      className: string,
+      onClick: func
     }))
   ).isRequired,
   sortBy: string,

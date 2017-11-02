@@ -12,13 +12,14 @@ import { sortTable } from './actions';
  * @param      {Object}    props                                      React props object
  * @param      {[string]}  props.className                            Optional additional class for table
  * @param      {Function}  props.onRowClick                           On click for row, fed cells and row index
- * @param      {Array[]}   props.rows                                 An array of rows, each represented by an array of cells
- * @param      {Object[]}  props.rows[]                               An array of objects representing row cells
- * @param      {Object}    props.rows[][]                             An object representing a row cell
- * @param      {string}    props.rows[][].columnName                  Column in which to display the cell
- * @param      {string}    props.rows[][].fieldValue                  Sortable string value, displayed as default
- * @param      {Function}  props.rows[][].onClick                     On click event for cell, fed cell, cell index, and row index
- * @param      {[React.Component]}    props.rows[][].fieldContent     Optional node to show in place of field value
+ * @param      {Array[]}   props.rows                                 An array of rows, each represented by an object with cells
+ * @param      {Function}  props.rows[].onClick                       Called on row click, *unless* clicked cell has its own onClick function
+ * @param      {Object[]}  props.rows[].cells                         An array of objects representing row cells
+ * @param      {Object}    props.rows[].cells                         An object representing a row cell
+ * @param      {string}    props.rows[].cells.columnName              Column in which to display the cell
+ * @param      {string}    props.rows[].cells.fieldValue              Sortable string value, displayed as default
+ * @param      {Function}  props.rows[].cells.onClick                 On click event for cell, fed cell, cell index, and row index
+ * @param      {[React.Component]}    props.rows[].cells.fieldContent Optional node to show in place of field value
  * @param      {Object[]}  props.columns                              Array of columns in table
  * @param      {string}    props.columns[].name                       Name of column
  * @param      {[string]}  props.columns[].className                  Optional class name to add to column
@@ -29,11 +30,11 @@ import { sortTable } from './actions';
  *
  * @return     {React.Component}    Table which can be sorted by column, using Redux store
  */
-export function SortableTableUC ({ className, rows, columns, sortBy, sortDirection, onHeaderClick, onRowClick }) {
+export function SortableTableUC ({ className, rows, columns, sortBy, sortDirection, onHeaderClick }) {
   let orderedRows = rows;
   if (sortBy) {
-    const val = cells => {
-      const cell = cells.find(c => c.columnName === sortBy);
+    const val = row => {
+      const cell = row.cells.find(c => c.columnName === sortBy);
       return cell && cell.fieldValue;
     };
 
@@ -81,18 +82,17 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
       <tbody className="sortable-table__body">
         {
           orderedRows
-            .map((cells, index) => (
+            .map((row, rowIndex) => (
               <tr
                 className={ classnames(
                   'sortable-table__tr',
-                  `sortable-table__tr--row-${index}`
+                  `sortable-table__tr--row-${ rowIndex }`
                 ) }
-                key={ index }
-                onClick={ () => { onRowClick && onRowClick(cells, index) } }
+                key={ rowIndex }
               >
                 {
                   columns.map((col, colIndex) => {
-                    const cell = cells.find(cell => cell.columnName === col.name);
+                    const cell = row.cells.find(cell => cell.columnName === col.name);
                     if (cell) {
                       return (
                         <td
@@ -103,7 +103,13 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                             cell.className
                           ) }
                           key={ colIndex }
-                          onClick={ () => cell.onClick && cell.onClick(cell, colIndex, index) }
+                          onClick={ () => {
+                            if (cell.onClick) {
+                              cell.onClick(cell, colIndex, rowIndex);
+                            } else if (row.onClick) {
+                              row.onClick(cell, row, colIndex, rowIndex);
+                            }
+                          } }
                         >
                           { cell.fieldContent || cell.fieldValue }
                         </td>
@@ -116,6 +122,11 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                             `sortable-table__td--cell-${ kebabCase(col.name) }`
                           ) }
                           key={ colIndex }
+                          onClick={ () => {
+                            if (row.onClick) {
+                              row.onClick(cell, row, colIndex, rowIndex);
+                            }
+                          } }
                         />
                       );
                     }
@@ -129,7 +140,7 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
   );
 }
 
-const { string, shape, arrayOf, oneOfType, node, bool, func } = PropTypes;
+const { string, shape, arrayOf, oneOfType, node, bool, func, number } = PropTypes;
 SortableTableUC.propTypes = {
   uid: string.isRequired,
   onRowClick: func,
@@ -139,13 +150,16 @@ SortableTableUC.propTypes = {
     hideName: bool
   })),
   rows: arrayOf(
-    arrayOf(shape({ // Cell
-      columnName: string.isRequired,
-      fieldValue: string.isRequired,
-      fieldContent: oneOfType([node, string]),
-      className: string,
-      onClick: func
-    }))
+    shape({ // Cell
+      onClick: func,
+      cells: arrayOf(shape({
+        columnName: string.isRequired,
+        fieldValue: oneOfType([string, number]).isRequired,
+        fieldContent: oneOfType([node, string]),
+        className: string,
+        onClick: func
+      }))
+    })
   ).isRequired,
   sortBy: string,
   sortDirection: string,
@@ -153,19 +167,20 @@ SortableTableUC.propTypes = {
   onHeaderClick: func.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   // Allow for array of column strings to be passed in, for more simple format
   const columns = typeof ownProps.columns[0] === 'string'
       ? ownProps.columns.map(col => ({ name: col, allowSortBy: true }))
-      : ownProps.columns.map(col => Object.assign({ allowSortBy: true }, col));
+      : ownProps.columns.map(col => ({ allowSortBy: true, ...col }));
 
   // Allow for array of row strings to be passed in, for more simple format
-  const rows = typeof ownProps.rows[0][0] === 'string'
-      ? ownProps.rows.map(cells => cells
-          .map((cell, index) => ({ columnName: columns[index].name, fieldValue: cell }))
-        )
-      : ownProps.rows.map(cells => cells
-          .map((cell, index) => Object.assign({ columnName: columns[index].name }, cell)));
+  const rows = ownProps.rows.map(row => ({
+    ...row,
+    cells: row.cells.map((cell, index) => typeof cell === 'string'
+      ? { columnName: columns[index].name, fieldValue: cell }
+      : cell
+    )
+  }));
 
   return {
     sortBy: state.sortableTables.getIn([ownProps.uid, 'sortBy']),

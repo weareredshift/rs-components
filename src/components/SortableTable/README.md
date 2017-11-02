@@ -54,4 +54,21 @@ The format can be made progressively more complicated. If you want to allow for 
 />
 ```
 
+Rows and cells can also be passed onClick functions. The cell function takes precedence over the row function:
+
+```
+<SortableTable
+  uid="stringTable"
+  columns={ ['Name', 'Age', 'Gender'] }
+  rows={ [
+    { cells: ['5ft 7in', '156lb'] },
+    { cells: [{ columnName: 'Height', fieldValue: 'Click me! I\'m silent', onClick: () => {} }, '180lb'] },
+    { cells: ['5ft 0in', { columnName: 'Weight', fieldValue: 'Click me! I\'m special', onClick: () => { alert('You clicked a cell. It overrides the row click.'); } }] }
+    ].map((row, ind) => ({ ...row, onClick: () => { alert(`You clicked row ${ind}`); } }))
+  }
+/>
+```
+
+> Cell `onClick` is passed the cell, the `columnIndex`, and the `rowIndex`, and row `onClick` is passed the `cell`, the `row`, the `columnIndex`, and the `rowIndex`.
+
 Finally, if you want to block sorting by certain columns, simply replace the column string with an object. The object has a `name` which is the display name for the column, and a boolean `allowSortBy` field. If `false`, the header will be unsortable.

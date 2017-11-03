@@ -178,7 +178,7 @@ export const mapStateToProps = (state, ownProps) => {
     ...row,
     cells: row.cells.map((cell, index) => typeof cell === 'string'
       ? { columnName: columns[index].name, fieldValue: cell }
-      : cell
+      : { columnName: columns[index].name, ...cell }
     )
   }));
 

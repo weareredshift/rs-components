@@ -14,11 +14,13 @@ import { sortTable } from './actions';
  * @param      {Function}  props.onRowClick                           On click for row, fed cells and row index
  * @param      {Array[]}   props.rows                                 An array of rows, each represented by an object with cells
  * @param      {Function}  props.rows[].onClick                       Called on row click, *unless* clicked cell has its own onClick function
+ * @param      {Object}    props.rows[].style                         Optional style object for row
  * @param      {Object[]}  props.rows[].cells                         An array of objects representing row cells
  * @param      {Object}    props.rows[].cells                         An object representing a row cell
  * @param      {string}    props.rows[].cells.columnName              Column in which to display the cell
  * @param      {string}    props.rows[].cells.fieldValue              Sortable string value, displayed as default
  * @param      {Function}  props.rows[].cells.onClick                 On click event for cell, fed cell, cell index, and row index
+ * @param      {Object}    props.rows[].cells.style                   Optional style object for cell
  * @param      {[React.Component]}    props.rows[].cells.fieldContent Optional node to show in place of field value
  * @param      {Object[]}  props.columns                              Array of columns in table
  * @param      {string}    props.columns[].name                       Name of column
@@ -89,6 +91,7 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                   `sortable-table__tr--row-${ rowIndex }`
                 ) }
                 key={ rowIndex }
+                style={ row.style || {} }
               >
                 {
                   columns.map((col, colIndex) => {
@@ -110,6 +113,7 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
                               row.onClick(cell, row, colIndex, rowIndex);
                             }
                           } }
+                          style={ cell.style || {} }
                         >
                           { cell.fieldContent || cell.fieldValue }
                         </td>
@@ -140,7 +144,7 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
   );
 }
 
-const { string, shape, arrayOf, oneOfType, node, bool, func, number } = PropTypes;
+const { string, shape, arrayOf, oneOfType, node, bool, func, number, object } = PropTypes;
 SortableTableUC.propTypes = {
   uid: string.isRequired,
   onRowClick: func,
@@ -150,15 +154,19 @@ SortableTableUC.propTypes = {
     hideName: bool
   })),
   rows: arrayOf(
-    shape({ // Cell
+    shape({ // Row
       onClick: func,
-      cells: arrayOf(shape({
-        columnName: string.isRequired,
-        fieldValue: oneOfType([string, number]).isRequired,
-        fieldContent: oneOfType([node, string]),
-        className: string,
-        onClick: func
-      }))
+      cells: arrayOf(
+        shape({ // Cell
+          columnName: string.isRequired,
+          fieldValue: oneOfType([string, number]).isRequired,
+          fieldContent: oneOfType([node, string]),
+          className: string,
+          onClick: func,
+          style: object
+        })
+      ),
+      style: object
     })
   ).isRequired,
   sortBy: string,

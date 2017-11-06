@@ -34,8 +34,8 @@ export function TooltipUC (props) {
 
 TooltipUC.propTypes = {
   id: PropTypes.string.isRequired,
-  triggerContent: PropTypes.object.isRequired,
-  children: PropTypes.element.isRequired,
+  triggerContent: PropTypes.object,
+  children: PropTypes.element,
   dispatch: PropTypes.func,
   openTooltipID: PropTypes.string
 };

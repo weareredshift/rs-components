@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import isExternal from 'is-url-external';
-import { string, func, object, oneOfType, element } from 'prop-types';
+import { string, func, object, oneOfType, element, node, array } from 'prop-types';
 
 /**
  * A flexible link which can to app-internal pages (using react-router) and
@@ -60,7 +60,7 @@ LinkUC.propTypes = {
   goInternal: func,
   target: string,
   style: object,
-  children: oneOfType([string, element])
+  children: oneOfType([string, element, node, array])
 };
 
 LinkUC.defaultProps = {

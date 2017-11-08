@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-
+import { func, object, string, oneOf, bool } from 'prop-types';
 import { formatKey } from '../BaseForm/utils';
 
 /**
@@ -66,7 +66,6 @@ export function InputUC ({ setParentState, parentState, type, label, stateKey, v
   );
 }
 
-const { func, object, string, oneOf, bool } = React.PropTypes;
 InputUC.propTypes = {
   setParentState: func.isRequired,
   parentState: object.isRequired,

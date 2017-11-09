@@ -26,7 +26,7 @@ export function RedirectWithFlashUC ({ children, redirectIf, redirectPath, messa
 }
 
 RedirectWithFlashUC.propTypes = {
-  children: node.isRequired,
+  children: node,
   redirectIf: bool.isRequired,
   redirectPath: string.isRequired,
   redirect: func.isRequired,

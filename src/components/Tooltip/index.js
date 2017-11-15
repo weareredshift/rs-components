@@ -6,6 +6,7 @@ import { setActiveTooltip } from './actions';
 /**
  * Renders a tooltip component
  * @param {Object} props                    React props object
+ * @param {string} props.className          Optional prop to pass to tooltip
  * @param {string} props.id                 String defining tooltips unique id
  * @param {Object} props.triggerContent     React DOM element wrapped by the trigger
  * @param {Object} props.children           React element wrapped by tooltip component, revealed when tooltip is active
@@ -15,7 +16,7 @@ import { setActiveTooltip } from './actions';
  * @returns {React.Component}               Returns a react component
  */
 export function TooltipUC (props) {
-  const { id, children, dispatch, openTooltipID, triggerContent } = props;
+  const { id, children, dispatch, openTooltipID, triggerContent, className } = props;
 
   const toggleTooltip = () => {
     const nextTooltip = openTooltipID === id ? null : id;
@@ -23,7 +24,7 @@ export function TooltipUC (props) {
   };
 
   return (
-    <div className="tooltip">
+    <div className={ `tooltip ${className ? className : ''}` }>
       <div className={ `tooltip__trigger` } onClick={ () => toggleTooltip() }>
         { triggerContent && triggerContent }
       </div>
@@ -37,7 +38,8 @@ TooltipUC.propTypes = {
   triggerContent: PropTypes.object,
   children: PropTypes.element,
   dispatch: PropTypes.func,
-  openTooltipID: PropTypes.string
+  openTooltipID: PropTypes.string,
+  className: PropTypes.string
 };
 
 const mapStateToProps = state => ({

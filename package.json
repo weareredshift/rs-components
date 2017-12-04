@@ -1,6 +1,6 @@
 {
   "name": "rs-components",
-  "version": "1.18.9",
+  "version": "1.18.10",
   "description": "Redshift Component Library",
   "main": "lib/index.js",
   "license": "MIT",

@@ -146,12 +146,10 @@ export class BaseFormUC extends React.Component {
         </div>
 
         { typeof submitButton === 'string'
-            ? <input
-              type="submit"
+            ? <button
               className="form__submit"
               onClick={ (e) => { this.handleSubmit(e); } }
-              value={ submitButton }
-            />
+            >{ submitButton }</button>
             : React.cloneElement(submitButton, { onClick: () => { this.handleSubmit(); } })
         }
 

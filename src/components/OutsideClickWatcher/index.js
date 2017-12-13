@@ -82,7 +82,7 @@ const mapStateToProps = (state, ownProps) => {
   const watchables = ownProps.watchables || [];
 
   // Combine default and given dropdown classes, or add dropdown as default watchable
-  let dropdownWatchable = (watchables).find(w => w.classes.includes('dropdown'));
+  let dropdownWatchable = (watchables).filter(w => w.classes.indexOf('dropdown') !== -1);
   if (dropdownWatchable) {
     dropdownWatchable = Object.assign(dropdownDefault, dropdownWatchable);
   } else {

@@ -13,6 +13,7 @@ import { sortTable } from './actions';
  * @param      {[string]}  props.className                            Optional additional class for table
  * @param      {Function}  props.onRowClick                           On click for row, fed cells and row index
  * @param      {Array[]}   props.rows                                 An array of rows, each represented by an object with cells
+ * @param      {string}    [props.rows[].className]                   Optional additionalClass for the row
  * @param      {Function}  props.rows[].onClick                       Called on row click, *unless* clicked cell has its own onClick function
  * @param      {Object}    props.rows[].style                         Optional style object for row
  * @param      {Object[]}  props.rows[].cells                         An array of objects representing row cells
@@ -88,7 +89,8 @@ export function SortableTableUC ({ className, rows, columns, sortBy, sortDirecti
               <tr
                 className={ classnames(
                   'sortable-table__tr',
-                  `sortable-table__tr--row-${ rowIndex }`
+                  `sortable-table__tr--row-${ rowIndex }`,
+                  row.className
                 ) }
                 key={ rowIndex }
                 style={ row.style || {} }

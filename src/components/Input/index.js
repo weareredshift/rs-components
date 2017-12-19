@@ -47,7 +47,7 @@ export function InputUC (props) {
 
       setParentState(changes);
     },
-    ...pick(props, ['autocomplete', 'readonly'])
+    ...pick(props, ['autoComplete', 'readOnly'])
   };
 
   if (['placeholder', 'both'].includes(labelType)) {

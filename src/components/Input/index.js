@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { pick } from 'lodash';
 import { func, object, string, oneOf, bool } from 'prop-types';
 import { formatKey } from '../BaseForm/utils';
 
@@ -20,7 +21,8 @@ import { formatKey } from '../BaseForm/utils';
  *
  * @returns {React.Component} An input or textarea tag, with validations and state connection
  */
-export function InputUC ({ setParentState, parentState, type, label, stateKey, validator, labelType, reportErrorImmediately, className }) {
+export function InputUC (props) {
+  const { setParentState, parentState, type, label, stateKey, validator, labelType, reportErrorImmediately, className } = props;
   const finalLabel = label || formatKey(stateKey);
   const error = parentState.formErrors && parentState.formErrors[stateKey];
   const value = parentState[stateKey];
@@ -44,7 +46,8 @@ export function InputUC ({ setParentState, parentState, type, label, stateKey, v
       }
 
       setParentState(changes);
-    }
+    },
+    ...pick(props, ['autocomplete', 'readonly'])
   };
 
   if (['placeholder', 'both'].includes(labelType)) {

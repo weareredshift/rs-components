@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { string, bool, object, element, array, oneOfType, func } from 'prop-types';
 import { connect } from 'react-redux';
 import { setActiveTooltip } from './actions';
 
@@ -40,13 +40,13 @@ export function TooltipUC (props) {
 }
 
 TooltipUC.propTypes = {
-  id: PropTypes.string.isRequired,
-  triggerOnHover: PropTypes.bool,
-  triggerContent: PropTypes.object,
-  children: PropTypes.element,
-  dispatch: PropTypes.func,
-  openTooltipID: PropTypes.string,
-  className: PropTypes.string
+  id: string.isRequired,
+  triggerOnHover: bool,
+  triggerContent: object,
+  children: oneOfType([element, array]),
+  dispatch: func,
+  openTooltipID: string,
+  className: string
 };
 
 const mapStateToProps = state => ({
